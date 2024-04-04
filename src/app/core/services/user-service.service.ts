@@ -16,9 +16,13 @@ export class UserServiceService {
   isUserLoggedIn: boolean = false;
 
   //get all users
-  getllUsers()
+  getAllUsers()
   {
-    return this.http.get<{message: string, users:User} >(`${this.baseUrl}/users`)
+    return this.http.get<{
+      // message: string,
+       data:User
+      //  users:User
+      } >(`${this.baseUrl}/users`)
   }
 
 
