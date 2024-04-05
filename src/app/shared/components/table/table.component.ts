@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { UserServiceService } from '../../../core/services/user-service.service';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -18,7 +18,8 @@ export class TableComponent implements OnInit {
   ngOnInit(){
    this.getAll();
   }
-  constructor(private userservice: UserServiceService) {
+  constructor(private userservice: UserServiceService,
+    private router:Router) {
 
   }
   getAll() {
@@ -26,9 +27,6 @@ export class TableComponent implements OnInit {
     .subscribe(
       {
         next: (donnes)=>{
-
-          console.log("type of users ",typeof(donnes['data']));
-
           console.log("Data ",donnes['data'])
           this.rows = Object.assign(donnes['data'])
        },
@@ -70,6 +68,9 @@ export class TableComponent implements OnInit {
     deleDenay = true;
     //this
     console.log('I cliked the cancel button', deleDenay.value);
+  }
+  addUser() {
+    this.router.navigate(['register']);
 
   }
 

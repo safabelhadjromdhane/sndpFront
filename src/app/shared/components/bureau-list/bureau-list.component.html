@@ -1,0 +1,52 @@
+
+<div class="lg:container lg:mx-auto">
+
+ <!-- @for(let bureau of brx; track bureau){
+  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="#">
+        <img class="rounded-t-lg self-center" src="../../../../assets/imgs/logoagilenergy.jpg" alt="" />
+    </a>
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> {{bureau.nom}}</h5>
+        </a>
+        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+           Afficher plus d'inforamtion
+             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+    </div>
+
+  } -->
+  <div class="flex justify-evenly justify-items-center">
+    @for(bureau of brx; track bureau) {
+      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <a class="self-center">
+            <img class="rounded-t-lg" src="../../../../assets/imgs/agil.png" alt="image_bureau" />
+        </a>
+        <div class="p-5">
+            <a href="#">
+                <h5 class="mb-2 text-2xl font-bold tracking-normal text-gray-900 dark:text-white" style="color:rgb(30, 66, 159);"> {{bureau.localisation }}</h5>
+            </a>
+            <p class="mb-3 font-normal tracking-wide text-gray-700 dark:text-gray-400">Notre bureau de <em class="font-semibold">{{bureau.localisation}}</em>  offre plusieurs produits à votre dispotision.
+            </p>
+
+            <a routerLink="" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Afficher plus
+                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+            </a>
+        </div>
+      </div>
+    }
+  </div>
+
+
+
+</div>
+
+
+<!-- Modal Content -->
+

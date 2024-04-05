@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Bureau } from '../../shared/models/Bureau';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class BureauServiceService {
 
   //Displaying all bureaux
   getAllBurx(){
-    return this.http.get<{message : string, bureaux: any}>(`${this.baseUrl}/bureaux`)
+    return this.http.get<{message : string, bureaux: Bureau}>(`${this.baseUrl}/bureaux`)
   }
 
   //Creating a new Bureau

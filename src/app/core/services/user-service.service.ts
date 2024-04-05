@@ -34,6 +34,7 @@ export class UserServiceService {
 
    //Login Service
    login(user: any) {
+    this.isUserLoggedIn = true;
     return this.http.post<{message : string, user: any, token:string}>(`${this.baseUrl}/login`, user);
    }
 
@@ -84,6 +85,20 @@ export class UserServiceService {
 
       getToken(){
         return localStorage.getItem('access_token');
+      }
+
+      // getting all clients
+      getAllClients() {
+        return this.http.get<{message: string, data:User} >(`${this.baseUrl}/clients`)
+      }
+
+      //getting all operateurs
+      getAllOps() {
+        return this.http.get<{message: string, data:User} >(`${this.baseUrl}/operateurs`)
+      }
+      getAllAdmins() {
+        return this.http.get<{message: string, data:User} >(`${this.baseUrl}/admins`)
+
       }
 }
 
