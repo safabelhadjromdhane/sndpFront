@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { UserServiceService } from '../../services/user-service.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import Validation from './../../../shared/models/Validation';
-
+import { ClosingDirectiveDirective } from '../../../shared/directives/closing-directive.directive';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule,
+  imports: [ReactiveFormsModule, FormsModule, ClosingDirectiveDirective
   ],
  templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -62,6 +62,9 @@ export class RegisterComponent implements OnInit {
       }
     }
   )
+  }
+  closeAlert() {
+  //  this.
   }
 
 }
