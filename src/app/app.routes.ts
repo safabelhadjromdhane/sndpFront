@@ -8,14 +8,20 @@ import { BureauListComponent } from './shared/components/bureau-list/bureau-list
 import { ProduitListComponent } from './shared/components/produit-list/produit-list.component';
 import { ClProfileComponent } from './layouts/user-layout/pages/cl-profile/cl-profile.component';
 import { OpProfileComponent } from './layouts/operateur-layout/pages/op-profile/op-profile.component';
+import { NotfoundPageComponent } from './layouts/admin-layout/pages/notfound-page/notfound-page.component';
+import { ForgotPaswordComponent } from './core/authentification/forgot-pasword/forgot-pasword.component';
+import { BureauComponent } from './layouts/admin-layout/pages/bureau/bureau.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   {path:'login', component: LoginComponent},
   {path:"register", component: RegisterComponent},
+  {path:"forgot-password", component: ForgotPaswordComponent},
+
   {path:"admin",
   children: [
     {path: "", component:DashbaordComponent},
+    {path:"bureaux", component:BureauComponent}
     // {path:"users"},
     // {path: "guichets"},
     // {path:"produits"},
@@ -27,12 +33,15 @@ export const routes: Routes = [
     {path: "", component:UserboardComponent},
     {path:"bureau", component:BureauListComponent},
     {path: "produit", component:ProduitListComponent},
-    {path:"profile", component:ClProfileComponent}
+    {path:"profile", component:ClProfileComponent},
+    // {path: "logout", component:LoginComponent},
   ]},
   {path: "operateur",
   children:[
     {path: "", component:OpboardComponent},
-    {path:"profile", component:OpProfileComponent}
+    {path:"profile", component:OpProfileComponent},
+    // {path:"logout", component:LoginComponent}
   ]},
+  {path:'**', component:NotfoundPageComponent},
   //  {path:"operateur"}
 ];

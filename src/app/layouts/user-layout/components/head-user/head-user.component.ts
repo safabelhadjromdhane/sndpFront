@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { UserServiceService } from '../../../../core/services/user-service.service';
 
 @Component({
   selector: 'app-head-user',
@@ -8,6 +9,18 @@ import { RouterLink } from '@angular/router';
   templateUrl: './head-user.component.html',
   styleUrl: './head-user.component.css'
 })
-export class HeadUserComponent {
+export class HeadUserComponent implements OnInit {
+
+  constructor(private router: Router, private userService: UserServiceService) {
+
+  }
+
+  ngOnInit() {
+  }
+
+  logout() {
+    this.userService.logout();
+
+  }
 
 }

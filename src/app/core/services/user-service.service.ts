@@ -22,7 +22,7 @@ export class UserServiceService {
       // message: string,
        data:User
       //  users:User
-      } >(`${this.baseUrl}/users`)
+      } >(`${this.baseUrl}/users`);
   }
 
 
@@ -81,6 +81,7 @@ export class UserServiceService {
       logout() {
         this.isUserLoggedIn = false;
         localStorage.removeItem("acess_token");
+        localStorage.clear();
       }
 
       getToken(){

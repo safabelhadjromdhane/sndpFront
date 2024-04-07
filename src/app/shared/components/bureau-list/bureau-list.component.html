@@ -3,11 +3,17 @@
 
 
 </div> -->
-<div class="flex justify-evenly justify-items-center bg-gray-100 lg:mb-2 md:mb-3 sm:mb-5 lg:mt-6 md:justify-items-between">
+<div class="flex lg:container mt-6 lg:mx-auto rounded-lg">
+  <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+    La liste des bureaux
+    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Ci-dessous, est la liste exhaustifs de nos bureaux.</p>
+</caption>
+</div>
+<div class="flex justify-evenly justify-items-center lg:mb-2 md:mb-3 sm:mb-5 lg:mt-6 md:justify-items-between">
   @for(bureau of brx; track bureau) {
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <a class="self-center">
-          <img class="rounded-t-lg" src="../../../../assets/imgs/agil.png" alt="image_bureau" />
+          <img class="rounded-t-lg" src="../../../../assets/imgs/agil-removebg-preview.png" alt="image_bureau" />
       </a>
       <div class="p-5">
           <a href="#">

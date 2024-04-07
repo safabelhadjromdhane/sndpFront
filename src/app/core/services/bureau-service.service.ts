@@ -24,8 +24,8 @@ export class BureauServiceService {
 
 
   //Updating a Bureau
-  updateBureau(bureau: any) {
-    return this.http.put<{message : string}>(`${this.baseUrl}/update-bureau/${bureau.id}`, bureau);
+  updateBureau(id: any, data:any) {
+    return this.http.put<{message : string, bureau:any}>(`${this.baseUrl}/update-bureau/${id}`, data);
   }
 
 

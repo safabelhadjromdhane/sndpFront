@@ -19,7 +19,7 @@ export class BureauListComponent implements OnInit {
   // Decalaring varibales
   brx: Bureau[] = [];
   isClicked:boolean = false;
-
+  brProd:any;
   // Implementing ngOnTnit()
   ngOnInit() {
     this.getAllBureaux();
@@ -39,7 +39,16 @@ export class BureauListComponent implements OnInit {
 
   // Implementing the navigateToMore Button of bureau
   navigateToMore(id:number) {
-   console.log("ID of bureau : " + id);
+  //  console.log("ID of bureau : " + id);
    this.isClicked = true;
+
+   this.bureauService.getBureauById(id).subscribe({
+    next:(result)=>{
+
+      this.brProd = result.data
+      console.log("result is  ", this.brProd)
+    }
+   })
   }
+
 }
