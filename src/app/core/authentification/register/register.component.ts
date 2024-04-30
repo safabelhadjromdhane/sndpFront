@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   userForm!:FormGroup;
   Roles:string[] = ["admin","operateur", "client"];
   isConnected!:boolean;
+  isInvalid!:boolean;
 
   ngOnInit(){
    this.userForm = this.fb.group({
@@ -41,27 +42,34 @@ export class RegisterComponent implements OnInit {
 
 
   onSignUp() {
-   console.log("This is the value of the form ",this.userForm.value);
-   this.userservice.signup(this.userForm.value).subscribe(
-    {
-      next :(data) => {
+  //  console.log("This is the value of the form ",this.userForm.value);
+  if(this.userForm.value!= null){
+    this.isInvalid = false;
+    this.userservice.signup(this.userForm.value).subscribe(
+      {
+        next :(data) => {
 
-        if(data["status"] = 200){
-          this.isConnected = true;
-          console.log("This is the sign up informations",data);
-          window.alert("Votre compte a été créer avec Succès!!!");
-          this.router.navigate(['login']);
+          if(data["status"] = 200){
+            this.isConnected = true;
+            // console.log("This is the sign up informations",data);
+            window.alert("Votre compte a été créer avec Succès!!!");
+            this.router.navigate(['login']);
+          }
+          else if(data['status'] = 500){
+            alert("Utilisateur existant déjà!!");
+          }
+        },
+        error : (error)=> {
+          this.isConnected = false;
+          console.log("C'est quoi l'erreur", error);
         }
-        else if(data['status'] = 500){
-          alert("Utilisateur existant déjà!!");
-        }
-      },
-      error : (error)=> {
-        this.isConnected = false;
-        console.log("C'est quoi l'erreur", error);
       }
-    }
-  )
+    )
+  }
+  else {
+    this.isInvalid = true;
+  }
+
   }
   closeAlert() {
   //  this.

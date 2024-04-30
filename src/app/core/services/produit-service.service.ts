@@ -15,7 +15,7 @@ export class ProduitServiceService {
 
   //Getting all poducts
   getAllProducts(){
-    return this.http.get<{data:any}>(`${this.baseUrl}/products`);
+    return this.http.get<{message: string, data:any}>(`${this.baseUrl}/products`);
   }
 
   //Creating a Product
@@ -25,13 +25,17 @@ export class ProduitServiceService {
 
   //Updating a Product
   updateProduct(id:any, product:any){
-
+   return this.http.put<{message: string, data:any}>(`${this.baseUrl}/update-product/${id}`,product)
   }
 
   //Deleting a product
+  deleteProduct(id:any){
+    return this.http.delete<{message: string, data:any}>(`${this.baseUrl}/delete-product/${id}`)
+  }
 
   //Getting product by Id
-
-
+  getProductById(id:any){
+    return this.http.get<{message: string, data:any}>(`${this.baseUrl}/find-product/${id}`)
+  }
 
 }

@@ -85,5 +85,8 @@ export class LoginComponent implements OnInit {
    }
 
   }
+  closeBtn(){
+    console.log("close the button with tailwindcss plz!!!")
+  }
 
 }

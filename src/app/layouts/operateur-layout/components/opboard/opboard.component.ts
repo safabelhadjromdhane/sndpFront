@@ -5,8 +5,10 @@ import { TrackOperatComponent } from '../track-operat/track-operat.component';
 import { RouterLink } from '@angular/router';
 import { CustomPipePipe } from "../../../../shared/pipes/custom-pipe.pipe";
 import { UserServiceService } from '../../../../core/services/user-service.service';
-import { FileListComponent } from '../../../../shared/components/file-list/file-list.component';
-import { TicketListComponent } from '../../../../shared/components/ticket-list/ticket-list.component';
+import { TicketBoardComponent } from '../../pages/ticket-board/ticket-board.component';
+import { FileEnCoursComponent } from '../../pages/file-en-cours/file-en-cours.component';
+// import { FileListComponent } from '../../../../shared/components/file-list/file-list.component';
+// import { TicketListComponent } from '../../../../shared/components/ticket-list/ticket-list.component';
 
 @Component({
     selector: 'app-opboard',
@@ -15,8 +17,7 @@ import { TicketListComponent } from '../../../../shared/components/ticket-list/t
     styleUrl: './opboard.component.css',
     imports: [FooterComponent, HeadOpComponent,
       TrackOperatComponent, RouterLink,
-      CustomPipePipe, FileListComponent,
-    TicketListComponent]
+      CustomPipePipe,TicketBoardComponent,FileEnCoursComponent]
 })
 export class OpboardComponent implements OnInit{
   // @Output() test: string = "this is a test";

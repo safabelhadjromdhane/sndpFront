@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '../../../../core/footer/footer/footer.component';
 import { HeadUserComponent } from "../head-user/head-user.component";
 import { UserServiceService } from '../../../../core/services/user-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BureauListComponent } from "../../../../shared/components/bureau-list/bureau-list.component";
 import { UserFeedbackComponent } from '../user-feedback/user-feedback.component';
+import { ListProdsComponent } from '../../pages/list-prods/list-prods.component';
+// import { ProduitListComponent } from '../../../../shared/components/produit-list/produit-list.component';
 
 @Component({
     selector: 'app-userboard',
     standalone: true,
     templateUrl: './userboard.component.html',
     styleUrl: './userboard.component.css',
-    imports: [FooterComponent, HeadUserComponent, BureauListComponent, UserFeedbackComponent]
+    imports: [FooterComponent, HeadUserComponent, BureauListComponent, UserFeedbackComponent,RouterLink, ListProdsComponent]
 })
 export class UserboardComponent implements OnInit {
 
@@ -23,7 +25,9 @@ export class UserboardComponent implements OnInit {
    userName:any;
     ngOnInit() {
       this.getClientId();
+
     }
+
 
   getClientId():any{
     if(localStorage.getItem('id')== null) {
@@ -40,7 +44,7 @@ export class UserboardComponent implements OnInit {
         }
        )
     }
-
   }
+
 
 }

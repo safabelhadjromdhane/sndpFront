@@ -1,196 +1,291 @@
 
-<div class="md:container md:mx-auto bg-gray-50">
-
-  <form (ngSubmit)="onSignUp()" [formGroup]="userForm"
-  class="max-w-sm mx-auto">
-    <div class="bg-white text-lg my-2 mx-2">
-      <a href="#" class="flex justify-center">
-        <img class="" src="../../../../assets/imgs/logoagilenergy.jpg" alt="" />
-    </a>
-    <a href="#" class="mt-2 mb-4 flex justify-center">
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Création d'un compte</h5>
-    </a>
-
-
-    <!-- ID SECTION -->
-    <div class="mb-3">
-      <label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre Identifiant</label>
-      <input type="text" id="id" formControlName="id"
-      placeholder="Veuillez saisir votre ID" required
-      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
-
-      <!-- ID Validation   -->
-      <p class="mt-2 mb-2 text-center text-pretty">
-        @if(userForm.controls['id'].invalid && (userForm.controls['id'].touched || userForm.controls['id'].dirty)){
-          <span class="mx-4  text-pretty">
-            @if(userForm.controls['id'].errors) {
-              <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre identifiant.</em>
-              <em class=" text-pretty" style="color:rgb(155, 28, 28);">Votre identifiant doit contenir au moins 8 et au plus 12 caractères.</em>
-            }
-          </span>
-        }
-       </p>
-
+@if(isInvalid) {
+  <div class="flex justify-center">
+    <div role="alert" class="md:w-2/4">
+      <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+        Danger
+      </div>
+      <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+        <p>Veuillez remplir le formulaire</p>
+      </div>
     </div>
-
-    <!-- NOM SECTION -->
-      <div class="mb-3">
-        <label for="nom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre Nom</label>
-        <input type="text" id="nom" formControlName="nom" required
-         placeholder="Veuillez saisir votre nom"
-        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
-
-        <!-- Nom Validation  -->
-        <p class="mt-2 mb-2 text-center text-pretty">
-          @if(userForm.controls['nom'].invalid && (userForm.controls['nom'].touched || userForm.controls['nom'].dirty)){
-            <span class="mx-4  text-pretty">
-              @if(userForm.controls['nom'].errors) {
-                <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre nom.</em>
-              }
-            </span>
-          }
-         </p>
+  </div>
+}
 
 
+<section class="bg-gray-100 dark:bg-gray-900">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:h-auto lg:py-0">
+    <a  class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+      <img class="w-20 h-24 mr-2" src="../../../../assets/imgs/logoagilenergy.jpg" alt="logo">
+  </a>
+    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                  Créer un compte
+                  <!-- <a href="#" class="flex justify-center">
+                    <img class="" src="../../../../assets/imgs/logoagilenergy.jpg" alt="" />
+                </a> -->
+
+              </h1>
+              <form class="space-y-4 md:space-y-6 mb-3 md:mb-6" (ngSubmit)="onSignUp()" [formGroup]="userForm">
+
+                <div class="grid grid-cols-2 gap-6">
+
+                  <div class="relative">
+                    <input type="text" id="id" class="peer p-4 block w-full bg-gray-100
+                    border-transparent rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500
+                    disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600
+                    focus:pt-6
+                    focus:pb-2
+                    [&:not(:placeholder-shown)]:pt-6
+                    [&:not(:placeholder-shown)]:pb-2
+                    autofill:pt-6
+                    autofill:pb-2" placeholder="Veuillez entrr votre ID" required id="id" formControlName="id">
+                    <label for="id" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                      peer-focus:text-xs
+                      peer-focus:-translate-y-1.5
+                      peer-focus:text-gray-500
+                      peer-[:not(:placeholder-shown)]:text-xs
+                      peer-[:not(:placeholder-shown)]:-translate-y-1.5
+                      peer-[:not(:placeholder-shown)]:text-gray-500">Votre identifiant <span class="text-red-600">*</span></label>
+                      <p class="mt-2 text-center text-pretty">
+                        @if(userForm.controls['id'].invalid && (userForm.controls['id'].touched || userForm.controls['id'].dirty)){
+                          <span class="mx-4  text-pretty">
+                            @if(userForm.controls['id'].errors) {
+                              <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre identifiant.</em>
+                              <em class=" text-pretty" style="color:rgb(155, 28, 28);">Votre identifiant doit contenir au moins 8 et au plus 12 caractères.</em>
+                            }
+                          </span>
+                        }
+                       </p>
+
+                  </div>
+
+                <div class="relative">
+                  <input type="text" id="nom" class="peer p-4 block w-full bg-gray-100 border-transparent
+                  rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500
+                  disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600
+                  focus:pt-6
+                  focus:pb-2
+                  [&:not(:placeholder-shown)]:pt-6
+                  [&:not(:placeholder-shown)]:pb-2
+                  autofill:pt-6
+                  autofill:pb-2" placeholder="Nom " required formControlName="nom">
+                  <label for="nom" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                    peer-focus:text-xs
+                    peer-focus:-translate-y-1.5
+                    peer-focus:text-gray-500
+                    peer-[:not(:placeholder-shown)]:text-xs
+                    peer-[:not(:placeholder-shown)]:-translate-y-1.5
+                    peer-[:not(:placeholder-shown)]:text-gray-500">Votre Nom <span class="text-red-600">*</span></label>
+                    <p class="mt-2 text-center text-pretty">
+                      @if(userForm.controls['nom'].invalid && (userForm.controls['nom'].touched || userForm.controls['nom'].dirty)){
+                        <span class="mx-4  text-pretty">
+                          @if(userForm.controls['nom'].errors) {
+                            <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre nom.</em>
+                          }
+                        </span>
+                      }
+                    </p>
+                </div>
+                </div>
+                   <div class="grid grid-cols-2 gap-6">
+
+                    <div class="relative">
+                      <input type="text" id="prenom" class="peer p-4 block w-full bg-gray-100 border-transparent
+                      rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500
+                      disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600
+                      focus:pt-6
+                      focus:pb-2
+                      [&:not(:placeholder-shown)]:pt-6
+                      [&:not(:placeholder-shown)]:pb-2
+                      autofill:pt-6
+                      autofill:pb-2" placeholder="Nom " required formControlName="prenom">
+                      <label for="prenom" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                        peer-focus:text-xs
+                        peer-focus:-translate-y-1.5
+                        peer-focus:text-gray-500
+                        peer-[:not(:placeholder-shown)]:text-xs
+                        peer-[:not(:placeholder-shown)]:-translate-y-1.5
+                        peer-[:not(:placeholder-shown)]:text-gray-500">Votre Prenom <span class="text-red-600">*</span></label>
+                        <p class="mt-2 text-center text-pretty">
+                          @if(userForm.controls['prenom'].invalid && (userForm.controls['prenom'].touched || userForm.controls['prenom'].dirty)){
+                            <span class="mx-4  text-pretty">
+                              @if(userForm.controls['prenom'].errors) {
+                                <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre prenom.</em>
+                              }
+                            </span>
+                          }
+                        </p>
+                    </div>
+                    <div class="relative">
+                      <input type="email" id="email" class="peer p-4 block w-full bg-gray-100 border-transparent rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600
+                      focus:pt-6
+                      focus:pb-2
+                      [&:not(:placeholder-shown)]:pt-6
+                      [&:not(:placeholder-shown)]:pb-2
+                      autofill:pt-6
+                      autofill:pb-2" placeholder="you@email.com" required formControlName="email">
+                      <label for="email" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                        peer-focus:text-xs
+                        peer-focus:-translate-y-1.5
+                        peer-focus:text-gray-500
+                        peer-[:not(:placeholder-shown)]:text-xs
+                        peer-[:not(:placeholder-shown)]:-translate-y-1.5
+                        peer-[:not(:placeholder-shown)]:text-gray-500">Email <span class="text-red-600">*</span></label>
+                        <p class="mt-2 text-center text-pretty">
+                          @if(userForm.controls['email'].invalid && (userForm.controls['email'].touched || userForm.controls['email'].dirty)){
+                            <span class="mx-4  text-pretty">
+                              @if(userForm.controls['email'].errors) {
+                                <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire une adresse email valide.</em>
+                              }
+                            </span>
+                          }
+                         </p>
+                    </div>
+                   </div>
+
+                   <div class="grid grid-cols-2 gap-6">
+                    <div class="relative">
+                      <input type="text" id="telephone" class="peer p-4 block w-full bg-gray-100 border-transparent rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600
+                      focus:pt-6
+                      focus:pb-2
+                      [&:not(:placeholder-shown)]:pt-6
+                      [&:not(:placeholder-shown)]:pb-2
+                      autofill:pt-6
+                      autofill:pb-2" placeholder="20000000" required formControlName="telephone">
+                      <label for="telephone" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                        peer-focus:text-xs
+                        peer-focus:-translate-y-1.5
+                        peer-focus:text-gray-500
+                        peer-[:not(:placeholder-shown)]:text-xs
+                        peer-[:not(:placeholder-shown)]:-translate-y-1.5
+                        peer-[:not(:placeholder-shown)]:text-gray-500" required formControlName="telephone">Téléphone <span class="text-red-500">*</span></label>
+                        <p class="mt-2 text-center text-pretty">
+                          @if(userForm.controls['telephone'].invalid && (userForm.controls['telephone'].touched || userForm.controls['telephone'].dirty)){
+                            <span class="mx-4  text-pretty">
+                              @if(userForm.controls['telephone'].errors) {
+                                <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire un numéro de téléphone valide</em>
+                              }
+                            </span>
+                          }
+                        </p>
+
+                      </div>
+                    <div class="relative">
+                      <input type="password" id="passowrd"
+                      class="peer p-4 block w-full bg-gray-100 border-transparent rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600
+                      focus:pt-6
+                      focus:pb-2
+                      [&:not(:placeholder-shown)]:pt-6
+                      [&:not(:placeholder-shown)]:pb-2
+                      autofill:pt-6
+                      autofill:pb-2" placeholder="********" required formControlName="password">
+                      <label for="passowrd" class="absolute top-0 start-0 p-4 h-full text-sm truncate
+                      pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50
+                      peer-disabled:pointer-events-none
+                        peer-focus:text-xs
+                        peer-focus:-translate-y-1.5
+                        peer-focus:text-gray-500
+                        peer-[:not(:placeholder-shown)]:text-xs
+                        peer-[:not(:placeholder-shown)]:-translate-y-1.5
+                        peer-[:not(:placeholder-shown)]:text-gray-500 ">Password <span class="text-red-600">*</span></label>
+                        <p class="mt-2 text-center text-pretty">
+                              @if(userForm.controls['password'].invalid && (userForm.controls['password'].touched || userForm.controls['password'].dirty)){
+                                <span class="mx-4  text-pretty">
+                                  @if(userForm.controls['password'].errors) {
+                                    <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre mot de passe.</em>
+                                  }
+                                </span>
+                              }
+                            </p>
+                    </div>
+
+                   </div>
+
+                   <!-- <div class="grid grid-cols-5 gap-6">
+
+                   </div> -->
+
+                <div class="relative">
+                  <input type="password" id="confirmPassword" class="peer p-4 block w-full bg-gray-100
+                  border-transparent rounded-lg text-sm placeholder:text-transparent focus:border-blue-500
+                  focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent
+                  dark:text-gray-400 dark:focus:ring-gray-600
+                  focus:pt-6
+                  focus:pb-2
+                  [&:not(:placeholder-shown)]:pt-6
+                  [&:not(:placeholder-shown)]:pb-2
+                  autofill:pt-6
+                  autofill:pb-2" placeholder="********" required formControlName="confirmPassword">
+                  <label for="confirmPassowrd" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                    peer-focus:text-xs
+                    peer-focus:-translate-y-1.5
+                    peer-focus:text-gray-500
+                    peer-[:not(:placeholder-shown)]:text-xs
+                    peer-[:not(:placeholder-shown)]:-translate-y-1.5
+                    peer-[:not(:placeholder-shown)]:text-gray-500">Confirm Password <span class="text-red-600">*</span></label>
+                    <p class="mt-2 text-center text-pretty">
+                      @if(userForm.controls['confirmPassword'].invalid && (userForm.controls['confirmPassword'].touched || userForm.controls['confirmPassword'].dirty)){
+                        <span class="mx-4  text-pretty">
+                          @if(userForm.controls['confirmPassword'].errors) {
+                            <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez confirmer votre mot de passe.</em>
+                          }
+                        </span>
+                      }
+                    </p>
+                </div>
+                <div class="mb-3">
+                  <label for="role" class="sr-only ">Label</label>
+                  <select id="role"  formControlName="role" required class="py-3 px-4 pe-9 block w-full border-gray-50 bg-gray-100 rounded-lg text-sm focus:border-blue-500
+                  focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400
+                  dark:focus:ring-gray-600 ">
+                    <option  value="admin">Admin</option>
+                    <option value="client">Client</option>
+                    <option value="operateur">Opérateur</option>
+                  </select>
+                  <p class="mt-2 text-center text-pretty">
+                    @if(userForm.controls['role'].invalid && (userForm.controls['role'].touched || userForm.controls['role'].dirty)){
+                      <span class="mx-4  text-pretty">
+                        @if(userForm.controls['role'].errors) {
+                          <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez choisir votre role.</em>
+                        }
+                      </span>
+                    }
+                    </p>
+                </div>
+
+
+                  <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4
+                  focus:outline-none focus:ring-blue-300 font-medium rounded-lg
+                  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create an account</button>
+
+              </form>
+          </div>
       </div>
+  </div>
 
-      <!-- PREMON SECTION -->
-      <div class="mb-3">
-        <label for="prenom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre Prenom</label>
-        <input type="text" id="prenom" formControlName="prenom" required
-         placeholder="Veuillez saisir votre prenom" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-         required />
+   <div>
 
-         <!-- Prenom Validation  -->
-        <p class="mt-2 mb-2 text-center text-pretty">
-          @if(userForm.controls['prenom'].invalid && (userForm.controls['prenom'].touched || userForm.controls['prenom'].dirty)){
-            <span class="mx-4  text-pretty">
-              @if(userForm.controls['prenom'].errors) {
-                <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre prenom.</em>
-              }
-            </span>
-          }
-         </p>
+   </div>
 
 
-        </div>
-
-        <!-- EMAIL SECTION -->
-
-      <div class="mb-3">
-        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-        <input type="email" id="email" formControlName="email" required
-         placeholder="mail@gmail.com" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"  required />
-
-         <!-- Email Validation  -->
-         <p class="mt-2 mb-2 text-center text-pretty">
-          @if(userForm.controls['email'].invalid && (userForm.controls['email'].touched || userForm.controls['email'].dirty)){
-            <span class="mx-4  text-pretty">
-              @if(userForm.controls['email'].errors) {
-                <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire une adresse email valide.</em>
-              }
-            </span>
-          }
-         </p>
-
-
-        </div>
-
-        <!-- TELEPHONE SECTION -->
-      <div class="mb-3">
-        <label for="telephone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre Téléphone</label>
-        <input type="number" id="telephone" formControlName="telephone" required
-         placeholder="(+216 54 897 321)" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"  required />
-
-          <!-- Telephone Validation -->
-          <p class="mt-2 mb-2 text-center text-pretty">
-            @if(userForm.controls['telephone'].invalid && (userForm.controls['telephone'].touched || userForm.controls['telephone'].dirty)){
-              <span class="mx-4  text-pretty">
-                @if(userForm.controls['telephone'].errors) {
-                  <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire un numéro de téléphone qui ne dépasse pas les 8 chiffres.</em>
-                }
-              </span>
-            }
-           </p>
-
-        </div>
-
-        <!-- PASSWORD SECTION -->
-      <div class="mb-3">
-        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-        <input type="password" id="password" formControlName="password" required
-         placeholder="Veuillez saisir votre nom" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
-
-         <!-- Password Validation  -->
-         <p class="mt-2 mb-2 text-center text-pretty">
-          @if(userForm.controls['password'].invalid && (userForm.controls['password'].touched || userForm.controls['password'].dirty)){
-            <span class="mx-4  text-pretty">
-              @if(userForm.controls['password'].errors) {
-                <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre mot de passe.</em>
-              }
-            </span>
-          }
-         </p>
-
-
-        </div>
-
-        <!-- CONFIRMEDPASSWORD SECTION -->
-      <div class="mb-3">
-        <label for="confirmPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmation password</label>
-        <input type="password" id="confirmPassword" formControlName="confirmPassword" required
-         placeholder="Veuillez saisir votre nom" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
-
-         <!-- Confirmed  Password Validation -->
-         <p class="mt-2 mb-2 text-center text-pretty">
-          @if(userForm.controls['confirmPassword'].invalid && (userForm.controls['confirmPassword'].touched || userForm.controls['confirmPassword'].dirty)){
-            <span class="mx-4  text-pretty">
-              @if(userForm.controls['confirmPassword'].errors) {
-                <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez confirmer votre mot de passe.</em>
-              }
-            </span>
-          }
-         </p>
-
-        </div>
-
-        <!-- ROLE SECTION -->
-      <div class="mb-3">
-        <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choisir un role</label>
-        <select id="role" formControlName="role" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-           <option value="admin">Admin</option>
-          <option value="operateur">Operateur</option>
-          <option value="client">Client</option>
-
-    </select>
-
-    <!-- Select Validation -->
-    <p class="mt-2 mb-2 text-center text-pretty">
-      @if(userForm.controls['role'].invalid && (userForm.controls['role'].touched || userForm.controls['role'].dirty)){
-        <span class="mx-4  text-pretty">
-          @if(userForm.controls['role'].errors) {
-            <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez choisir votre role.</em>
-          }
-        </span>
-      }
-     </p>
-      </div>
-      <div class="flex justify-center">
+<!-- <div class="flex justify-center">
         @if(userForm.invalid){
           <button type="submit" required [disabled]="userForm.invalid"
-         class="text-white bg-blue-400  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Créer un compte</button>
+         class="text-white bg-blue-400  focus:ring-4 focus:outline-none
+         focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5
+          text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Créer un compte</button>
         }
         @else {
           <button type="submit" required
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Créer un compte</button>
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4
+          focus:outline-none focus:ring-blue-300 font-medium rounded-lg
+          text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Créer un compte</button>
         }
-
-      </div>
-    </div>
-  </form>
-
-
+      </div> -->
   <!-- Displaying alerts  if there is an error in the user creation -->
+
   @if(isConnected==true){
 
     <div id="toast-success" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
@@ -229,5 +324,4 @@
   </div>
   }
 
-
-</div>
+</section>

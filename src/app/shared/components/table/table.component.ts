@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { UserServiceService } from '../../../core/services/user-service.service';
 import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { FormGroup, ReactiveFormsModule , FormsModule, FormBuilder, Validators} from '@angular/forms';
+import Validation from '../../models/Validation';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet,ReactiveFormsModule, FormsModule, RouterLink],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
@@ -15,11 +17,25 @@ export class TableComponent implements OnInit {
   rows:User[] = [];
   deleConfirmation:boolean =false;
   idUser!:string;
+  updateForm!:FormGroup;
   ngOnInit(){
    this.getAll();
+   this.updateForm = this.fb.group({
+    id : ['', [Validators.required,Validators.minLength(8), Validators.maxLength(12)]],
+      nom : ['', [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+ [A-Z][a-z]+|[A-Z][a-z]+)$')]],
+      prenom: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+ [A-Z][a-z]+|[A-Z][a-z]+)$')]],
+      email : ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
+      telephone : ['', [Validators.required, Validators.maxLength(8)]],
+      password : ['',[Validators.required, Validators.minLength(6), Validators.maxLength(45)]],
+      confirmPassword: ['',Validators.required],
+      role : ['', Validators.required],
+   },
+   {validators: [Validation.match("password", "confirmPassword")]
+   })
+
   }
   constructor(private userservice: UserServiceService,
-    private router:Router) {
+    private router:Router, private fb:FormBuilder) {
 
   }
   getAll() {
@@ -27,27 +43,25 @@ export class TableComponent implements OnInit {
     .subscribe(
       {
         next: (donnes)=>{
-          console.log("Data ",donnes['data'])
+          // console.log("Data ",donnes['data'])
           this.rows = Object.assign(donnes['data'])
        },
        error: (e)=> {
-        console.log("I can't find the data message to display users "+e);
+        // console.log("I can't find the data message to display users "+e);
        }
       }
     )
   }
-  deleteUser(id:any) {
+  deleteUser(idUser:any) {
     if(this.deleConfirmation = true){
-      console.log("This is the id of the user to be deleted", id)
-      this.idUser = id;
-      this.userservice.deleteUser(id).subscribe(
+      console.log("This is the id of the user to be deleted", idUser)
+      // this.idUser = id;
+      this.userservice.deleteUser(idUser).subscribe(
         {
           next : (data)=>{
-            console.log("Here data after delete", data.message);
             this.getAll();
           },
           error : (err)=>{
-            console.log('Error while deleting this user'+ err);
 
           }
         }
@@ -58,17 +72,25 @@ export class TableComponent implements OnInit {
     }
   }
   updateUser(id:any){
-   console.log("This is the id of the user to be updated", id)
+    this.userservice.getUserById(id).subscribe({
+      next: (data)=>{
+        this.idUser = id;
+        // console.log(data['user'])
+      },
+      error : ()=> {
+        setTimeout(()=> {
+          alert("Il ya un problème lors de la modification de cet utiliateur!!")
+        }, 2000)
+      }
+    })
+  //  console.log("This is the id of the user to be updated", id)
   }
+
   deleteConfirmed(){
     this.deleConfirmation = true;
-    this.deleteUser(this.idUser);
+    // this.deleteUser(this.idUser);
   }
-  denayDelete(deleDenay:any) {
-    deleDenay = true;
-    //this
-    console.log('I cliked the cancel button', deleDenay.value);
-  }
+
   addUser() {
     this.router.navigate(['register']);
 

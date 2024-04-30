@@ -13,12 +13,12 @@ export class GuichetServiceService {
 
   // Getting all guichets
   getAllGuichets(){
-    return this.http.get<{data:any} >(`${this.baseUrl}/guichets`)
+    return this.http.get<{message:string,data:any} >(`${this.baseUrl}/guichets`)
   }
 
   // Getting guichetById
   getGuichetById( id:number){
-    return this.http.get<{message:String,data:any} >(`${this.baseUrl}/find-guichet/${id}`)
+    return this.http.get<{message:string,data:any} >(`${this.baseUrl}/find-guichet/${id}`)
   }
 
   //Creating guichet

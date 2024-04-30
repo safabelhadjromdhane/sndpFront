@@ -11,6 +11,19 @@ import { OpProfileComponent } from './layouts/operateur-layout/pages/op-profile/
 import { NotfoundPageComponent } from './layouts/admin-layout/pages/notfound-page/notfound-page.component';
 import { ForgotPaswordComponent } from './core/authentification/forgot-pasword/forgot-pasword.component';
 import { BureauComponent } from './layouts/admin-layout/pages/bureau/bureau.component';
+import { FeedbacksComponent } from './layouts/admin-layout/pages/feedbacks/feedbacks.component';
+import { AddBureauComponent } from './layouts/admin-layout/pages/add-bureau/add-bureau.component';
+import { EditBureauComponent } from './layouts/admin-layout/pages/edit-bureau/edit-bureau.component';
+import { TicketListComponent } from './shared/components/ticket-list/ticket-list.component';
+import { AddFeedbackComponent } from './layouts/user-layout/components/add-feedback/add-feedback.component';
+import { EditUserComponent } from './shared/components/edit-user/edit-user.component';
+import { EditProfilComponent } from './layouts/user-layout/components/edit-profil/edit-profil.component';
+import { EditAvisComponent } from './layouts/user-layout/components/edit-avis/edit-avis.component';
+import { GuichetListComponent } from './shared/components/guichet-list/guichet-list.component';
+import { FileListComponent } from './shared/components/file-list/file-list.component';
+import { EditGuichetComponent } from './layouts/admin-layout/pages/edit-guichet/edit-guichet.component';
+import { AddGuichetComponent } from './layouts/admin-layout/pages/add-guichet/add-guichet.component';
+import { AddProduitComponent } from './layouts/admin-layout/pages/add-produit/add-produit.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -21,27 +34,38 @@ export const routes: Routes = [
   {path:"admin",
   children: [
     {path: "", component:DashbaordComponent},
-    {path:"bureaux", component:BureauComponent}
-    // {path:"users"},
-    // {path: "guichets"},
-    // {path:"produits"},
-    // {path:"files"},
-    // {path: "avis"}
+    {path:"guichets", component:GuichetListComponent},
+    {path:'files', component:FileListComponent},
+    {path:"tickets", component:TicketListComponent},
+    {path:"edit-user/:id", component: EditUserComponent},
+    {path:"bureaux", component:BureauComponent,
+    //  children: [{path:"add-bureau", component:AddBureauComponent},
+    //   {path:"edit-bureau", component:EditBureauComponent}
+    //  ]
+    },
+    {path:"bureaux/add-bureau", component:AddBureauComponent},
+    {path:"bureaux/edit-bureau/:id", component:EditBureauComponent},
+    {path: "produits", component:ProduitListComponent},
+    {path: "avis", component:FeedbacksComponent},
+    {path:"edit-guichet/:id", component:EditGuichetComponent},
+    {path:"guichets/add-guichet", component:AddGuichetComponent},
+    {path:"produits/add-produit", component:AddProduitComponent},
+
   ]},
    {path: "client",
   children:[
     {path: "", component:UserboardComponent},
     {path:"bureau", component:BureauListComponent},
     {path: "produit", component:ProduitListComponent},
-    {path:"profile", component:ClProfileComponent},
-    // {path: "logout", component:LoginComponent},
+    {path:"avis", component:ClProfileComponent},
+    {path:"avis/add-feedback", component:AddFeedbackComponent},
+    {path:'edit-profile', component:EditProfilComponent},
+    {path:"avis/edit-avis/:id", component:EditAvisComponent}
   ]},
   {path: "operateur",
   children:[
     {path: "", component:OpboardComponent},
-    {path:"profile", component:OpProfileComponent},
-    // {path:"logout", component:LoginComponent}
-  ]},
+    {path:"profile", component:OpProfileComponent,},
+    ]},
   {path:'**', component:NotfoundPageComponent},
-  //  {path:"operateur"}
 ];

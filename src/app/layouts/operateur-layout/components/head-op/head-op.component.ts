@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { UserServiceService } from '../../../../core/services/user-service.service';
 
 @Component({
   selector: 'app-head-op',
@@ -8,7 +9,17 @@ import { RouterLink } from '@angular/router';
   templateUrl: './head-op.component.html',
   styleUrl: './head-op.component.css'
 })
-export class HeadOpComponent {
+export class HeadOpComponent implements OnInit {
+
+  constructor(private userservice:UserServiceService) {
+
+  }
+  ngOnInit(): void {
+    // throw new Error('Method not implemented.');
+  }
   @Input() opNom !:string;
+  logout(){
+    this.userservice.logout();
+  }
 
 }

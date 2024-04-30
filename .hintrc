@@ -6,7 +6,8 @@
     "axe/name-role-value": [
       "default",
       {
-        "link-name": "off"
+        "link-name": "off",
+        "button-name": "off"
       }
     ],
     "no-inline-styles": "off",
@@ -22,6 +23,19 @@
         "select-name": "off"
       }
     ],
-    "disown-opener": "off"
+    "disown-opener": "off",
+    "button-type": "off",
+    "axe/structure": [
+      "default",
+      {
+        "list": "off"
+      }
+    ],
+    "axe/aria": [
+      "default",
+      {
+        "aria-required-parent": "off"
+      }
+    ]
   }
 }

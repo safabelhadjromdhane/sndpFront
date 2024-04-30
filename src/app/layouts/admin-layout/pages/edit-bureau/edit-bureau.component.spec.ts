@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GuichetComponent } from './guichet.component';
+import { EditBureauComponent } from './edit-bureau.component';
 
-describe('GuichetComponent', () => {
-  let component: GuichetComponent;
-  let fixture: ComponentFixture<GuichetComponent>;
+describe('EditBureauComponent', () => {
+  let component: EditBureauComponent;
+  let fixture: ComponentFixture<EditBureauComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GuichetComponent]
+      imports: [EditBureauComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(GuichetComponent);
+    fixture = TestBed.createComponent(EditBureauComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

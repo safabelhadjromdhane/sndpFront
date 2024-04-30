@@ -101,5 +101,7 @@ export class UserServiceService {
         return this.http.get<{message: string, data:User} >(`${this.baseUrl}/admins`)
 
       }
+
 }
+
 
