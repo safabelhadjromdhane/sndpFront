@@ -50,5 +50,8 @@ export class OpboardComponent implements OnInit{
       })
     }
   }
+  logout(){
+    this.userService.logout()
+  }
 
 }

@@ -59,10 +59,11 @@ export class TableComponent implements OnInit {
       this.userservice.deleteUser(idUser).subscribe(
         {
           next : (data)=>{
+            alert(data.message);
             this.getAll();
           },
           error : (err)=>{
-
+            console.log('Error', err);
           }
         }
       )
@@ -83,7 +84,6 @@ export class TableComponent implements OnInit {
         }, 2000)
       }
     })
-  //  console.log("This is the id of the user to be updated", id)
   }
 
   deleteConfirmed(){

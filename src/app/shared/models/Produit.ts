@@ -2,8 +2,8 @@ export interface Produit {
 
   codeProd?:number;
   libProd?: string;
-  userId?:string;
-  guichetId?:string;
-  createdDate?:Date;
+  user?:string;
+  guichet?:string;
+  createdAt?:Date;
   // role?: string;
 }

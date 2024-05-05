@@ -1,4 +1,4 @@
-export interface Guichet {
+export interface File {
 
   id?:number;
   nom?: string;

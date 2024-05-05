@@ -3,6 +3,7 @@ import { FooterComponent } from "../../../core/footer/footer/footer.component";
 import { RouterLink } from '@angular/router';
 import { TicketServiceService } from '../../../core/services/ticket-service.service';
 import { Ticket } from '../../models/Ticket';
+import { UserServiceService } from '../../../core/services/user-service.service';
 
 @Component({
     selector: 'app-ticket-list',
@@ -13,13 +14,16 @@ import { Ticket } from '../../models/Ticket';
 })
 export class TicketListComponent implements OnInit {
 
-  constructor(private ticketservice:TicketServiceService){
+  constructor(private ticketservice:TicketServiceService, private userservice:UserServiceService){
 
   }
   tickets:Ticket [] =[]
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
 
+  }
+  logout(){
+    this.userservice.logout();
   }
 
 }

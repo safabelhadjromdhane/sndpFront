@@ -19,17 +19,25 @@ export class AddGuichetComponent implements OnInit {
   }
   ngOnInit() {
     this.addForms = this.fb.group({
+      // localisation: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+)$')]],
+      nomGuichet:['', [Validators.required]],
+      bureau:['', [Validators.required]],
       user:['',[Validators.required, Validators.minLength(3),Validators.maxLength(12)]],
-      localisation: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+)$')]]
+      produit:['', ],
+
+
     })
   }
 
   ajouterGuichet(){
     if(this.addForms!=null){
+            console.log(this.addForms.value);
+
       this.guichetservice.createNewGuichet(this.addForms.value).subscribe({
         next : (infos)=>{
-          if(infos["message"]== ""){
-
+          if(infos["message"]== "Guichet has been created successfully"){
+            window.alert("Le guichet a été créer avec Succès!!!");
+            this.router.navigate(['admin', "guichets"])
           }
         },
         error:(error)=>{

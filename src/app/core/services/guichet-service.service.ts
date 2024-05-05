@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Guichet } from '../../shared/models/Guichet';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class GuichetServiceService {
 
   // Getting all guichets
   getAllGuichets(){
-    return this.http.get<{message:string,data:any} >(`${this.baseUrl}/guichets`)
+    return this.http.get<{message:string ,guichetx:Guichet} >(`${this.baseUrl}/guichets`)
   }
 
   // Getting guichetById

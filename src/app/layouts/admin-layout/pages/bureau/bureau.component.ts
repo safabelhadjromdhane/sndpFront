@@ -4,6 +4,7 @@ import { BureauServiceService } from '../../../../core/services/bureau-service.s
 import { Bureau } from '../../../../shared/models/Bureau';
 import { HeaderComponent } from '../../../../core/header/header/header.component';
 import { FooterComponent } from '../../../../core/footer/footer/footer.component';
+import { UserServiceService } from '../../../../core/services/user-service.service';
 
 @Component({
   selector: 'app-bureau',
@@ -19,7 +20,8 @@ export class BureauComponent implements OnInit {
   constructor(
     private bureauService:BureauServiceService,
     private router:Router,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private userservice:UserServiceService
   ) {}
   brx:Bureau[]= [];
   brtoDel!:number;
@@ -52,6 +54,9 @@ export class BureauComponent implements OnInit {
   }
   naviagteTo(){
     this.router.navigate(['admin', 'bureaux','add-bureau'])
+  }
+  logout(){
+    this.userservice.logout();
   }
 
 }

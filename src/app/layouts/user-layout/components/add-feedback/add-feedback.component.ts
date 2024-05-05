@@ -26,7 +26,7 @@ export class AddFeedbackComponent implements OnInit {
   }
 
   onSave(){
-    console.log("thisis from templae", this.feedForm.value)
+    console.log("this is from templae", this.feedForm.value)
    if(this.feedForm.value !=null){
     this.feedservice.addFeedBack(this.feedForm.value).subscribe(
       {next: (infos:any)=>{

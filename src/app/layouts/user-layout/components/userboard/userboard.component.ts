@@ -6,6 +6,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BureauListComponent } from "../../../../shared/components/bureau-list/bureau-list.component";
 import { UserFeedbackComponent } from '../user-feedback/user-feedback.component';
 import { ListProdsComponent } from '../../pages/list-prods/list-prods.component';
+import { BureauServiceService } from '../../../../core/services/bureau-service.service';
+import { Bureau } from '../../../../shared/models/Bureau';
 // import { ProduitListComponent } from '../../../../shared/components/produit-list/produit-list.component';
 
 @Component({
@@ -19,13 +21,16 @@ export class UserboardComponent implements OnInit {
 
   constructor(private userService:UserServiceService,
     private router:Router,
-    private activatedRouter : ActivatedRoute
+    private activatedRouter : ActivatedRoute,
+    private bureauService:BureauServiceService,
+
     ){}
    idUser:any;
-   userName:any;
+   userName:any;  brx:Bureau[]=[] ;
+
     ngOnInit() {
       this.getClientId();
-
+      this.allBrx();
     }
 
 
@@ -45,6 +50,19 @@ export class UserboardComponent implements OnInit {
        )
     }
   }
+   allBrx(){
+    this.bureauService.getAllBurx().subscribe(
+      {
+        next : (infos)=>{
+          this.brx = Object.assign(infos['bureaux'])
+          console.log("The bureaux", infos.bureaux)
+        }
+      }
+    )
+   }
+   logout(){
+    this.userService.logout();
+   }
 
 
 }

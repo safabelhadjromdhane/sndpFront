@@ -1,47 +1,13 @@
 
 
-
-<!-- <div class="lg:container lg:mx-auto">
-
-
-  <div class="flex mb-5 mt-4 mb-10">
-    <div class="flex-1 mx-2">
-      <a  class="block max-w-sm flex items-stretch p-6 bg-white rounded-lg shadow hover:bg-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-        <h5 class="mb-2 text-2xl mx-2 font-bold tracking-tight text-gray-900 dark:text-white">Total des comptes utilisateurs</h5>
-        <p class="font-bold  text-2xl lg:self-end text-gray-700 dark:text-gray-400" style="color:rgb(30, 66, 159);">{{nbrAd + nbrCl + nbrOp}}</p>
-        </a>
-    </div>
-    <div class="contents">
-      <div class="flex-1 mx-2">
-        <a  class="block max-w-sm flex items-stretch p-6 bg-white rounded-lg shadow hover:bg-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-          <h5 class="mb-2 text-2xl mx-2 font-bold tracking-tight text-gray-900 dark:text-white">Total des comptes opérateurs</h5>
-          <p class="font-bold text-2xl lg:self-end text-gray-700 dark:text-gray-400" style="color:rgb(30, 66, 159);">{{nbrOp}}</p>
-          </a>
-      </div>
-    </div>
-    <div class="flex-1 mx-2">
-      <a  class="block max-w-sm flex items-stretch p-6 bg-white rounded-lg shadow hover:bg-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-        <h5 class="mb-2 text-2xl mx-2 font-bold tracking-tight text-gray-900 dark:text-white">Total &nbsp; des comptes clientèles</h5>
-        <p class="font-bold text-2xl lg:self-end text-gray-700 dark:text-gray-400" style="color:rgb(30, 66, 159);">{{nbrCl}}</p>
-        </a>
-    </div>
-  </div>
-
-
-</div> -->
-
-
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-<div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 mt-16">
+<div class="bg-blue-400 rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
               <div class="flex justify-between mb-6">
                   <div>
                       <div class="flex items-center mb-1">
                           <div class="text-2xl font-semibold">{{nbrOp + nbrAd + nbrCl}}</div>
                       </div>
-                      <div class="text-sm font-medium text-gray-400">Users</div>
+                      <div class="text-sm font-medium text-gray-600">Total des comptes</div>
                   </div>
                    <div class="dropdown">
                       <button type="button" class="dropdown-toggle text-gray-400 hover:text-gray-600"><i class="ri-more-fill"></i></button>
@@ -61,13 +27,13 @@
 
               <!-- <a href="/gebruikers" class="text-[#f84525] font-medium text-sm hover:text-red-800">View</a> -->
           </div>
-          <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
+          <div class="bg-blue-300 rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
               <div class="flex justify-between mb-6">
                   <div>
                       <div class="flex items-center mb-1">
-                          <div class="text-2xl font-semibold">{{nbrOp + nbrAd + nbrCl}}</div>
+                          <div class="text-2xl font-semibold">{{nbrCl}}</div>
                       </div>
-                      <div class="text-sm font-medium text-gray-400">Users</div>
+                      <div class="text-sm font-medium text-gray-600">Total Comptes Clients</div>
                   </div>
                    <div class="dropdown">
                       <button type="button" class="dropdown-toggle text-gray-400 hover:text-gray-600"><i class="ri-more-fill"></i></button>
@@ -87,13 +53,13 @@
 
               <!-- <a href="/gebruikers" class="text-[#f84525] font-medium text-sm hover:text-red-800">View</a> -->
           </div>
-          <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
+          <div class="bg-blue-400 rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
             <div class="flex justify-between mb-6">
                 <div>
                     <div class="flex items-center mb-1">
                         <div class="text-2xl font-semibold">{{nbrOp}}</div>
                     </div>
-                    <div class="text-sm font-medium text-gray-400">Users</div>
+                    <div class="text-sm font-medium text-gray-600">Total Comptes Opérants</div>
                 </div>
                  <div class="dropdown">
                     <button type="button" class="dropdown-toggle text-gray-400 hover:text-gray-600"><i class="ri-more-fill"></i></button>

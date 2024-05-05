@@ -54,9 +54,20 @@ export class EditUserComponent implements OnInit{
       next : ()=>{
         alert("Utilisateur modifié avec succès");
         this.route.navigate(['/admin'])
+      },
+      error:(error)=>
+        {
+          alert("Une erreur est survenue lors de la modification de cet utilisateur!!!");
+          console.log(error)
       }
     })
   }
+  logout(){
+    this.userservice.logout()
+  }
+  returnToBoard(){
+    this.route.navigate(['/admin'])
 
+  }
 
 }

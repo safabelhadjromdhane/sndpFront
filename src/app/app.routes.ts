@@ -24,6 +24,7 @@ import { FileListComponent } from './shared/components/file-list/file-list.compo
 import { EditGuichetComponent } from './layouts/admin-layout/pages/edit-guichet/edit-guichet.component';
 import { AddGuichetComponent } from './layouts/admin-layout/pages/add-guichet/add-guichet.component';
 import { AddProduitComponent } from './layouts/admin-layout/pages/add-produit/add-produit.component';
+import { BureauDetailsComponent } from './layouts/user-layout/components/bureau-details/bureau-details.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -60,7 +61,8 @@ export const routes: Routes = [
     {path:"avis", component:ClProfileComponent},
     {path:"avis/add-feedback", component:AddFeedbackComponent},
     {path:'edit-profile', component:EditProfilComponent},
-    {path:"avis/edit-avis/:id", component:EditAvisComponent}
+    {path:"avis/edit-avis/:id", component:EditAvisComponent},
+    {path:"bureau-details/:id", component:BureauDetailsComponent}
   ]},
   {path: "operateur",
   children:[

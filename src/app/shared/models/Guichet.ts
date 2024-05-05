@@ -3,9 +3,9 @@ export interface Guichet {
   // nom?: string;
   id?:number;
   nomGuichet?: string;
-  produit?: string;
   user?:string;
-  bureau?:number;
-  createdDate?:Date;
+  bureau?:string;
+  produit?: string;
+  // createdDate?:Date;
   // role?: string;
 }

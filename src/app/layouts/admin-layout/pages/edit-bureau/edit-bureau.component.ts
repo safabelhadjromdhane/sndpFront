@@ -22,16 +22,16 @@ export class EditBureauComponent implements OnInit{
     let burCurrentId!:any;
     this.burId = this.active.params.subscribe(
       params=>{
-        console.log(params['burId']);
-        burCurrentId = params['burId'];
+        console.log(params['id']);
+        burCurrentId = params['id'];
       }
     );
     this.bureauservice.getBureauById(burCurrentId).subscribe({
       next: (infos)=>{
         console.log("Successfully retrieved user details", infos["data"]);
         this.updateForms = this.fb.group({
-          user : [infos['data']['user'], [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+)$')]],
-          localisation: [infos['data']['localisation'], [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+)$')]],
+          user : [infos['data']['user'], [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
+          localisation: [infos['data']['localisation'], [Validators.required]],
         })
       }
     })
@@ -40,11 +40,16 @@ export class EditBureauComponent implements OnInit{
 
   onUpdate(){
     this.bureauservice.updateBureau(this.burId,this.updateForms).subscribe({
-      next: ()=>{
-
-      }
-    })
+      next: (infos)=>{
+        console.log("bureau à modifié", infos.bureau)
+        alert('Le bureau a été modifié avec succès');
+        this.route.navigate(['/admin','bureaux'])
+      },
+      error: (error)=>{
+        console.log('ERRRROOOR', error)
+}    })
   }
+  logout(){
 
-
+  }
 }

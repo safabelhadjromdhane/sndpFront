@@ -34,7 +34,8 @@
     "axe/aria": [
       "default",
       {
-        "aria-required-parent": "off"
+        "aria-required-parent": "off",
+        "aria-valid-attr-value": "off"
       }
     ]
   }

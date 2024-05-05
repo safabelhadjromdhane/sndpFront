@@ -27,12 +27,12 @@ export class AddBureauComponent implements OnInit{
   ajouterBureau(){
     if(this.createForm!=null) {
       this.isAdded = false;
+      // console.log(this.createForm.value);
       this.bureauService.createBureau(this.createForm.value).subscribe({
         next : (data)=>{
               if(data['message']== "Bureau has been created successfully"){
                 window.alert("Le bureau a été créer avec Succès!!!");
                 this.router.navigate(['admin','bureaux']);
-
               }
         },
         error : (error)=> {
