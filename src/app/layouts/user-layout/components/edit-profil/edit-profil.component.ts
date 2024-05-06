@@ -58,4 +58,10 @@ export class EditProfilComponent implements OnInit {
       }
     })
   }
+  onAbort(){
+    this.route.navigate(['/client']);
+  }
+  logout(){
+    this.userservice.logout();
+  }
 }

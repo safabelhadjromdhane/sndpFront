@@ -50,6 +50,9 @@ export class FeedbackServiceService {
     return this.http.get<{message: string, data: any} >(`${this.baseUrl}/findUser-feedback`)
   }
 
+  totalFeedbacks(){
+    return this.http.get<{message:string, nbr:any}>(`${this.baseUrl}/count`)
+  }
 
 
 }

@@ -25,6 +25,7 @@ import { EditGuichetComponent } from './layouts/admin-layout/pages/edit-guichet/
 import { AddGuichetComponent } from './layouts/admin-layout/pages/add-guichet/add-guichet.component';
 import { AddProduitComponent } from './layouts/admin-layout/pages/add-produit/add-produit.component';
 import { BureauDetailsComponent } from './layouts/user-layout/components/bureau-details/bureau-details.component';
+import { EditProduitComponent } from './layouts/admin-layout/pages/edit-produit/edit-produit.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -50,7 +51,10 @@ export const routes: Routes = [
     {path: "avis", component:FeedbacksComponent},
     {path:"edit-guichet/:id", component:EditGuichetComponent},
     {path:"guichets/add-guichet", component:AddGuichetComponent},
+    {path:"guichets/edit-guichet/:id", component:EditGuichetComponent},
     {path:"produits/add-produit", component:AddProduitComponent},
+    {path:"produits/edit-produit/:id", component:EditProduitComponent}
+
 
   ]},
    {path: "client",

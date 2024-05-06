@@ -24,6 +24,7 @@ export class ClProfileComponent implements OnInit{
    userName!:any;
    feeds:Feedback []= [];
    userfeeds:number =0;
+   confirmDel:boolean =false;
   ngOnInit(){
     // this.getAllFeedbacks()
     this.userId= localStorage.getItem('id');
@@ -72,15 +73,26 @@ export class ClProfileComponent implements OnInit{
     })
   }
   deleteAvis(id:any){
-   this.feebackservice.deleteFeedback(id).subscribe(
-    {
-      next: ()=>{
-        this.getAllUserFeedback();
-      },
-      error : ()=>{
-      }
+    if(window.confirm("Êtes-vous sûr de vouloir supprimer cet avis?")){
+
+      this.feebackservice.deleteFeedback(id).subscribe(
+        {
+          next: (infos)=>{
+            this.getAllUserFeedback();
+            alert(infos.message)
+          },
+          error : (error)=>{
+            console.log(error);
+            alert("Nous n'avons pas parvenue à supprimer votre avis!!")
+          }
+        }
+       )
     }
-   )
+
+  }
+
+  updateAvis(id:any){
+
   }
 
   // getAllFeedbacks() {

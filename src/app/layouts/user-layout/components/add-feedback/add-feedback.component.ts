@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { eachMonthOfInterval } from 'date-fns';
 import { FeedbackServiceService } from '../../../../core/services/feedback-service.service';
+import { UserServiceService } from '../../../../core/services/user-service.service';
 
 @Component({
   selector: 'app-add-feedback',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, RouterLink],
   templateUrl: './add-feedback.component.html',
   styleUrl: './add-feedback.component.css'
 })
@@ -15,7 +16,8 @@ export class AddFeedbackComponent implements OnInit {
   feedForm!:FormGroup;
   constructor(private route:Router,
     private fb:FormBuilder,
-    private feedservice:FeedbackServiceService
+    private feedservice:FeedbackServiceService,
+    private usersrv:UserServiceService
   ){}
   ngOnInit(): void {
     this.feedForm = this.fb.group({
@@ -42,5 +44,8 @@ export class AddFeedbackComponent implements OnInit {
     }
     )
    }
+  }
+  logout(){
+  this.usersrv.logout();
   }
 }

@@ -39,4 +39,8 @@ export class ProduitServiceService {
     return this.http.get<{message: string, data:any}>(`${this.baseUrl}/find-product/${id}`)
   }
 
+  totalProducts(){
+    return this.http.get<{message:string, nbr:any}>(`${this.baseUrl}/count`)
+  }
+
 }

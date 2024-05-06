@@ -23,8 +23,10 @@ export class FeedbacksComponent implements OnInit {
   }
   feeds:Feedback[] = [];
   deleCon!:boolean;
+  avisNum!:number;
   ngOnInit(): void {
     this.getAll();
+    this.totalAvis();
   }
   logout(){
     this.usersvr.logout()
@@ -69,5 +71,15 @@ export class FeedbacksComponent implements OnInit {
   //     this.deleCon = true;
   //   }
   // }
+  totalAvis(){
+    this.feedbackservice.totalFeedbacks().subscribe({
+      next:(info)=>{
+        this.avisNum = info.nbr;
+      },
+      error:(e)=>{
+        console.log("Error",e)
+      }
+    })
+  }
 
 }

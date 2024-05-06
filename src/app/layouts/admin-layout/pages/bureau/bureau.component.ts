@@ -25,8 +25,10 @@ export class BureauComponent implements OnInit {
   ) {}
   brx:Bureau[]= [];
   brtoDel!:number;
+  brNum!:number;
   ngOnInit() {
     this.getAllBureaux();
+    this.brNumber()
   }
   getAllBureaux() {
     this.bureauService.getAllBurx().subscribe(
@@ -57,6 +59,17 @@ export class BureauComponent implements OnInit {
   }
   logout(){
     this.userservice.logout();
+  }
+  brNumber(){
+    this.bureauService.totalBureau().subscribe({
+      next:(infos)=>{
+        // console.log(infos.nbr)
+        this.brNum = infos.nbr;
+      },
+      error: (e)=>{
+        console.log(e)
+      }
+    })
   }
 
 }

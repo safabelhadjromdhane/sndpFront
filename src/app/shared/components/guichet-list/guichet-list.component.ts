@@ -22,9 +22,11 @@ export class GuichetListComponent implements OnInit {
 
   }
   gchts:Guichet[]=[];
+  gchNum!:number;
 
   ngOnInit(): void {
     this.getAll();
+    this.totalGs();
   }
   getAll(){
     this.guichetservice.getAllGuichets().subscribe(
@@ -42,14 +44,37 @@ export class GuichetListComponent implements OnInit {
       }
     )
   }
-  deleteGuichet(){
-
+  deleteGuichet(id:any){
+  if(window.confirm("Êtes-vous sûr de vouloir supprimer ce guichet?")){
+    this.guichetservice.deleteGuichet(id).subscribe({
+      next:(info)=>{
+        alert(info.message)
+        window.location.reload()
+        // this.getAll();
+       },
+        error: (e)=>{
+          console.log(e);
+          alert("Nous n'avons pas parvenue à supprimer ce guichet!!")
+        }
+    })
+  }
   }
   updateGuichet(){
 
   }
   logout(){
     this.usersrv.logout();
+  }
+  totalGs(){
+    this.guichetservice.totalGuichets().subscribe({
+      next:(infos)=>{
+        this.gchNum = infos.nbr;
+      },
+      error:(e)=>{
+        console.log("Erreur est survenue!!",e)
+      }
+
+    })
   }
 
 }

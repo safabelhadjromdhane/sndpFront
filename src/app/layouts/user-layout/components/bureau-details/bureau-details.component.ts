@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BureauServiceService } from '../../../../core/services/bureau-service.service';
 import { GuichetServiceService } from '../../../../core/services/guichet-service.service';
 import { ProduitServiceService } from '../../../../core/services/produit-service.service';
+import { UserServiceService } from '../../../../core/services/user-service.service';
 
 @Component({
   selector: 'app-bureau-details',
@@ -19,7 +20,8 @@ export class BureauDetailsComponent implements OnInit {
   constructor(private bureausrv:BureauServiceService,
     private guichet:GuichetServiceService,
     private produitsrv:ProduitServiceService,
-    private active: ActivatedRoute
+    private active: ActivatedRoute,
+    private usersvr:UserServiceService
   ){
 
   }
@@ -34,7 +36,8 @@ export class BureauDetailsComponent implements OnInit {
   }
   searchBurById(id:any){
     id = this.bureauId;
-    
-
+  }
+  logout(){
+    this.usersvr.logout();
   }
 }

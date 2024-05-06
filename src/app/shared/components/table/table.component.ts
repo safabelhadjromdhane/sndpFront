@@ -53,14 +53,14 @@ export class TableComponent implements OnInit {
     )
   }
   deleteUser(idUser:any) {
-    if(this.deleConfirmation = true){
+    if(window.confirm("Êtes-vous sûr de vouloir supprimer ce compte?")){
       console.log("This is the id of the user to be deleted", idUser)
       // this.idUser = id;
       this.userservice.deleteUser(idUser).subscribe(
         {
           next : (data)=>{
             alert(data.message);
-            this.getAll();
+            window.location.reload();
           },
           error : (err)=>{
             console.log('Error', err);
@@ -68,13 +68,15 @@ export class TableComponent implements OnInit {
         }
       )
     }
-    else {
-      alert('Please confirm first');
-    }
+    // if(this.deleConfirmation = true){
+
+    // }
+
   }
   updateUser(id:any){
     this.userservice.getUserById(id).subscribe({
       next: (data)=>{
+
         this.idUser = id;
         // console.log(data['user'])
       },

@@ -72,7 +72,7 @@ export class UserServiceService {
         const token = this.getToken();
         const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
 
-        return this.http.get<{message:string, numUsers: number}>(`${this.baseUrl}/count`,
+        return this.http.get<{message:string, nbUsers: number}>(`${this.baseUrl}/count`,
         // {headers:header}
         );
       }

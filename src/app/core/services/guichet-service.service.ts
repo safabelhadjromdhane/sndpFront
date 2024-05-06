@@ -39,6 +39,19 @@ export class GuichetServiceService {
 
   }
 
+  getGuichetsByBurId(bureau:string){
+    return this.http.get<{message:string, data:Guichet}>(`${this.baseUrl}/find-gchtsByBuId`)
+  }
+
+  getGuichetByProductId(produit:string){
+    return this.http.get<{message: string, data:Guichet}>(`${this.baseUrl}/find-gchByPro`);
+
+  }
+
+  //total Guichets
+  totalGuichets(){
+    return this.http.get<{message:string, nbr:any}>(`${this.baseUrl}/count`)
+  }
 
 
 

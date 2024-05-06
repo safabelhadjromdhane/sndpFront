@@ -40,4 +40,8 @@ export class BureauServiceService {
     return this.http.get<{ message: string, data: Bureau }>(`${this.baseUrl}/find/${id}`);
   }
 
+  //count Bureau
+  totalBureau(){
+    return this.http.get<{message:string, nbr:any}>(`${this.baseUrl}/count`)
+  }
 }
