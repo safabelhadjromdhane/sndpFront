@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../../../../core/services/user-service.service';
 import { ProduitServiceService } from '../../../../core/services/produit-service.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-produit',
@@ -30,7 +30,20 @@ export class EditProduitComponent implements OnInit {
         console.log(params['id']) //log the value of id
         prodCurrentId=params['id'];
       }
-    )
+    );
+    this.prdsvr.getProductById(prodCurrentId).subscribe({
+      next:(infos)=>{
+        console.log("This is the searched Product",infos['data']);
+        this.updateForms = this.fb.group({
+          guichet:[infos['data']['guichet'], Validators.required],
+          libProd:[infos["data"]['libProd'],Validators.required],
+        })
+      },
+      error:()=>{
+        alert("On ne parviens pas à recuperer les informations!!!")
+
+      }
+    })
     // throw new Error('Method not implemented.');
   }
 
@@ -38,9 +51,10 @@ export class EditProduitComponent implements OnInit {
     this.usersvr.logout();
   }
   onUpdate(){
+    // this.prdsvr.
 
   }
   onAbort(){
-    this.route.navigate(['/produits'])
+    this.route.navigate(['/admin','produits'])
   }
 }

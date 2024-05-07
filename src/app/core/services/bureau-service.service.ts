@@ -37,7 +37,7 @@ export class BureauServiceService {
 
   //Getting a Bureau By ID
   getBureauById(id:number) {
-    return this.http.get<{ message: string, data: Bureau }>(`${this.baseUrl}/find/${id}`);
+    return this.http.get<{ message: string, data: any }>(`${this.baseUrl}/find-bureau/${id}`);
   }
 
   //count Bureau

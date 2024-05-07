@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Produit } from '../../shared/models/Produit';
+import { Produit} from '../../shared/models/Produit';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,7 @@ export class ProduitServiceService {
 
   //Getting product by Id
   getProductById(id:any){
-    return this.http.get<{message: string, data:any}>(`${this.baseUrl}/find-product/${id}`)
+    return this.http.get<{message: string, data:Produit}>(`${this.baseUrl}/find-product/${id}`)
   }
 
   totalProducts(){

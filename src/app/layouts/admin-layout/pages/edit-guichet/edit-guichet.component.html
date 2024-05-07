@@ -16,12 +16,12 @@
       <div class="flex items-center">
           <div class="flex items-center ms-3">
             <div>
-              <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full" src="../../../../assets/imgs/avatar.png" class="rounded-full w-8 h-8" alt="Flowbite Logo"  alt="user photo">
+              <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-nomGuichet">
+                <span class="sr-only">Open nomGuichet menu</span>
+                <img class="w-8 h-8 rounded-full" src="../../../../assets/imgs/avatar.png" class="rounded-full w-8 h-8" alt="Flowbite Logo"  alt="nomGuichet photo">
               </button>
             </div>
-            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
+            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-nomGuichet">
               <div class="px-4 py-3" role="none">
                 <p class="text-sm text-gray-900 dark:text-white" role="none">
                   Admin
@@ -141,21 +141,21 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                  Modifier bureau
+                  Modifier Guichet
               </h1>
               <form class="space-y-4 md:space-y-6" [formGroup]="updateForms" (ngSubmit)="onUpdate()">
                   <div>
-                      <label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre identifiant</label>
-                      <input type="text" name="user" id="user"  formControlName="user"
+                      <label for="nomGuichet" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Le nom du Guichet</label>
+                      <input type="text" name="nomGuichet" id="nomGuichet"  formControlName="nomGuichet"
                       class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
                       focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700
                       dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-                      dark:focus:border-blue-500" placeholder="00221133" required>
+                      dark:focus:border-blue-500" placeholder="Nom de votre guichet" required>
 
                       <!-- <p class="mt-2 mb-2 text-center text-pretty">
-                        @if(createForm.controls['user'].invalid && (createForm.controls['user'].touched || createForm.controls['user'].dirty)){
+                        @if(createForm.controls['nomGuichet'].invalid && (createForm.controls['nomGuichet'].touched || createForm.controls['nomGuichet'].dirty)){
                           <span class="mx-4  text-pretty">
-                            @if(createForm.controls['user'].errors) {
+                            @if(createForm.controls['nomGuichet'].errors) {
                               <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre identifiant.</em>
                               <em class=" text-pretty" style="color:rgb(155, 28, 28);">Votre identifiant doit contenir au moins 8 et au plus 12 caractères.</em>
                             }
@@ -164,18 +164,38 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                        </p> -->
                   </div>
                   <div>
-                      <label for="localisation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">La localisation</label>
-                      <input type="localisation" name="localisation" id="localisation" formControlName="localisation" required
-                      placeholder="Spain" class="bg-gray-50 border border-gray-300 text-gray-900
+                    <label for="bureau" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">L'ID du Bureau</label>
+                    <input type="text" name="bureau" id="bureau" formControlName="bureau"
+                    placeholder="ID Bureau" class="bg-gray-50 border border-gray-300 text-gray-900
+                     sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block
+                     w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                     dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+
+                     <!-- <p class="mt-2 mb-2 text-center text-pretty">
+                      @if(createForm.controls['produit'].invalid && (createForm.controls['produit'].touched || createForm.controls['produit'].dirty)){
+
+                        <span class="mx-4  text-pretty">
+                          @if(createForm.controls['produit'].errors) {
+                            <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre mot de passe.</em>
+                          }
+                        </span>
+                      }
+                     </p> -->
+
+                </div>
+                  <div>
+                      <label for="produit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Le code du produit</label>
+                      <input type="text" name="produit" id="produit" formControlName="produit" required
+                      placeholder="Code Produit" class="bg-gray-50 border border-gray-300 text-gray-900
                        sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block
                        w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
 
                        <!-- <p class="mt-2 mb-2 text-center text-pretty">
-                        @if(createForm.controls['localisation'].invalid && (createForm.controls['localisation'].touched || createForm.controls['localisation'].dirty)){
+                        @if(createForm.controls['produit'].invalid && (createForm.controls['produit'].touched || createForm.controls['produit'].dirty)){
 
                           <span class="mx-4  text-pretty">
-                            @if(createForm.controls['localisation'].errors) {
+                            @if(createForm.controls['produit'].errors) {
                               <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre mot de passe.</em>
                             }
                           </span>
@@ -183,18 +203,24 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                        </p> -->
 
                   </div>
+
                   <!-- <div class="flex items-center justify-between">
                       <div class="flex items-start">
                       </div>
                       <div class="flex items-end">
-                        <a [routerLink]="['/forgot-localisation']" class="text-sm font-medium  text-blue-600 hover:underline dark:text-blue-500">Mot de passe oublié?</a>
+                        <a [routerLink]="['/forgot-produit']" class="text-sm font-medium  text-blue-600 hover:underline dark:text-blue-500">Mot de passe oublié?</a>
 
                       </div>
                   </div> -->
-                  <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Créer</button>
-                  <!-- <p class="text-sm font-medium text-gray-800 dark:text-gray-500">
-                      Vous n'avez pas de compte? <a [routerLink]="['/register']" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Créer un Compte</a>
-                  </p> -->
+                  <!-- <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Créer</button> -->
+                  <div class="flex justify-between">
+                    <button type="submit"  class="text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                      Modifier
+                  </button>
+                  <button type="submit" (click)="onAbort()" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Annuler
+                </button>
+                  </div>
               </form>
           </div>
       </div>

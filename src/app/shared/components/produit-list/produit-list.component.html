@@ -205,10 +205,13 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                   libProd
               </th>
               <th scope="col" class="px-6 py-3">
+                GuichetId
+            </th>
+              <th scope="col" class="px-6 py-3">
                   date
               </th>
-              <th scope="col" class="px-6 py-3">
-               userId             </th>
+              <!-- <th scope="col" class="px-6 py-3">
+               userId             </th> -->
               <th scope="col" class="px-6 py-3">
                   Action
               </th>
@@ -220,8 +223,10 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >{{prd.codeProd}}</th>
          <td class="px-6 py-4" >{{prd.libProd}}</td>
+         <td class="px-6 py-4" >{{prd.guichet}}</td>
+
          <td class="px-6 py-4">{{prd.createdAt}}</td>
-         <td class="px-6 py-4">{{prd.user}}</td>
+         <!-- <td class="px-6 py-4">{{prd.user}}</td> -->
 
          <td class="flex items-center px-6 py-4">
 
