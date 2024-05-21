@@ -18,8 +18,28 @@ export class DashbaordComponent implements OnInit {
   constructor(private router:Router, private usersvr:UserServiceService){
 
   }
+  isAd!:boolean;
+  idRestored!:any;
   ngOnInit(): void {
 
+    console.log(localStorage.getItem("id"))
+    this.idRestored=localStorage.getItem("id");
+    this.usersvr.getUserById(this.idRestored).subscribe({
+      next:(infos)=>{
+        if(infos.user.role != "admin"){
+            console.log("This is not an Admininistrateur!!")
+            this.isAd = false;
+        }else{
+          this.isAd = true;
+          //  localStorage.setItem("userAdmin",v infos.user)
+          console.log(this.isAd)
+
+        }
+      },
+      error:()=>{
+
+      }
+    })
   }
 
   logout(){

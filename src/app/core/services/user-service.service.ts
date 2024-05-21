@@ -102,6 +102,12 @@ export class UserServiceService {
 
       }
 
+      //forgot password
+
+      resetPassword(){
+
+      }
+
 }
 
 

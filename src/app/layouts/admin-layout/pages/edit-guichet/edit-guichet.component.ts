@@ -38,6 +38,7 @@ export class EditGuichetComponent implements OnInit {
           this.updateForms = this.fb.group({
             nomGuichet:[infos['data']['nomGuichet'],Validators.required],
             bureau:[infos['data']['bureau'], Validators.required],
+            user:[infos["data"]["user"],Validators.required],
             produit:[infos['data']['produit'],Validators.required]
           })
         },

@@ -53,6 +53,17 @@ export class GuichetServiceService {
     return this.http.get<{message:string, nbr:any}>(`${this.baseUrl}/count`)
   }
 
+  //getGuichetByUserId
+
+  getGuichetByUser(user:any){
+    return this.http.get<{message: string, guichet:any}>(`${this.baseUrl}/find-gchUser/${user}`)
+  }
+
+  //GetGuichetByBureau
+
+  getGuichetByBureau(bureau:any){
+    return this.http.get<{message:string, data:any}>(`${this.baseUrl}/find-gchtsByBureau/${bureau}`)
+  }
 
 
 }

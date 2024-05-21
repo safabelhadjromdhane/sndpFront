@@ -35,8 +35,8 @@ export class EditProduitComponent implements OnInit {
       next:(infos)=>{
         console.log("This is the searched Product",infos['data']);
         this.updateForms = this.fb.group({
-          guichet:[infos['data']['guichet'], Validators.required],
-          libProd:[infos["data"]['libProd'],Validators.required],
+          guichet:[infos["data"]["guichet"], Validators.required],
+          libProd:[infos["data"]["libProd"],Validators.required],
         })
       },
       error:()=>{
@@ -44,14 +44,24 @@ export class EditProduitComponent implements OnInit {
 
       }
     })
-    // throw new Error('Method not implemented.');
+    this.prodId = prodCurrentId;
+
   }
 
   logout(){
     this.usersvr.logout();
   }
   onUpdate(){
-    // this.prdsvr.
+    this.prdsvr.updateProduct(this.prodId, this.updateForms.value).subscribe({
+     next:()=>{
+        alert('Le produit a bien été modifié');
+        this.route.navigate(['/admin','produits']);
+     },
+     error:(e)=>{
+      alert('Erreur de modification')
+      console.log(e)
+     }
+    })
 
   }
   onAbort(){

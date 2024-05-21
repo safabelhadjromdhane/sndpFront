@@ -15,9 +15,9 @@ import { TrackOperatComponent } from "../../../layouts/operateur-layout/componen
 export class LoginComponent implements OnInit {
 
   signinForm!:FormGroup;
-  isLogged!:boolean;
+  isLogged:boolean = true;
   role!:string;
-  alert!:boolean;
+  alertContent!:string;
   // timeOfConnexionforOp!: Date;
 
 
@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
       id : ['', Validators.required, Validators.maxLength(12)],
       password : ['',Validators.required],
     })
+    console.log(this.isLogged)
+
   }
 
   onSignIn() {
@@ -42,51 +44,54 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('id', data.user.id);
 
         if(data.user.role == 'admin'){
-           this.role='admin';
-           this.isLogged = true;
+           this.role= "admin";
+           this.isLogged == true;
 
            this.router.navigate(['admin']);
 
         }
         else if(data.user.role == 'operateur'){
-          this.role='operateur';
-          this.isLogged = true;
-          // this.timeOfConnexionforOp = new Date();
+          this.role= "operateur";
+          this.isLogged == true;
 
            this.router.navigate(['operateur']);
         }
         else if(data.user.role == 'client'){
-          this.role='client';
-          this.isLogged = true;
+          this.role= "client";
+          this.isLogged == true;
            this.router.navigate(['client']);
 
         }        },
         error : (error) => {
           console.log("Erreur lors d'authentification: " + error);
-          this.isLogged = false;
+          window.alert("Vous devez vérifier vos données saisies!!!");
+          this.alertContent ="Vous devez vérifier vos données saisies!!!"
+
+          this.isLogged == false;
 
         }
       }
     )
   }
-  exit(role:string) {
-    console.log('I clicked the close button',role)
-    this.isLogged == false;
-   switch(role){
-    case "admin":
-      this.router.navigate(['admin']);
-      break;
-      case "operateur":
-      this.router.navigate(['operateur']);
-      break;
-      case "client":
-      this.router.navigate(['client']);
-      break;
-   }
+  // exit(role:string) {
+  //   console.log('I clicked the close button',role)
+  //   this.isLogged == false;
+  //  switch(role){
+  //   case "admin":
+  //     this.router.navigate(['admin']);
+  //     break;
+  //     case "operateur":
+  //     this.router.navigate(['operateur']);
+  //     break;
+  //     case "client":
+  //     this.router.navigate(['client']);
+  //     break;
+  //  }
 
-  }
-  closeBtn(){
-    console.log("close the button with tailwindcss plz!!!")
-  }
+  // }
+
+  // closeBtn(){
+  //   console.log("close the button with tailwindcss plz!!!")
+  // }
 
 }

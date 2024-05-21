@@ -33,7 +33,7 @@ export class BureauListComponent implements OnInit {
       next: (infos) => {
         // this.brx = infos.bureaux;
         this.brx = Object.assign(infos['bureaux']);
-        console.log(typeof(infos['bureaux']['createdDate']))
+        console.log(infos['bureaux']['localisation'])
         console.log('These are your burx', this.brx);
       },
     });

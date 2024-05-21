@@ -26,6 +26,7 @@ export class BureauComponent implements OnInit {
   brx:Bureau[]= [];
   brtoDel!:number;
   brNum!:number;
+  dateSt:Date[]=[];
   ngOnInit() {
     this.getAllBureaux();
     this.brNumber()
@@ -34,8 +35,10 @@ export class BureauComponent implements OnInit {
     this.bureauService.getAllBurx().subscribe(
       {
         next: (infos)=>{
-          this.brx = Object.assign(infos['bureaux'])
-          // console.log("These are your burx", this.brx);
+          this.brx = Object.assign(infos['bureaux']);
+
+          this.dateSt= Object.assign(infos["bureaux"]['createdDate'])
+          const dateSt2=  Date.UTC(2024,5,11,38,28,0X0)
         }
       }
     )
@@ -63,7 +66,6 @@ export class BureauComponent implements OnInit {
   brNumber(){
     this.bureauService.totalBureau().subscribe({
       next:(infos)=>{
-        // console.log(infos.nbr)
         this.brNum = infos.nbr;
       },
       error: (e)=>{
@@ -73,3 +75,5 @@ export class BureauComponent implements OnInit {
   }
 
 }
+
+

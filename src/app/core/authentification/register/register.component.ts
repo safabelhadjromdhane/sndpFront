@@ -27,9 +27,10 @@ export class RegisterComponent implements OnInit {
       telephone : ['', [Validators.required, Validators.maxLength(8)]],
       password : ['',[Validators.required, Validators.minLength(6), Validators.maxLength(45)]],
       confirmPassword: ['',Validators.required],
-      role : ['', Validators.required],
+      role : [''],
    },
-   {validators: [Validation.match("password", "confirmPassword")]})
+   {validators: [Validation.match("password", "confirmPassword")]}
+  )
 
   }
   constructor(private router:Router,
@@ -44,30 +45,35 @@ export class RegisterComponent implements OnInit {
   onSignUp() {
   //  console.log("This is the value of the form ",this.userForm.value);
   if(this.userForm.value!= null){
-    this.isInvalid = false;
     this.userservice.signup(this.userForm.value).subscribe(
       {
         next :(data) => {
 
           if(data["status"] = 200){
             this.isConnected = true;
+            this.isInvalid = true;
             // console.log("This is the sign up informations",data);
             window.alert("Votre compte a été créer avec Succès!!!");
             this.router.navigate(['login']);
           }
           else if(data['status'] = 500){
             alert("Utilisateur existant déjà!!");
+            this.isInvalid = false;
+
           }
         },
         error : (error)=> {
           this.isConnected = false;
+          this.isInvalid = false;
+
           console.log("C'est quoi l'erreur", error);
         }
       }
     )
   }
   else {
-    this.isInvalid = true;
+    window.alert("Veuillez remplir le formulaire convenbalement");
+    this.isInvalid = false;
   }
 
   }

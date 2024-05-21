@@ -3,6 +3,7 @@ import { GuichetServiceService } from '../../../../core/services/guichet-service
 import { FormBuilder, FormGroup,FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Router, RouterLink } from '@angular/router';
+import { UserServiceService } from '../../../../core/services/user-service.service';
 
 @Component({
   selector: 'app-add-guichet',
@@ -14,7 +15,8 @@ import { Router, RouterLink } from '@angular/router';
 export class AddGuichetComponent implements OnInit {
   addForms!:FormGroup;
   constructor(private guichetservice:GuichetServiceService,
-    private router:Router, private fb:FormBuilder
+    private router:Router, private fb:FormBuilder,
+    private usersvr:UserServiceService
   ){
   }
   ngOnInit() {
@@ -45,5 +47,7 @@ export class AddGuichetComponent implements OnInit {
       })
     }
   }
-
+  logout(){
+    this.usersvr.logout();
+}
 }

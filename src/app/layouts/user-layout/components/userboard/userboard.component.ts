@@ -4,10 +4,12 @@ import { HeadUserComponent } from "../head-user/head-user.component";
 import { UserServiceService } from '../../../../core/services/user-service.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BureauListComponent } from "../../../../shared/components/bureau-list/bureau-list.component";
-import { UserFeedbackComponent } from '../user-feedback/user-feedback.component';
+// import { UserFeedbackComponent } from '../user-feedback/user-feedback.component';
 import { ListProdsComponent } from '../../pages/list-prods/list-prods.component';
 import { BureauServiceService } from '../../../../core/services/bureau-service.service';
 import { Bureau } from '../../../../shared/models/Bureau';
+import { GuichetServiceService } from '../../../../core/services/guichet-service.service';
+import { ProduitServiceService } from '../../../../core/services/produit-service.service';
 // import { ProduitListComponent } from '../../../../shared/components/produit-list/produit-list.component';
 
 @Component({
@@ -15,7 +17,7 @@ import { Bureau } from '../../../../shared/models/Bureau';
     standalone: true,
     templateUrl: './userboard.component.html',
     styleUrl: './userboard.component.css',
-    imports: [FooterComponent, HeadUserComponent, BureauListComponent, UserFeedbackComponent,RouterLink, ListProdsComponent]
+    imports: [FooterComponent, HeadUserComponent, BureauListComponent,RouterLink, ListProdsComponent]
 })
 export class UserboardComponent implements OnInit {
 

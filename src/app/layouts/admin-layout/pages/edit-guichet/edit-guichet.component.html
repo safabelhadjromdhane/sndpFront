@@ -180,9 +180,31 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                           }
                         </span>
                       }
-                     </p> -->
+                     </p>
+                     11223344
+                    -->
 
                 </div>
+                <div>
+                  <label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Opérateur Assigné</label>
+                  <input type="text" name="user" id="user" formControlName="user"
+                  placeholder="ID User" class="bg-gray-50 border border-gray-300 text-gray-900
+                   sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block
+                   w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                   dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+
+                   <!-- <p class="mt-2 mb-2 text-center text-pretty">
+                    @if(createForm.controls['produit'].invalid && (createForm.controls['produit'].touched || createForm.controls['produit'].dirty)){
+
+                      <span class="mx-4  text-pretty">
+                        @if(createForm.controls['produit'].errors) {
+                          <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre mot de passe.</em>
+                        }
+                      </span>
+                    }
+                   </p> -->
+
+              </div>
                   <div>
                       <label for="produit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Le code du produit</label>
                       <input type="text" name="produit" id="produit" formControlName="produit" required

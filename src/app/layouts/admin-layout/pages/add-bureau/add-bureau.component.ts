@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { BureauServiceService } from '../../../../core/services/bureau-service.service';
+import { UserServiceService } from '../../../../core/services/user-service.service';
 
 @Component({
   selector: 'app-add-bureau',
@@ -15,7 +16,8 @@ export class AddBureauComponent implements OnInit{
   createForm!:FormGroup;
   constructor(private fb:FormBuilder,
     private router:Router,
-    private bureauService:BureauServiceService) {
+    private bureauService:BureauServiceService,
+  private usersvr:UserServiceService) {
 
   }
   ngOnInit(){
@@ -47,5 +49,8 @@ export class AddBureauComponent implements OnInit{
   //   this.router.navigate(['admin','bureaux']);
 
   // }
+  logout(){
+    this.usersvr.logout();
+  }
 
 }

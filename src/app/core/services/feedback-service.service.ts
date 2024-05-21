@@ -37,7 +37,7 @@ export class FeedbackServiceService {
 
   //Rechercher un avis par IDAvis
   getFeedBackById(id:string) {
-    return this.http.get<{message:string, data:any}>(`${this.baseUrl}/find-feedback/${id}`)
+    return this.http.get<{message:string, feed:Feedback}>(`${this.baseUrl}/find-feedback/${id}`)
   }
 
   // Recherche un avis par IdUser

@@ -132,7 +132,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
 </aside>
 
 
-<div class="p-4 sm:ml-64  rounded-xl shadow-2xl lg:mt-14 bg-gray-100 px-6 h-screen">
+<div class="p-4 sm:ml-64  rounded-xl shadow-2xl lg:mt-14 bg-gray-100 px-6">
 
 
 
@@ -212,6 +212,9 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                     produit
                 </th>
                 <th scope="col" class="px-6 py-3">
+                  Opérateur Assigné
+              </th>
+                <th scope="col" class="px-6 py-3">
                     Bureau
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -237,6 +240,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >{{gch.id}}</th>
            <td class="px-6 py-4" >{{gch.nomGuichet}}</td>
            <td class="px-6 py-4">{{gch.produit}}</td>
+           <td class="px-6 py-4">{{gch.user}}</td>
            <td class="px-6 py-4">{{gch.bureau}}</td>
 
            <td class="flex items-center px-6 py-4">
@@ -261,7 +265,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
         </tr>
         }
         @empty {
-         <td class="px-6 py-4 text-black font-bold">Aucun  bureau n'a été trouver.</td>
+         <tr class="px-6 py-4 text-black font-bold">Aucun  bureau n'a été trouver.</tr>
         }
         </tbody>
     </table>

@@ -5,11 +5,12 @@ import { FeedbackServiceService } from '../../../../core/services/feedback-servi
 import { User } from '../../../../shared/models/User';
 import { UserServiceService } from '../../../../core/services/user-service.service';
 import { Feedback } from '../../../../shared/models/Feedback';
+import { FooterComponent } from '../../../../core/footer/footer/footer.component';
 
 @Component({
   selector: 'app-cl-profile',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, FooterComponent],
   templateUrl: './cl-profile.component.html',
   styleUrl: './cl-profile.component.css'
 })

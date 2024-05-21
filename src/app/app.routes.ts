@@ -26,6 +26,8 @@ import { AddGuichetComponent } from './layouts/admin-layout/pages/add-guichet/ad
 import { AddProduitComponent } from './layouts/admin-layout/pages/add-produit/add-produit.component';
 import { BureauDetailsComponent } from './layouts/user-layout/components/bureau-details/bureau-details.component';
 import { EditProduitComponent } from './layouts/admin-layout/pages/edit-produit/edit-produit.component';
+import { AddUserComponent } from './shared/components/add-user/add-user.component';
+import { ProfileComponent } from './layouts/admin-layout/pages/profile/profile.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -40,6 +42,8 @@ export const routes: Routes = [
     {path:'files', component:FileListComponent},
     {path:"tickets", component:TicketListComponent},
     {path:"edit-user/:id", component: EditUserComponent},
+    {path:"add-user", component:AddUserComponent},
+    {path:'profile',component:ProfileComponent},
     {path:"bureaux", component:BureauComponent,
     //  children: [{path:"add-bureau", component:AddBureauComponent},
     //   {path:"edit-bureau", component:EditBureauComponent}

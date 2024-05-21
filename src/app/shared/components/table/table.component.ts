@@ -45,6 +45,7 @@ export class TableComponent implements OnInit {
         next: (donnes)=>{
           // console.log("Data ",donnes['data'])
           this.rows = Object.assign(donnes['data'])
+
        },
        error: (e)=> {
         // console.log("I can't find the data message to display users "+e);
@@ -94,7 +95,8 @@ export class TableComponent implements OnInit {
   }
 
   addUser() {
-    this.router.navigate(['register']);
+    // this.router.navigate(['register']);
+    this.router.navigate(['/admin', "add-user"])
 
   }
 

@@ -220,7 +220,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >{{bur.id}}</th>
            <td class="px-6 py-4" >{{bur.localisation}}</td>
-           <td class="px-6 py-4">{{bur.createdDate}}</td>
+           <td class="px-6 py-4">{{bur.createdDate || 'short'}}</td>
            <!-- <td class="px-6 py-4">{{bur.user}}</td> -->
 
            <td class="flex items-center px-6 py-4">

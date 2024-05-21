@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ProduitServiceService } from '../../../../core/services/produit-service.service';
+import { UserServiceService } from '../../../../core/services/user-service.service';
 
 @Component({
   selector: 'app-add-produit',
@@ -14,7 +15,8 @@ export class AddProduitComponent implements OnInit{
 
   createProduit!:FormGroup;
   constructor(private fb:FormBuilder, private prodservice:ProduitServiceService,
-    private route: Router
+    private route: Router,
+    private usersvr:UserServiceService
   ){
 
   }
@@ -46,6 +48,9 @@ export class AddProduitComponent implements OnInit{
         }
       })
     }
+  }
+  logout(){
+    this.usersvr.logout();
   }
 
 }
