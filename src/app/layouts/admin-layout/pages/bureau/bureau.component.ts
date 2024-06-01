@@ -5,11 +5,12 @@ import { Bureau } from '../../../../shared/models/Bureau';
 import { HeaderComponent } from '../../../../core/header/header/header.component';
 import { FooterComponent } from '../../../../core/footer/footer/footer.component';
 import { UserServiceService } from '../../../../core/services/user-service.service';
-
+import { CustomDatePipePipe } from '../../../../shared/pipes/custom-date-pipe.pipe';
+import { GuichetServiceService } from '../../../../core/services/guichet-service.service';
 @Component({
   selector: 'app-bureau',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterLink],
+  imports: [HeaderComponent, FooterComponent, RouterLink, CustomDatePipePipe],
   templateUrl: './bureau.component.html',
   styleUrl: './bureau.component.css'
 })
@@ -21,11 +22,14 @@ export class BureauComponent implements OnInit {
     private bureauService:BureauServiceService,
     private router:Router,
     private activatedRoute:ActivatedRoute,
-    private userservice:UserServiceService
+    private userservice:UserServiceService,
+    private gchsrv:GuichetServiceService,
   ) {}
   brx:Bureau[]= [];
   brtoDel!:number;
   brNum!:number;
+  gchNumber!:number;
+  brCreId!:any;
   dateSt:Date[]=[];
   ngOnInit() {
     this.getAllBureaux();
@@ -37,8 +41,8 @@ export class BureauComponent implements OnInit {
         next: (infos)=>{
           this.brx = Object.assign(infos['bureaux']);
 
-          this.dateSt= Object.assign(infos["bureaux"]['createdDate'])
-          const dateSt2=  Date.UTC(2024,5,11,38,28,0X0)
+            // this.dateSt= Object.assign(infos["bureaux"]['createdDate'])
+            // const dateSt2=  Date.UTC(2024,5,11,38,28,0X0)
         }
       }
     )
@@ -73,7 +77,34 @@ export class BureauComponent implements OnInit {
       }
     })
   }
-
+  detailsBureau(id:any){
+    this.gchsrv.getGuichetByBureau(id).subscribe({
+      next:(infos)=>{
+        // console.log(infos.data)
+        this.gchNumber = infos.data.length
+        // this.bureauService.getBureauById(id).subscribe({
+        //   next:(info)=>{
+        //     //  this.brCreId = info.data['user']
+        //      console.log(info.data)
+        //   }
+        // })
+        // this.idBureauCreator(id);
+      },
+      error:(e)=>{
+        console.log("Erreurrr!!",e)
+      }
+    })
+  }
+  // idBureauCreator(id:any){
+  //   this.bureauService.getBureauById(id).subscribe({
+  //     next:(info)=>{
+  //       console.log(info.data)
+  //     },
+  //     error:(e)=>{
+  //       console.log(e)
+  //     }
+  //   })
+  // }
 }
 
 

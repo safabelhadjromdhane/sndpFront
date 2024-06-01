@@ -99,7 +99,6 @@ export class UserServiceService {
       }
       getAllAdmins() {
         return this.http.get<{message: string, data:User} >(`${this.baseUrl}/admins`)
-
       }
 
       //forgot password

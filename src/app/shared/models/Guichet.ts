@@ -6,6 +6,6 @@ export interface Guichet {
   user?:string;
   bureau?:string;
   produit?: string;
-  // createdDate?:Date;
+  createdDate?:any;
   // role?: string;
 }

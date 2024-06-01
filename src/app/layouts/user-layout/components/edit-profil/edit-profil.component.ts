@@ -33,6 +33,7 @@ export class EditProfilComponent implements OnInit {
         next : (data)=> {
           console.log("This is the searched User",data["user"])
           this.updateForm = this.fb.group({
+            id:[data['user']['id']],
             nom : [data['user']['nom'], [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+)$')]],
             prenom: [data['user']['prenom'], [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+)$')]],
             email : [data['user']['email'], [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],

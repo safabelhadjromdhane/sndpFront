@@ -5,19 +5,27 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FormGroup, ReactiveFormsModule , FormsModule, FormBuilder, Validators} from '@angular/forms';
 import Validation from '../../models/Validation';
+import { CustomDatePipePipe } from '../../pipes/custom-date-pipe.pipe';
+import { GuichetServiceService } from '../../../core/services/guichet-service.service';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,ReactiveFormsModule, FormsModule, RouterLink],
+  imports: [CommonModule, RouterOutlet,ReactiveFormsModule, FormsModule, RouterLink, CustomDatePipePipe],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
 export class TableComponent implements OnInit {
   rows:User[] = [];
+  operateurs:User[]=[];
   deleConfirmation:boolean =false;
   idUser!:string;
   updateForm!:FormGroup;
+  infoUser!:any;
+  userId!:any;
+  userBureau!:any;
+  guichetUser!:any;
+
   ngOnInit(){
    this.getAll();
    this.updateForm = this.fb.group({
@@ -35,16 +43,28 @@ export class TableComponent implements OnInit {
 
   }
   constructor(private userservice: UserServiceService,
+    private gchsrv:GuichetServiceService,
     private router:Router, private fb:FormBuilder) {
 
   }
   getAll() {
-    this.userservice.getAllUsers()
+    this.userservice.getAllOps()
     .subscribe(
       {
         next: (donnes)=>{
           // console.log("Data ",donnes['data'])
           this.rows = Object.assign(donnes['data'])
+          // this.rows.filter((el)=>{
+          //   if(el.role == "operateur" || "admin"){
+          //      this.operateurs = Object.assign(this.rows)
+          //   }
+          //   else{
+          //     this.rows = Object.assign(this.rows);
+          //   }
+          // })
+          this.operateurs = Object.assign(donnes['data'])
+          // console.log("All the opertateurs", this.operateurs)
+
 
        },
        error: (e)=> {
@@ -69,9 +89,7 @@ export class TableComponent implements OnInit {
         }
       )
     }
-    // if(this.deleConfirmation = true){
 
-    // }
 
   }
   updateUser(id:any){
@@ -98,6 +116,27 @@ export class TableComponent implements OnInit {
     // this.router.navigate(['register']);
     this.router.navigate(['/admin', "add-user"])
 
+  }
+  details(id:any){
+    this.userservice.getUserById(id).subscribe({
+      next:(info)=>{
+        console.log("HI from user details Method",info.user)
+        this.userId = info.user.id;
+        this.gchsrv.getGuichetByUser(this.userId).subscribe({
+            next:(inf)=>{
+              console.log("HEllo from Info Guichet",inf.guichet)
+              this.userBureau = inf.guichet.bureau;
+              this.guichetUser = inf.guichet.nomGuichet
+              // this.userBureau = inf.guichet.bureau;
+              // this.guichetUser = inf.guichet.
+            }
+          })
+
+      },
+      error:(e)=>{
+
+      }
+    })
   }
 
 }

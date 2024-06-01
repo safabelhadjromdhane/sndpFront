@@ -207,6 +207,9 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
               <th scope="col" class="px-6 py-3">
                 GuichetId
             </th>
+            <th scope="col" class="px-6 py-3">
+              Quantité
+          </th>
               <th scope="col" class="px-6 py-3">
                   date
               </th>
@@ -224,8 +227,9 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >{{prd.codeProd}}</th>
          <td class="px-6 py-4" >{{prd.libProd}}</td>
          <td class="px-6 py-4" >{{prd.guichet}}</td>
+         <td class="px-6 py-4" >{{prd.quantite}}</td>
 
-         <td class="px-6 py-4">{{prd.createdAt}}</td>
+         <td class="px-6 py-4">{{prd.createdAt | customDatePipe:'numeric'}}</td>
          <!-- <td class="px-6 py-4">{{prd.user}}</td> -->
 
          <td class="flex items-center px-6 py-4">

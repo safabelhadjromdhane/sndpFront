@@ -154,36 +154,9 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
           <h1 class="text-4xl font-medium text-gray-700">
             {{userName}}
           </h1>
-          <!-- <p class="font-semibold text-gray-800 mt-3">Last Seen <span class="font-light text-gray-500">
-
-          </span> </p> -->
 
         </div>
-    <!-- <table class="w-full text-sm text-left rtl:text-right bg-slate-100 text-gray-600 dark:text-gray-400">
-      <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-gray-50
-       rounded-2xl dark:text-white dark:bg-gray-800">
 
-            <div class="sm:flex sm:items-center sm:justify-between">
-              <div>
-                  <div class="flex items-center gap-x-3">
-                      <h2 class="text-lg font-medium text-gray-800 dark:text-white">Mes avis</h2>
-
-                  </div>
-              </div>
-
-                  <div class="flex items-center mt-4 gap-x-3">
-                      <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-
-                          <span>Rechercher</span>
-                      </button>
-                  </div>
-          </div>
-
-      </caption>
-     </table> -->
 
      <div class="w-full shadow bg-white rounded">
       <div class="border-gray-200 w-full rounded bg-white overflow-x-auto">
@@ -193,26 +166,12 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
             <tr class="border-b border-gray">
               <th scope="col"
                 class="text-gray-dark border-gray border-b-2 border-t-2 border-gray-200 py-3 px-3 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                <!-- <div class="inline-block">
-                  <div class="filter-asc"
-                    style="width: 0px; height: 0px; border-left: 5px solid transparent; border-right: 5px solid transparent; margin-bottom: 1px; border-bottom: 5px solid rgb(204, 204, 204);">
-                  </div>
-                  <div class="filter-desc"
-                    style="width: 0px; height: 0px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid rgb(204, 204, 204); margin-top: 1px;">
-                  </div>
-                </div> -->
+
                ID
               </th>
               <th scope="col"
                 class="text-gray-dark border-gray border-b-2 border-t-2 border-gray-200 py-3 px-3 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                <!-- <div class="inline-block">
-                  <div class="filter-asc"
-                    style="width: 0px; height: 0px; border-left: 5px solid transparent; border-right: 5px solid transparent; margin-bottom: 1px; border-bottom: 5px solid rgb(204, 204, 204);">
-                  </div>
-                  <div class="filter-desc"
-                    style="width: 0px; height: 0px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid rgb(204, 204, 204); margin-top: 1px;">
-                  </div>
-                </div> -->
+
                Avis
               </th>
               <th scope="col"
@@ -221,14 +180,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
               </th>
               <th scope="col"
                 class="text-gray-dark border-gray border-b-2 border-t-2 border-gray-200 py-3 px-3 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                <!-- <div class="inline-block">
-                  <div class="filter-asc"
-                    style="width: 0px; height: 0px; border-left: 5px solid transparent; border-right: 5px solid transparent; margin-bottom: 1px; border-bottom: 5px solid rgb(204, 204, 204);">
-                  </div>
-                  <div class="filter-desc"
-                    style="width: 0px; height: 0px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid rgb(204, 204, 204); margin-top: 1px;">
-                  </div>
-                </div> -->
+
                 Action
               </th>
             </tr>
@@ -238,9 +190,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
               <tr class="hover:bg-gray-100 hover:cursor-pointer">
                 <td class="py-4 px-6 border-b border-gray-200 text-gray-900 text-sm ">
                   <div class="flex items-center" classes="[object Object]">
-                    <!-- <div class="flex-shrink-0 h-10 w-10">
-                      <img src="https://faces.design/faces/m/m11.png" alt="" class="w-full h-full rounded-full" />
-                    </div> -->
+
                     <div class="ml-3">
                       <p class="text-gray-900 whitespace-no-wrap font-semibold">{{avis.id}}</p>
                     </div>
@@ -254,14 +204,10 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                 </td>
                 <td class="py-4 px-6 border-b border-gray-200 text-gray-900 text-sm font-semibold">
                   <ul classes="[object Object]">
-                    <li>{{avis.createdDate }}</li>
+                    <li>{{avis.createdDate | customDatePipe:'numeric'}}</li>
                   </ul>
                 </td>
-                <!-- <td class="py-4 px-6 border-b border-gray-200 text-gray-900 text-sm ">
-                  <ul classes="[object Object]">
-                    <li>{{avis.user}}</li>
-                  </ul>
-                </td> -->
+
                 <td class="py-4 px-6 border-b border-gray-200 text-gray-900 text-sm ">
                   <div class="relative inline-block px-3 py-1 font-semibold leading-tight rounded-full flex justify-between" classes="[object Object]">
                     <div class="w-6 h-6 mr-2 transform text-green-600 hover:text-green-500 hover:scale-110" [routerLink]="['edit-avis', avis.id]" >
@@ -269,7 +215,6 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                       </svg>
                   </div>
-                    <!-- <button type="button"  [routerLink]="['edit-avis', avis.id]" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Modifier</button> -->
                     <div class="w-6 h-6 mr-2 text-red-600 transform hover:text-red-500 hover:scale-110"  (click)="deleteAvis(avis.id)">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 22" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -282,7 +227,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
 
             }
             @empty{
-              <td class="px-6 py-4">Aucun  utilisateur n'a été trouver.</td>
+              <td class="px-6 py-4">Aucun  avis n'a été trouver pour ce client.</td>
 
             }
 
@@ -290,7 +235,6 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
         </table>
       </div>
     </div>
-    <!-- <br> -->
     <hr>
 
   </div>

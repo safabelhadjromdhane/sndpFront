@@ -37,6 +37,7 @@ export class EditProduitComponent implements OnInit {
         this.updateForms = this.fb.group({
           guichet:[infos["data"]["guichet"], Validators.required],
           libProd:[infos["data"]["libProd"],Validators.required],
+          quantite:[infos['data']['quantite'], Validators.required]
         })
       },
       error:()=>{

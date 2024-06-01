@@ -22,7 +22,7 @@ export class AddFeedbackComponent implements OnInit {
   ngOnInit(): void {
     this.feedForm = this.fb.group({
       email : ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      // userId: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(12)] ],
+      userId: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(12)] ],
       avis: ['', [Validators.required]],
     })
   }

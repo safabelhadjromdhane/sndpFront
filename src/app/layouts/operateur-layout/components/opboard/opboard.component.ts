@@ -39,6 +39,13 @@ export class OpboardComponent implements OnInit{
    gchOp:Guichet[]=[];
    opProd!:any;
    opBr!:any;
+   partialObjects!:any;
+   nomBureau!:any;
+   idBureau!:any;
+   nomProduit!:any;
+   idProduit!:any;
+   currentTime!:Date;
+   temps_demarrage!:any;
   constructor(private userService: UserServiceService,
     private gchsrv:GuichetServiceService,
     private brsrv:BureauServiceService,
@@ -69,24 +76,32 @@ export class OpboardComponent implements OnInit{
   }
   displayRelativeInfo(){
     this.gchsrv.getGuichetByUser(this.opId).subscribe({
-      next:(infos) =>{
+      next:(infos) =>
+        {
+
         console.log("THIS USER'S RELATIVE GUICHET",infos.guichet)
         this.gchOp = Object.assign(infos['guichet']);
-        this.prdsrv.getProductById(infos["guichet"]["produit"]).subscribe({
-          next:(prdN)=>{
-          this.opProd = prdN["data"]["codeProd"];
-          console.log(prdN.message)
-
+        // console.log(infos.guichet.bureau)
+        this.idBureau = infos.guichet.bureau;
+        this.idProduit = infos.guichet.produit;
+        // console.log(this.idProduit)
+        // console.log(this.idBureau)
+        this.brsrv.getBureauById(this.idBureau).subscribe({
+          next:(info)=>{
+            this.nomBureau = info.data.localisation;
           }
-        },
-      )
-        this.brsrv.getBureauById(infos['guichet']["bureau"]).subscribe({
-        next:(brN)=>{
-          this.opBr = brN["data"]['localisation'];
-          console.log(brN.message)
-        }
-        },
-      )
+        })
+        this.prdsrv.getProductById(this.idProduit).subscribe({
+          next:(inf)=>{
+            this.nomProduit = inf.data.libProd;
+            // console.log(this.nomProduit)
+          }
+        })
+              //   const result = this.gchOp.filter(({ produit }) => produit != "  ");
+      //   this.partialObjects = result.map(item => {
+      //     return { id: item.produit, };
+      //  });
+
 
       },
       error:(err)=>{
@@ -94,5 +109,10 @@ export class OpboardComponent implements OnInit{
       }
     })
   }
+  startFile(){
+    this.currentTime = new Date();
+    this.temps_demarrage = this.currentTime.getHours() + ':'+ this.currentTime.getMinutes();
 
+    console.log(this.temps_demarrage)
+  }
 }

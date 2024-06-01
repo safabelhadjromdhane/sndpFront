@@ -6,11 +6,12 @@ import { ProduitServiceService } from '../../../../core/services/produit-service
 import { UserServiceService } from '../../../../core/services/user-service.service';
 import { Guichet } from '../../../../shared/models/Guichet';
 import { Produit } from '../../../../shared/models/Produit';
+import { FooterComponent } from '../../../../core/footer/footer/footer.component';
 
 @Component({
   selector: 'app-bureau-details',
   standalone: true,
-  imports: [RouterLink
+  imports: [RouterLink, FooterComponent
 
   ],
   templateUrl: './bureau-details.component.html',
@@ -27,6 +28,7 @@ export class BureauDetailsComponent implements OnInit {
   prods2:Produit[]=[];
   nbrBureauGuichet!:number;
   partialObjects!:any;
+  nomBureau!:any;
   constructor(private bureausrv:BureauServiceService,
     private guichetsvr:GuichetServiceService,
     private produitsrv:ProduitServiceService,
@@ -43,7 +45,12 @@ export class BureauDetailsComponent implements OnInit {
       }
     )
     this.bureauId = currentBuId;
-    this.searchBurById(this.bureauId)
+    this.searchBurById(this.bureauId);
+    this.bureausrv.getBureauById(this.bureauId).subscribe({
+      next:(info)=>{
+        this.nomBureau = info.data.localisation;
+      }
+    })
   }
   searchBurById(id:any){
     id = this.bureauId;

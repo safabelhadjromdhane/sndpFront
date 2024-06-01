@@ -42,7 +42,7 @@ export class FeedbackServiceService {
 
   // Recherche un avis par IdUser
   getFeedbackByUserId(id:string){
-    return this.http.get<{message: string, data:any}>(`${this.baseUrl}/findFeedback-userId/${id}`)
+    return this.http.get<{message: string, data:Feedback}>(`${this.baseUrl}/findFeedback-userId/${id}`)
   }
 
   // Rechercher un avis par Useremail

@@ -6,5 +6,5 @@ export interface User {
   telephone?:number;
   password?: string;
   role?: string;
-  // createdAt?: Date;
+  createdAt?: any;
 }

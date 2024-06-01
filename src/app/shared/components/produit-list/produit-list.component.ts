@@ -5,11 +5,12 @@ import { ProduitServiceService } from '../../../core/services/produit-service.se
 import { FooterComponent } from '../../../core/footer/footer/footer.component';
 import { Produit } from '../../models/Produit';
 import { UserServiceService } from '../../../core/services/user-service.service';
+import { CustomDatePipePipe } from '../../pipes/custom-date-pipe.pipe';
 
 @Component({
   selector: 'app-produit-list',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, RouterLink,FooterComponent,RouterOutlet],
+  imports: [ReactiveFormsModule, FormsModule, RouterLink,FooterComponent,RouterOutlet, CustomDatePipePipe],
   templateUrl: './produit-list.component.html',
   styleUrl: './produit-list.component.css'
 })

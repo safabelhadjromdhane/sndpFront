@@ -5,6 +5,7 @@ import { GuichetServiceService } from '../../../core/services/guichet-service.se
 import { User } from '../../models/User';
 import { UserServiceService } from '../../../core/services/user-service.service';
 import { Guichet } from '../../models/Guichet';
+import { CustomDatePipePipe } from '../../pipes/custom-date-pipe.pipe';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Guichet } from '../../models/Guichet';
     standalone: true,
     templateUrl: './guichet-list.component.html',
     styleUrl: './guichet-list.component.css',
-    imports: [RouterLink, FooterComponent]
+    imports: [RouterLink, FooterComponent, CustomDatePipePipe]
 })
 export class GuichetListComponent implements OnInit {
 

@@ -179,6 +179,25 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                      </p> -->
 
                 </div>
+                <div>
+                  <label for="quantite" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantite Produit</label>
+                  <input type="number" name="quantite" id="quantite"  formControlName="quantite"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700
+                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                  dark:focus:border-blue-500" placeholder="11" required>
+
+                  <!-- <p class="mt-2 mb-2 text-center text-pretty">
+                    @if(createForm.controls['user'].invalid && (createForm.controls['user'].touched || createForm.controls['user'].dirty)){
+                      <span class="mx-4  text-pretty">
+                        @if(createForm.controls['user'].errors) {
+                          <em class="text-pretty" style="color:rgb(155, 28, 28);">Veuillez introduire votre identifiant.</em>
+                          <em class=" text-pretty" style="color:rgb(155, 28, 28);">Votre identifiant doit contenir au moins 8 et au plus 12 caractères.</em>
+                        }
+                      </span>
+                    }
+                   </p> -->
+              </div>
                 <!-- <div>
                   <label for="userId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">L'ID User</label>
                   <input type="text" name="userId" id="userId" formControlName="userId"

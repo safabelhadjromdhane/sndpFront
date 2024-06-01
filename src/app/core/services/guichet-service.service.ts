@@ -56,7 +56,7 @@ export class GuichetServiceService {
   //getGuichetByUserId
 
   getGuichetByUser(user:any){
-    return this.http.get<{message: string, guichet:any}>(`${this.baseUrl}/find-gchUser/${user}`)
+    return this.http.get<{message: string, guichet:Guichet}>(`${this.baseUrl}/find-gchUser/${user}`)
   }
 
   //GetGuichetByBureau

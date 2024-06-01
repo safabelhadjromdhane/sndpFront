@@ -181,14 +181,14 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
              <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Ci-dessous, est la liste des avis de nos clients de notre solution.</p>
          </div>
 
-         <div class="flex items-center mt-4 gap-x-3">
+         <!-- <div class="flex items-center mt-4 gap-x-3">
 
              <button  class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-600 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-700 dark:hover:bg-blue-500 dark:bg-blue-700">
 
 
                  <span>Search Feedback</span>
              </button>
-         </div>
+         </div> -->
      </div>
 
      </caption>
@@ -206,6 +206,12 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                     Avis
                 </th>
 
+              <th scope="col" class="px-6 py-3">
+                Analyse
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Date
+          </th>
                 <th scope="col" class="px-6 py-3">
                     Action
                 </th>
@@ -218,6 +224,9 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >{{avis.id}}</th>
            <td class="px-6 py-4" >{{avis.email}}</td>
            <td class="px-6 py-4">{{avis.avis}}</td>
+           <td class="px-6 py-4">analyse</td>
+
+           <td class="px-6 py-4">{{avis.createdDate | customDatePipe:'numeric'}}</td>
 
            <td class="flex items-center px-6 py-4">
 

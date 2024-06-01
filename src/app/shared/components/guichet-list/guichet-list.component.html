@@ -214,9 +214,13 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                 <th scope="col" class="px-6 py-3">
                   Opérateur Assigné
               </th>
+
                 <th scope="col" class="px-6 py-3">
                     Bureau
                 </th>
+                <!-- <th scope="col" class="px-6 py-3">
+                  Date
+              </th> -->
                 <th scope="col" class="px-6 py-3">
                     Action
                 </th>
@@ -241,7 +245,9 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
            <td class="px-6 py-4" >{{gch.nomGuichet}}</td>
            <td class="px-6 py-4">{{gch.produit}}</td>
            <td class="px-6 py-4">{{gch.user}}</td>
+
            <td class="px-6 py-4">{{gch.bureau}}</td>
+           <!-- <td class="px-6 py-4">{{gch.createdDate | customDatePipe:'short'}}</td> -->
 
            <td class="flex items-center px-6 py-4">
 

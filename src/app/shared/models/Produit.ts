@@ -1,9 +1,10 @@
 export interface Produit {
 
-  codeProd?:number;
+  codeProd?:string;
   libProd?: string;
+  quantite:number;
   user?:string;
   guichet?:string;
-  createdAt?:Date;
+  createdAt?:any;
   // role?: string;
 }

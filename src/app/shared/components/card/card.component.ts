@@ -24,7 +24,7 @@ export class CardComponent implements OnInit{
    this.userService.getAllAdmins().subscribe({
     next :(info)=>{
       this.nbrAd = Object.keys(info.data).length;
-     console.log("nbrAdmin : "+this.nbrAd);
+    //  console.log("nbrAdmin : "+this.nbrAd);
      return this.nbrAd;
     }
    })
@@ -33,7 +33,7 @@ export class CardComponent implements OnInit{
     this.userService.getAllOps().subscribe({
       next :(info)=>{
         this.nbrOp = Object.keys(info.data).length;
-       console.log("nbroperateurs : "+this.nbrOp);
+      //  console.log("nbroperateurs : "+this.nbrOp);
        return this.nbrOp;
 
       }
@@ -44,7 +44,7 @@ export class CardComponent implements OnInit{
     this.userService.getAllClients().subscribe({
       next :(info)=>{
         this.nbrCl = Object.keys(info.data).length;
-       console.log("nbroperateurs : "+this.nbrCl);
+      //  console.log("nbroperateurs : "+this.nbrCl);
        return this.nbrCl;
       }
     })

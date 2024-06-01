@@ -5,11 +5,12 @@ import { Router, RouterLink } from '@angular/router';
 import { FeedbackServiceService } from '../../../../core/services/feedback-service.service';
 import { Feedback } from '../../../../shared/models/Feedback';
 import { UserServiceService } from '../../../../core/services/user-service.service';
+import { CustomDatePipePipe } from '../../../../shared/pipes/custom-date-pipe.pipe';
 
 @Component({
   selector: 'app-feedbacks',
   standalone: true,
-  imports: [FooterComponent, HeaderComponent, RouterLink],
+  imports: [FooterComponent, HeaderComponent, RouterLink, CustomDatePipePipe],
   templateUrl: './feedbacks.component.html',
   styleUrl: './feedbacks.component.css'
 })

@@ -25,7 +25,8 @@ export class AddProduitComponent implements OnInit{
     this.createProduit = this.fb.group(
       {
         codeProd:['',[Validators.required, Validators.minLength(1)] ],
-        user:['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
+        quantite:['', Validators.required],
+        // user:['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
         guichet :['', Validators.required],
         libProd:['',Validators.required]
       }

@@ -30,14 +30,14 @@ export class BureauServiceService {
 
 
   //Deleting a Bureau
-  deleteBureau(id: number) {
+  deleteBureau(id: any) {
     return this.http.delete<{ message: string }>(`${this.baseUrl}/delete-bureau/${id}`);
   }
 
 
   //Getting a Bureau By ID
-  getBureauById(id:number) {
-    return this.http.get<{ message: string, data: any }>(`${this.baseUrl}/find-bureau/${id}`);
+  getBureauById(id:any) {
+    return this.http.get<{ message: string, data: Bureau }>(`${this.baseUrl}/find-bureau/${id}`);
   }
 
   //count Bureau

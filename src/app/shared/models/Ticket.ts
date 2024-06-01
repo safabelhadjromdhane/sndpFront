@@ -2,11 +2,12 @@ export interface Ticket {
 
   // nom?: string;
   id?:number;
-  etat?:boolean;
+  status?:string;
   nbrClientEnAttente?:number;
-  date?:Date;
+  dateTicket?:any;
   file?: string;
-  userId?:string;
-  createdDate?:Date;
+  codeClient?:string;
+  idGuichet:string;
+  description?:string;
   // role?: string;
 }
