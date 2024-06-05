@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
       telephone : ['', [Validators.required, Validators.maxLength(8)]],
       password : ['',[Validators.required, Validators.minLength(6), Validators.maxLength(45)]],
       confirmPassword: ['',Validators.required],
-      role : [''],
+      role : ['', Validators.required],
    },
    {validators: [Validation.match("password", "confirmPassword")]}
   )

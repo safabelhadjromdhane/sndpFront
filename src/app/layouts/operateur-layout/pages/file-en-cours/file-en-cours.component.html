@@ -2,7 +2,6 @@
 
   <div class="flex flex-wrap">
 
-
     <!-- <div class="w-full sm:w-1/2 md:w-1/2 flex flex-col p-3">
       <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
         <div class="p-4 flex-1 flex flex-col">
@@ -31,8 +30,86 @@
 
       </div>
     </div> -->
+<div class="w-full sm:w-3/4 md:w-11/12 lg:w-full p-3">
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+    <div class="p-4 flex-1 flex flex-col">
 
-    <div class="w-full sm:w-1/2 md:w-10/12 flex flex-col p-3">
+      <table class="w-full text-sm text-left rtl:text-right lg:rounded-lg bg-slate-100 text-gray-600 dark:text-gray-400">
+        <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+
+          <div class="sm:flex sm:items-center sm:justify-between">
+            <div>
+                <div class="flex items-center gap-x-3">
+                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">Les tickets réservées </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        </caption>
+       </table>
+       <table class="w-full text-sm text-left rtl:text-right bg-slate-100 text-gray-600 dark:text-gray-400">
+           <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+               <tr>
+                   <th scope="col" class="px-6 py-3">
+                         ID
+                   </th>
+                   <th scope="col" class="px-6 py-3">
+                       Nom File
+                   </th>
+                   <th scope="col" class="px-6 py-3">
+                       Date de Création
+                   </th>
+                   <th scope="col" class="px-6 py-3">
+                      Guichets
+                   </th>
+                   <th scope="col" class="px-6 py-3">
+                       Action
+                   </th>
+               </tr>
+           </thead>
+           <tbody>
+           @for(file of files; track file){
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >file.id</th>
+              <td class="px-6 py-4" >file.nom</td>
+              <td class="px-6 py-4">file.date</td>
+              <td class="px-6 py-4">guichets</td>
+
+              <td class="flex items-center px-6 py-4">
+                <div class="relative inline-block px-3 py-1 font-semibold leading-tight rounded-full flex justify-between" classes="[object Object]">
+                  <div class="w-6 h-6 mr-2 text-blue-600 transform hover:text-blue-500 hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                </div>
+                  <div class="w-6 h-6 mr-2 transform text-green-600 hover:text-green-500 hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 22" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                </div>
+                </div>
+              </td>
+           </tr>
+           }
+           @empty {
+            <td class="px-6 py-4">Aucune  file n'est trouvée n'a été trouver.</td>
+
+           }
+
+           </tbody>
+       </table>
+
+    </div>
+  </div>
+</div>
+
+    <div class="w-full sm:w-3/4 md:w-11/12 lg:w-full p-3">
+
+
       <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
         <div class="p-4 flex-1 flex flex-col">
 
@@ -42,7 +119,7 @@
               <div class="sm:flex sm:items-center sm:justify-between">
                 <div>
                     <div class="flex items-center gap-x-3">
-                        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Historiques des files traités</h2>
+                        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Historiques des files traitées</h2>
 
                     </div>
 
@@ -73,10 +150,11 @@
                    </tr>
                </thead>
                <tbody>
+               @for(file of files; track file){
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
                   <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >file.id</th>
                   <td class="px-6 py-4" >file.nom</td>
-                  <td class="px-6 py-4">bur.date</td>
+                  <td class="px-6 py-4">file.date</td>
                   <!-- <td class="px-6 py-4">bur.idUser</td> -->
 
                   <td class="flex items-center px-6 py-4">
@@ -87,14 +165,19 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
                     </div>
-                      <!-- <div class="w-6 h-6 mr-2 transform text-green-600 hover:text-green-500 hover:scale-110">
+                      <div class="w-6 h-6 mr-2 transform text-green-600 hover:text-green-500 hover:scale-110">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 22" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                         </svg>
-                    </div> -->
+                    </div>
                     </div>
                   </td>
                </tr>
+               }
+               @empty {
+                <td class="px-6 py-4">Aucune  file n'est trouvée n'a été trouver.</td>
+
+               }
 
                </tbody>
            </table>

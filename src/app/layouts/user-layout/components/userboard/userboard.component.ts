@@ -9,7 +9,6 @@ import { BureauServiceService } from '../../../../core/services/bureau-service.s
 import { Bureau } from '../../../../shared/models/Bureau';
 import { GuichetServiceService } from '../../../../core/services/guichet-service.service';
 import { ProduitServiceService } from '../../../../core/services/produit-service.service';
-// import { ProduitListComponent } from '../../../../shared/components/produit-list/produit-list.component';
 
 @Component({
     selector: 'app-userboard',

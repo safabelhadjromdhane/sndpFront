@@ -1,7 +1,5 @@
-import { Component, OnInit , Output,EventEmitter} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from "../../../../core/footer/footer/footer.component";
-import { HeadOpComponent } from "../head-op/head-op.component";
-import { TrackOperatComponent } from '../track-operat/track-operat.component';
 import { RouterLink } from '@angular/router';
 import { CustomPipePipe } from "../../../../shared/pipes/custom-pipe.pipe";
 import { UserServiceService } from '../../../../core/services/user-service.service';
@@ -11,48 +9,56 @@ import { Guichet } from '../../../../shared/models/Guichet';
 import { GuichetServiceService } from '../../../../core/services/guichet-service.service';
 import { BureauServiceService } from '../../../../core/services/bureau-service.service';
 import { ProduitServiceService } from '../../../../core/services/produit-service.service';
-// import { FileListComponent } from '../../../../shared/components/file-list/file-list.component';
-// import { TicketListComponent } from '../../../../shared/components/ticket-list/ticket-list.component';
+import { Produit } from '../../../../shared/models/Produit';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+
 
 @Component({
     selector: 'app-opboard',
     standalone: true,
     templateUrl: './opboard.component.html',
     styleUrl: './opboard.component.css',
-    imports: [FooterComponent, HeadOpComponent,
-      TrackOperatComponent, RouterLink,
-      CustomPipePipe,TicketBoardComponent,FileEnCoursComponent]
+    imports: [FooterComponent, RouterLink, CustomPipePipe,TicketBoardComponent,
+      FileEnCoursComponent, ReactiveFormsModule, FormsModule
+    ]
 })
 export class OpboardComponent implements OnInit{
-  // @Output() test: string = "this is a test";
-   connectedTime =  new Date() ;
+  Status:string[]=["demarrer","arreter"]
+   constructor(private userService: UserServiceService,
+    private gchsrv:GuichetServiceService,
+    private brsrv:BureauServiceService,
+    private prdsrv:ProduitServiceService,
+    private fb:FormBuilder
+  ) {
+
+  }
 
   ngOnInit(){
     // this.getUserName()
     this.getFullName();
     this.displayRelativeInfo();
+    this.formFile = this.fb.group({
+      identifiantop:['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
+      codeproduit : ['', [Validators.required, Validators.minLength(1)]],
+      idguichet: ['', [Validators.required, Validators.minLength(1),]],
+      datefile : ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
+      status : ['', [Validators.required]],
+    })
 
   }
-   dateN = new Date();
    userName!:string;
    opId!:any;
    gchOp:Guichet[]=[];
    opProd!:any;
    opBr!:any;
-   partialObjects!:any;
    nomBureau!:any;
    idBureau!:any;
    nomProduit!:any;
    idProduit!:any;
-   currentTime!:Date;
-   temps_demarrage!:any;
-  constructor(private userService: UserServiceService,
-    private gchsrv:GuichetServiceService,
-    private brsrv:BureauServiceService,
-    private prdsrv:ProduitServiceService
-  ) {
-
-  }
+   codeProdui!:any;
+   idGuichet!:any;
+   userProduct:Produit[]=[];
+   formFile!:FormGroup;
 
   getFullName():any {
     const userId:string|null = localStorage.getItem('id');;
@@ -78,30 +84,24 @@ export class OpboardComponent implements OnInit{
     this.gchsrv.getGuichetByUser(this.opId).subscribe({
       next:(infos) =>
         {
-
-        console.log("THIS USER'S RELATIVE GUICHET",infos.guichet)
+        //  console.log(this.opId)
+        // console.log("THIS USER'S RELATIVE GUICHET",infos.guichet)
         this.gchOp = Object.assign(infos['guichet']);
-        // console.log(infos.guichet.bureau)
         this.idBureau = infos.guichet.bureau;
         this.idProduit = infos.guichet.produit;
-        // console.log(this.idProduit)
-        // console.log(this.idBureau)
+        this.idGuichet = infos.guichet.id
+        this.prdsrv.getProductById(this.idProduit).subscribe({
+          next:(inf)=>{
+            this.nomProduit = inf.data.libProd;
+            console.log(typeof(inf.data['codeProd']))
+            this.userProduct = Object.assign(inf['data'])
+          }
+        })
         this.brsrv.getBureauById(this.idBureau).subscribe({
           next:(info)=>{
             this.nomBureau = info.data.localisation;
           }
         })
-        this.prdsrv.getProductById(this.idProduit).subscribe({
-          next:(inf)=>{
-            this.nomProduit = inf.data.libProd;
-            // console.log(this.nomProduit)
-          }
-        })
-              //   const result = this.gchOp.filter(({ produit }) => produit != "  ");
-      //   this.partialObjects = result.map(item => {
-      //     return { id: item.produit, };
-      //  });
-
 
       },
       error:(err)=>{
@@ -109,10 +109,7 @@ export class OpboardComponent implements OnInit{
       }
     })
   }
-  startFile(){
-    this.currentTime = new Date();
-    this.temps_demarrage = this.currentTime.getHours() + ':'+ this.currentTime.getMinutes();
-
-    console.log(this.temps_demarrage)
+  demarrer(){
+   console.log(this.formFile.value)
   }
 }

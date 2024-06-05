@@ -28,6 +28,7 @@ import { BureauDetailsComponent } from './layouts/user-layout/components/bureau-
 import { EditProduitComponent } from './layouts/admin-layout/pages/edit-produit/edit-produit.component';
 import { AddUserComponent } from './shared/components/add-user/add-user.component';
 import { ProfileComponent } from './layouts/admin-layout/pages/profile/profile.component';
+import { TicketsComponent } from './layouts/user-layout/components/tickets/tickets.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -70,12 +71,14 @@ export const routes: Routes = [
     {path:"avis/add-feedback", component:AddFeedbackComponent},
     {path:'edit-profile', component:EditProfilComponent},
     {path:"avis/edit-avis/:id", component:EditAvisComponent},
-    {path:"bureau-details/:id", component:BureauDetailsComponent}
+    {path:"bureau-details/:id", component:BureauDetailsComponent},
+    {path:"tickets", component:TicketsComponent},
+    // {path:"tickets/reserve-ticket"}
   ]},
   {path: "operateur",
   children:[
     {path: "", component:OpboardComponent},
-    {path:"profile", component:OpProfileComponent,},
+    // {path:"profile", component:OpProfileComponent,},
     ]},
   {path:'**', component:NotfoundPageComponent},
 ];

@@ -50,7 +50,7 @@ export class ClProfileComponent implements OnInit{
      next:(inf)=>{
       // console.log(this.userEmail)
       // console.log(inf['data'])
-      const res =inf['data'].filter((el:any)=>{
+      var res =inf['data'].filter((el:any)=>{
        return el.email == this.userEmail
       })
       this.feeds = res;

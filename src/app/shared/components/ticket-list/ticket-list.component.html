@@ -142,7 +142,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                                 {{numTickets}}
                               </div>
                           </div>
-                          <div class="text-sm font-medium text-gray-600">Total des Tickets pour Aujourd'hui</div>
+                          <div class="text-sm font-medium text-gray-600">Total des Tickets en attente</div>
                       </div>
                        <div class="dropdown">
                           <button type="button" class="dropdown-toggle text-gray-400 hover:text-gray-600"><i class="ri-more-fill"></i></button>
@@ -245,7 +245,10 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
         </tr>
         }
         @empty {
-         <td class="px-6 py-4">Aucun  bureau n'a été trouver.</td>
+          <tr class="flex items-center font-bold">
+            <td class="px-6 py-4">Aucun ticket n'a été trouver.</td>
+
+          </tr>
         }
         </tbody>
     </table>

@@ -34,7 +34,16 @@ export class TicketListComponent implements OnInit {
         //   this.numTickets = this.tickets.length
         // }
         this.tickets = Object.assign(data["tickets"])
-        this.numTickets = this.tickets.length
+        this.tickets.forEach((el)=>{
+          let i =0;
+          if( el["status"] == "en attente"){
+              i++;
+              console.log(el["status"])
+          }
+
+          console.log(i)
+        })
+        // this.numTickets = this.tickets.length
 
         // console.log(data.tickets)
       }

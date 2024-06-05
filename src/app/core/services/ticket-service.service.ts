@@ -30,16 +30,17 @@ export class TicketServiceService {
   }
 
   getTicketById(id:any){
-    return this.http.get<{message: string, }>(`${this.baseUrl}/find-ticket/${id}`)
+    return this.http.get<{message: string, data:Ticket}>(`${this.baseUrl}/find-ticket/${id}`)
 
   }
-  getTicketByClient(codeClient:any){
-    return this.http.get<{message: string, }>(`${this.baseUrl}`)
+  getTicketByClient(codeClient:string){
+    return this.http.get<{message: string, data:Ticket }>(`${this.baseUrl}/search-ticket`)
 
   }
   getTicketByGuichet(guichetId:any){
-    return this.http.get<{message: string, }>(`${this.baseUrl}`)
+    return this.http.get<{message: string, data:Ticket }>(`${this.baseUrl}/search-ticket-guichet`)
 
   }
+
 
 }

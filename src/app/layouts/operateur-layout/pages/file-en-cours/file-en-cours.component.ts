@@ -10,6 +10,7 @@ import { CustomDatePipePipe } from '../../../../shared/pipes/custom-date-pipe.pi
   styleUrl: './file-en-cours.component.css'
 })
 export class FileEnCoursComponent implements OnInit {
+  files:File[]=[]
   currentTime!:Date;
   temps_demarrage!:any;
   constructor(){

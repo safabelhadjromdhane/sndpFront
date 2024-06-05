@@ -5,7 +5,7 @@ export interface Ticket {
   status?:string;
   nbrClientEnAttente?:number;
   dateTicket?:any;
-  file?: string;
+  file?: any;
   codeClient?:string;
   idGuichet:string;
   description?:string;

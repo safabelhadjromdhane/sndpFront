@@ -4,13 +4,12 @@ import Validation from '../../../shared/models/Validation';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserServiceService } from '../../services/user-service.service';
-import { TrackOperatComponent } from "../../../layouts/operateur-layout/components/track-operat/track-operat.component";
 @Component({
     selector: 'app-login',
     standalone: true,
     templateUrl: './login.component.html',
     styleUrl: './login.component.css',
-    imports: [FormsModule, ReactiveFormsModule, TrackOperatComponent, CommonModule,RouterLink]
+    imports: [FormsModule, ReactiveFormsModule, CommonModule,RouterLink]
 })
 export class LoginComponent implements OnInit {
 
