@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { initFlowbite } from 'flowbite';
+import { initFlowbite, initModals } from 'flowbite';
 import { FooterComponent } from "./core/footer/footer/footer.component";
 import { HeaderComponent } from "./core/header/header/header.component";
 import { CardComponent } from "./shared/components/card/card.component";
@@ -19,6 +19,7 @@ import { LoginComponent } from "./core/authentification/login/login.component";
 export class AppComponent implements  OnInit {
   ngOnInit(): void {
     initFlowbite();
+    initModals();
   }
   title = 'sndpFront';
 }

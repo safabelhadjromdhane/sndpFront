@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../shared/models/User';
 import { Observable } from 'rxjs';
+import jwt from 'jsonwebtoken';
 
 @Injectable({
   providedIn: 'root'
@@ -81,11 +82,17 @@ export class UserServiceService {
       logout() {
         this.isUserLoggedIn = false;
         localStorage.removeItem("acess_token");
+        localStorage.removeItem("id");
+        localStorage.removeItem('isUserLoggedIn');
         localStorage.clear();
       }
 
       getToken(){
+        // var token_user =
+        localStorage.getItem('access_token');
+        // const payload = jwt.verify(token_user, "super-secret-token")
         return localStorage.getItem('access_token');
+
       }
 
       // getting all clients
@@ -107,6 +114,12 @@ export class UserServiceService {
 
       }
 
+      // decodeUserToken( ){
+      //   // const token = this.getToken()
+      //   const payload = jwt.verify();
+      //   const userId = payload.sub;
+      //   return userId;
+      // }
 }
 
 

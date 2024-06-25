@@ -1,311 +1,267 @@
-<div class="mt-10">
 
-  <div class="flex flex-wrap">
 
-    <!-- <div class="w-full sm:w-1/2 md:w-1/2 flex flex-col p-3">
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-        <div class="p-4 flex-1 flex flex-col">
+<nav class="fixed top-0 z-50 w-full bg-[#1a202c] border-b border-[#1a202d] text-white dark:bg-gray-800 dark:border-gray-700">
+  <div class="px-3 py-3 lg:px-5 lg:pl-3">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center justify-start rtl:justify-end">
+        <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+            <span class="sr-only">Open sidebar</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+               <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+            </svg>
+         </button>
+        <a [routerLink]="['/admin']" class="flex ms-2 md:me-24">
+          <img src="../../../../assets/imgs/agil.png" class="rounded-full h-8 me-3" alt="FlowBite Logo" />
+          <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">SNDP </span>
+        </a>
+      </div>
+      <div class="flex items-center">
+          <div class="flex items-center ms-3">
+            <div>
+              <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                <span class="sr-only">Open user menu</span>
+                <img class="w-8 h-8 rounded-full" src="../../../../../assets/imgs/operateur_avatar.png" class="rounded-full w-8 h-8" alt="Flowbite Logo"  alt="user photo">
+              </button>
+            </div>
+            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
+              <div class="px-4 py-3" role="none">
 
-          <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                 <!-- {{userName}} -->
+                </p>
+              </div>
+              <ul class="py-1" role="none">
+                <li>
+                  <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Profil</a>
+                </li>
 
-            <div class="sm:flex sm:items-center sm:justify-between">
-              <div>
-                  <div class="flex items-center gap-x-3">
-                      <h2 class="text-lg font-medium text-gray-800 dark:text-white">Traiter File</h2>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</nav>
 
-                      <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400"> actions</span>
+<aside id="logo-sidebar" class="fixed text-white top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-[#1a202c]
+text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+   <div class="h-full px-3 pb-4 overflow-y-auto bg-[#1a202c] text-white dark:bg-gray-800">
+      <ul class="space-y-2 font-medium">
+         <li>
+            <a [routerLink]="['/operateur']" class="flex items-center p-2 rounded-lg dark:text-white
+            hover:bg-gray-500 dark:hover:bg-gray-700 group text-white">
+               <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 d
+               ark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                  <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
+                  <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
+               </svg>
+               <span class="ms-3">Dashboard</span>
+            </a>
+         </li>
+         <li>
+          <a [routerLink]="['/operateur','tickets']" class="flex items-center p-2 text-white rounded-lg dark:text-white
+          hover:bg-gray-500 dark:hover:bg-gray-700 group">
+             <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"/>
+             </svg>
+             <span class="flex-1 ms-3 whitespace-nowrap">Tickets</span>
+          </a>
+       </li>
+         <li>
+            <a (click)="logout()" [routerLink]="['/login']" class="flex items-center p-2 text-white rounded-lg dark:text-white
+            hover:bg-gray-500 dark:hover:bg-gray-700 group">
+               <!-- <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"/>
+                  <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z"/>
+                  <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z"/>
+               </svg> -->
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
+             </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Se Déconnecter</span>
+            </a>
+         </li>
+      </ul>
+   </div>
+</aside>
+
+<div class="p-4 sm:ml-64 lg:mt-14 lg:pr-3  rounded-2xl shadow-2xl bg-gray-100">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 mt-16">
+    <div class="bg-blue-400 rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
+                  <div class="flex justify-between mb-6">
+                      <div>
+                          <div class="flex items-center mb-1">
+                              <div class="text-2xl font-semibold">
+                                {{ticketCount}}
+                              </div>
+                          </div>
+                          <div class="text-sm font-medium text-gray-600">Total des tickets</div>
+                      </div>
+
                   </div>
 
+                  <!-- <a href="/gebruikers" class="text-[#f84525] font-medium text-sm hover:text-red-800">View</a> -->
               </div>
-          </div>
-          </caption>
 
-        <div class="mt-4 flex items-center justify-around bg-gray-100 pt-10 pb-7 py-5 py-5">
-
-            <button type="button"   class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" (click)="startFile()">Démarrer</button>
-            <button type="button"   class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Arreter</button>
-        </div>
-        </div>
-
-
-      </div>
-    </div> -->
-<div class="w-full sm:w-3/4 md:w-11/12 lg:w-full p-3">
-  <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-    <div class="p-4 flex-1 flex flex-col">
-
-      <table class="w-full text-sm text-left rtl:text-right lg:rounded-lg bg-slate-100 text-gray-600 dark:text-gray-400">
-        <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-
-          <div class="sm:flex sm:items-center sm:justify-between">
-            <div>
-                <div class="flex items-center gap-x-3">
-                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">Les tickets réservées </h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        </caption>
-       </table>
-       <table class="w-full text-sm text-left rtl:text-right bg-slate-100 text-gray-600 dark:text-gray-400">
-           <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
-               <tr>
-                   <th scope="col" class="px-6 py-3">
-                         ID
-                   </th>
-                   <th scope="col" class="px-6 py-3">
-                       Nom File
-                   </th>
-                   <th scope="col" class="px-6 py-3">
-                       Date de Création
-                   </th>
-                   <th scope="col" class="px-6 py-3">
-                      Guichets
-                   </th>
-                   <th scope="col" class="px-6 py-3">
-                       Action
-                   </th>
-               </tr>
-           </thead>
-           <tbody>
-           @for(file of files; track file){
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >file.id</th>
-              <td class="px-6 py-4" >file.nom</td>
-              <td class="px-6 py-4">file.date</td>
-              <td class="px-6 py-4">guichets</td>
-
-              <td class="flex items-center px-6 py-4">
-                <div class="relative inline-block px-3 py-1 font-semibold leading-tight rounded-full flex justify-between" classes="[object Object]">
-                  <div class="w-6 h-6 mr-2 text-blue-600 transform hover:text-blue-500 hover:scale-110">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                </div>
-                  <div class="w-6 h-6 mr-2 transform text-green-600 hover:text-green-500 hover:scale-110">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 22" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                    </svg>
-                </div>
-                </div>
-              </td>
-           </tr>
-           }
-           @empty {
-            <td class="px-6 py-4">Aucune  file n'est trouvée n'a été trouver.</td>
-
-           }
-
-           </tbody>
-       </table>
 
     </div>
-  </div>
-</div>
+              <div>
+                <div class="mt-10">
 
-    <div class="w-full sm:w-3/4 md:w-11/12 lg:w-full p-3">
+                  <div class="flex flex-wrap">
 
 
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-        <div class="p-4 flex-1 flex flex-col">
+                <div class="w-full sm:w-12/12 md:w-12/12 lg:w-full p-3">
+                  <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+                    <div class="p-4 flex-1 flex flex-col">
 
-          <table class="w-full text-sm text-left rtl:text-right lg:rounded-lg bg-slate-100 text-gray-600 dark:text-gray-400">
-            <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                      <table class="w-full text-sm text-left rtl:text-right lg:rounded-lg bg-slate-100 text-gray-600 dark:text-gray-400">
+                        <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
 
-              <div class="sm:flex sm:items-center sm:justify-between">
-                <div>
-                    <div class="flex items-center gap-x-3">
-                        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Historiques des files traitées</h2>
+                          <div class="sm:flex sm:items-center sm:justify-between">
+                            <div>
+                                <div class="flex items-center gap-x-3">
+                                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">Les tickets réservés pour cet opérateur </h2>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        </caption>
+                       </table>
+                       <table class="w-full text-sm text-left rtl:text-right bg-slate-100 text-gray-600 dark:text-gray-400">
+                           <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                               <tr>
+                                   <th scope="col" class="px-6 py-3">
+                                         ID
+                                   </th>
+                                   <th scope="col" class="px-6 py-3">
+                                       Description
+                                   </th>
+                                   <th scope="col" class="px-6 py-3">
+                                       File Assignée
+                                   </th>
+
+                                    <th scope="col" class="px-6 py-3">
+                                      Date
+                                  </th>
+                                   <th scope="col" class="px-6 py-3">
+                                       Action
+                                   </th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                           @for(tk of filtered; track tk){
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
+                              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >{{tk.id}}</th>
+                              <td class="px-6 py-4" >{{tk.description}}</td>
+                              <td class="px-6 py-4">{{tk.idFile}}</td>
+
+                              <td class="px-6 py-4">{{tk.dateTicket| customDatePipe : "numeric"}}</td>
+
+                              <td class="flex items-center px-6 py-4">
+                                <div class="relative inline-block px-3 py-1 font-semibold leading-tight rounded-full flex justify-between" classes="[object Object]">
+                                  <!-- <div class="w-6 h-6 mr-2 text-blue-600 transform hover:text-blue-500 hover:scale-110">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button" (click)="details(file.id)">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                </div> -->
+                                  <div class="w-6 h-6 mr-2 transform text-green-600 hover:text-green-500 hover:scale-110">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 22" stroke="currentColor" type="button" (click)="updateTicket(tk.id)" id="updateProductButton" data-modal-target="updateProductModal" data-modal-toggle="updateProductModal" >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                    </svg>
+                                </div>
+                                <div class="w-6 h-6 mr-2 text-red-600 transform hover:text-red-500 hover:scale-110"  >
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 22" stroke="currentColor" type="button" class="border-none; hover:border-none;" (click)="deleteTicket(tk.id)">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                  </svg>
+                              </div>
+                                </div>
+                              </td>
+                           </tr>
+                           }
+                           @empty {
+                            <td class="px-6 py-4">Aucune  file n'est trouvée n'a été trouver.</td>
+
+                           }
+
+                           </tbody>
+                       </table>
 
                     </div>
-
+                  </div>
                 </div>
 
-            </div>
-
-            </caption>
-           </table>
-           <table class="w-full text-sm text-left rtl:text-right bg-slate-100 text-gray-600 dark:text-gray-400">
-               <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
-                   <tr>
-                       <th scope="col" class="px-6 py-3">
-                             ID
-                       </th>
-                       <th scope="col" class="px-6 py-3">
-                           Nom File
-                       </th>
-                       <th scope="col" class="px-6 py-3">
-                           Date de Création
-                       </th>
-                       <!-- <th scope="col" class="px-6 py-3">
-                           idUser
-                       </th> -->
-                       <th scope="col" class="px-6 py-3">
-                           Action
-                       </th>
-                   </tr>
-               </thead>
-               <tbody>
-               @for(file of files; track file){
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >file.id</th>
-                  <td class="px-6 py-4" >file.nom</td>
-                  <td class="px-6 py-4">file.date</td>
-                  <!-- <td class="px-6 py-4">bur.idUser</td> -->
-
-                  <td class="flex items-center px-6 py-4">
-                    <div class="relative inline-block px-3 py-1 font-semibold leading-tight rounded-full flex justify-between" classes="[object Object]">
-                      <div class="w-6 h-6 mr-2 text-blue-600 transform hover:text-blue-500 hover:scale-110">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                    </div>
-                      <div class="w-6 h-6 mr-2 transform text-green-600 hover:text-green-500 hover:scale-110">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 22" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                    </div>
-                    </div>
-                  </td>
-               </tr>
-               }
-               @empty {
-                <td class="px-6 py-4">Aucune  file n'est trouvée n'a été trouver.</td>
-
-               }
-
-               </tbody>
-           </table>
-
-        </div>
-      </div>
-    </div>
+                                      </div>
 
 
-  </div>
-
-
+<!-- Modal toggle -->
+<!-- <div class="flex justify-center m-5">
+  <button id="updateProductButton" data-modal-target="updateProductModal" data-modal-toggle="updateProductModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+  Update product
+  </button>
+</div> -->
 
 <!-- Main modal -->
-<div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-  <div class="relative p-4 w-full max-w-2xl max-h-full">
+<div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+  <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
       <!-- Modal content -->
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
           <!-- Modal header -->
-          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                  Details File
+          <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                  Update Ticket
               </h3>
-              <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
-                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                  </svg>
+              <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                   <span class="sr-only">Close modal</span>
               </button>
           </div>
           <!-- Modal body -->
-          <div class="p-4 md:p-5 space-y-4">
-            <h4 class="text-semibold">Assigné à l'agent  :
-              <span class="text-bold text-gray-600 dark:text-gray-800">
+          <form action="#" [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+              <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                  <div>
+                      <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                      <input type="text" formControlName="description" placeholder="description de la ticket" name="description" id="description"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. Apple iMac 27&ldquo;">
+                  </div>
 
-            </span>
-            </h4>
-            <h4 class="text-semibold">Affecté au guichet:
-              <span class="text-bold text-gray-600 dark:text-gray-800">
+                  <div>
+                    <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                    <select id="status" formControlName="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="en attente">En attente</option>
+                        <option value="en cours">En cours</option>
+                        <option value="traiter">traiter</option>
 
-            </span>
-            </h4>
-            <h4 class="text-semibold">Dans le bureau :
-              <span class="text-bold text-gray-600 dark:text-gray-800">
-            </span>
-            </h4>
-              <!-- <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                  The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-              </p> -->
-          </div>
-          <!-- Modal footer -->
-          <div class="flex items-end p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-              <button data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Fermer</button>
-          </div>
+                    </select>
+                </div>
+
+              </div>
+              <div class="flex items-center space-x-4">
+                  <button type="submit" class="text-green-600 inline-flex items-center hover:text-white border border-green-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 22" stroke="currentColor" type="button" >
+                      <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                  </svg>
+                    Modifier
+                  </button>
+                  <button type="button" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                      <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                      Annuler
+                  </button>
+              </div>
+          </form>
       </div>
   </div>
+</div>
 
-
-
-  <!-- <ul class="bg-white shadow overflow-hidden lg:rounded-lg max-w-lg lg:mx-auto mt-10 mb-16">
-
-
-    <li>
-      <div class="px-2 py-4 md:px-6">
-        <div class="flex items-center justify-between">
-            <h3 class="text-lg leading-6 font-medium text-gray-900">Gérer File</h3>
-        </div>
-        <div class="mt-4 flex items-center justify-between">
-            <a  class="font-medium text-indigo-600 hover:text-indigo-500">Edit</a>
-            <button type="button"   class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Démarrer</button>
-            <button type="button"   class="focus:outline-none text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-900">Interrompre</button>
-            <button type="button"   class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900">Continuer</button>
-        </div>
-    </div>
-
-    </li>
-
-
-
-</ul>
-
-  <table class="w-full lg:mt-5 text-sm text-left rtl:text-right lg:rounded-lg bg-slate-100 text-gray-600 dark:text-gray-400">
-    <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-
-      <div class="sm:flex sm:items-center sm:justify-between">
-        <div>
-            <div class="flex items-center gap-x-3">
-                <h2 class="text-lg font-medium text-gray-800 dark:text-white">Historiques des files traités</h2>
-
+              <!-- <app-file-en-cours></app-file-en-cours> -->
+              <!-- <app-ticket-board></app-ticket-board> -->
+              <!-- <app-footer></app-footer> -->
             </div>
 
-        </div>
-
-    </div>
-
-    </caption>
-   </table>
-   <table class="w-full text-sm text-left rtl:text-right bg-slate-100 text-gray-600 dark:text-gray-400">
-       <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
-           <tr>
-               <th scope="col" class="px-6 py-3">
-                     ID
-               </th>
-               <th scope="col" class="px-6 py-3">
-                   Nom File
-               </th>
-               <th scope="col" class="px-6 py-3">
-                   Date de Création
-               </th>
-
-               <th scope="col" class="px-6 py-3">
-                   Action
-               </th>
-           </tr>
-       </thead>
-       <tbody>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >file.id</th>
-          <td class="px-6 py-4" >file.nom</td>
-          <td class="px-6 py-4">bur.date</td>
-
-          <td class="flex items-center px-6 py-4">
-
-           <button type="button"   class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Modifier</button>
-          </td>
-       </tr>
-
-       </tbody>
-   </table> -->
+  <app-footer></app-footer>
 
 </div>

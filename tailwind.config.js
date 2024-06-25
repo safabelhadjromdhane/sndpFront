@@ -19,6 +19,9 @@ module.exports = {
   },
   plugins: [
     require('flowbite/plugin') // add this line
+    ({
+      charts: true
+    })
   ],
 }
 

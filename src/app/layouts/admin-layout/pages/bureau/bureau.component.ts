@@ -7,6 +7,7 @@ import { FooterComponent } from '../../../../core/footer/footer/footer.component
 import { UserServiceService } from '../../../../core/services/user-service.service';
 import { CustomDatePipePipe } from '../../../../shared/pipes/custom-date-pipe.pipe';
 import { GuichetServiceService } from '../../../../core/services/guichet-service.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-bureau',
   standalone: true,
@@ -41,8 +42,6 @@ export class BureauComponent implements OnInit {
         next: (infos)=>{
           this.brx = Object.assign(infos['bureaux']);
 
-            // this.dateSt= Object.assign(infos["bureaux"]['createdDate'])
-            // const dateSt2=  Date.UTC(2024,5,11,38,28,0X0)
         }
       }
     )
@@ -56,7 +55,7 @@ export class BureauComponent implements OnInit {
 
     this.bureauService.deleteBureau(idCast).subscribe({
       next: ()=>{
-        console.log("Bureau has been deleted successfully!!");
+        // console.log("Bureau has been deleted successfully!!");
         this.getAllBureaux();
       }
     })
@@ -92,6 +91,12 @@ export class BureauComponent implements OnInit {
       },
       error:(e)=>{
         console.log("Erreurrr!!",e)
+        Swal.fire({
+          icon: "warning",
+          title: "Une erreur est survenue !!!",
+          showConfirmButton: true,
+          timer: 1500
+        });
       }
     })
   }

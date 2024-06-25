@@ -5,7 +5,7 @@ import { FooterComponent } from '../../../../core/footer/footer/footer.component
 import { UserServiceService } from '../../../../core/services/user-service.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import Validation from '../../../../shared/models/Validation';
-
+import Swal from "sweetalert2"
 @Component({
   selector: 'app-edit-avis',
   standalone: true,
@@ -19,13 +19,16 @@ export class EditAvisComponent implements OnInit{
     private usersrv:UserServiceService, private active:ActivatedRoute, private fb:FormBuilder
   ){}
   feedId!: any;
-  updateForm!:FormGroup;
+  updateForm:FormGroup = this.fb.group({
+    email : ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
+    avis : ['',[Validators.required, Validators.minLength(6)]],
+  });
   ngOnInit(): void {
     let feedCurrentId!:any;
     this.feedId = this.active.params.subscribe(params => {
       feedCurrentId=params['id'];
     });
-    console.log("ID Feedback", feedCurrentId)
+    // console.log("ID Feedback", feedCurrentId)
     this.feedbacksrv.getFeedBackById(feedCurrentId).subscribe(
       {
         next : (info)=> {
@@ -38,7 +41,13 @@ export class EditAvisComponent implements OnInit{
         )
         },
         error : (e)=> {
-          alert("On ne parviens pas à recuperer les informations!!!")
+          Swal.fire({
+            icon: "error",
+            title: "On ne parviens pas à recuperer les informations",
+            showConfirmButton: true,
+            timer: 1500
+          });
+          // alert("On ne parviens pas à recuperer les informations!!!")
         }
       }
      )
@@ -48,7 +57,12 @@ export class EditAvisComponent implements OnInit{
   onUpdate(){
     this.feedbacksrv.updateFeedback(this.feedId,this.updateForm.value).subscribe({
       next : ()=>{
-        alert("Avis  modifié avec succès");
+        Swal.fire({
+          icon: "success",
+          title: "Avis Modifié avec succés!!",
+          showConfirmButton: true,
+          timer: 1500
+        });
         this.route.navigate(['/client'])
       }
     })

@@ -27,4 +27,10 @@ export class FileServiceService {
 
   getFileByGuichet(){
   }
+  getFileByUser(id:any){
+    return this.http.get<{message: string, files:any}>(`${this.baseUrl}/get-files-users/${id}`);
+  }
+  getFileById(id:any){
+    return this.http.get<{message:string,file:any}>(`${this.baseUrl}/get-file-details/${id}`);
+  }
 }

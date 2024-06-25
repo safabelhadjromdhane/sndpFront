@@ -6,6 +6,7 @@ import { User } from '../../models/User';
 import { UserServiceService } from '../../../core/services/user-service.service';
 import { Guichet } from '../../models/Guichet';
 import { CustomDatePipePipe } from '../../pipes/custom-date-pipe.pipe';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -33,9 +34,9 @@ export class GuichetListComponent implements OnInit {
     this.guichetservice.getAllGuichets().subscribe(
       {
         next:(infos)=>{
-          console.log(infos['message'])
+          // console.log(infos['message'])
           this.gchts = Object.assign(infos['guichetx']);
-          console.log(this.gchts)
+          // console.log(this.gchts)
 
           // this.gchts = Object.assign(infos['data'])
         },
@@ -46,19 +47,49 @@ export class GuichetListComponent implements OnInit {
     )
   }
   deleteGuichet(id:any){
-  if(window.confirm("Êtes-vous sûr de vouloir supprimer ce guichet?")){
-    this.guichetservice.deleteGuichet(id).subscribe({
-      next:(info)=>{
-        alert(info.message)
-        window.location.reload()
-        // this.getAll();
-       },
-        error: (e)=>{
-          console.log(e);
-          alert("Nous n'avons pas parvenue à supprimer ce guichet!!")
+  // if(window.confirm("Êtes-vous sûr de vouloir supprimer ce guichet?")){
+  //   this.guichetservice.deleteGuichet(id).subscribe({
+  //     next:(info)=>{
+  //       alert(info.message)
+  //       window.location.reload()
+  //       // this.getAll();
+  //      },
+  //       error: (e)=>{
+  //         console.log(e);
+  //         alert("Nous n'avons pas parvenue à supprimer ce guichet!!")
+  //       }
+  //   })
+  // }
+  if(id!==null){
+    Swal.fire({
+      title: "Êtes-vous sûr de vouloir supprimer ce guichet?",
+      icon: "warning",
+      text: "Vous ne pouvez plus le récuper!",
+      showCancelButton: true,
+      confirmButtonText: "Oui",
+      cancelButtonText: "Non",
+      reverseButtons: true
+    }).then((result)=>{
+     if(result.isConfirmed){
+      this.guichetservice.deleteGuichet(id).subscribe({
+        next:(info)=>{
+          console.log("User to be delete!!", info);
+          this.getAll();
         }
+       })
+     }
     })
+    }
+  else{
+    Swal.fire({
+      // position: "top-end",
+      icon: "error",
+      title: "Une erreur lors de la connexion à la base de données!! ",
+      showConfirmButton: false,
+      timer: 1500
+    });
   }
+
   }
   updateGuichet(){
 
@@ -72,7 +103,7 @@ export class GuichetListComponent implements OnInit {
         this.gchNum = infos.nbr;
       },
       error:(e)=>{
-        console.log("Erreur est survenue!!",e)
+        // console.log("Erreur est survenue!!",e)
       }
 
     })

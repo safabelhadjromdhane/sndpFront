@@ -7,6 +7,7 @@ import { UserServiceService } from '../../../../core/services/user-service.servi
 import { Feedback } from '../../../../shared/models/Feedback';
 import { FooterComponent } from '../../../../core/footer/footer/footer.component';
 import { CustomDatePipePipe } from '../../../../shared/pipes/custom-date-pipe.pipe';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cl-profile',
@@ -19,7 +20,8 @@ export class ClProfileComponent implements OnInit{
    constructor( private location:Location,
     private router:Router,
     private feebackservice: FeedbackServiceService,
-    private activated:ActivatedRoute, private userservice:UserServiceService   ) {
+    private activated:ActivatedRoute,
+     private userservice:UserServiceService   ) {
 
    }
    userId!:any;
@@ -48,8 +50,7 @@ export class ClProfileComponent implements OnInit{
     this.getUser(this.userId)
     this.feebackservice.getFeedBackByUserMail(this.userEmail).subscribe({
      next:(inf)=>{
-      // console.log(this.userEmail)
-      // console.log(inf['data'])
+
       var res =inf['data'].filter((el:any)=>{
        return el.email == this.userEmail
       })
@@ -60,17 +61,6 @@ export class ClProfileComponent implements OnInit{
         else{
           this.userfeeds = 0;
         }
-        console.log("Numéro des avis pour cet client", this.userfeeds)
-      // console.log(res)
-      // this.feeds = Object.assign(inf['data'])
-      // console.log(inf.data)
-      // if(this.feeds.length>0){
-      //   this.userfeeds = Object.keys(this.feeds).length;
-      // }
-      // else{
-      //   this.userfeeds = 0;
-      // }
-      // console.log("Numéro des avis pour cet client", this.userfeeds)
 
      }
      ,
@@ -85,12 +75,40 @@ export class ClProfileComponent implements OnInit{
       next:(infod)=>{
         this.userName=infod.user.nom + " "+ infod.user.prenom;
         this.userEmail = infod.user.email;
-        // console.log("getUser",this.userEmail)
       }
     })
     return this.userEmail
   }
   deleteAvis(id:any){
+    if(id!== null){
+      Swal.fire({
+        title: "Êtes-vous sûr de vouloir de supprimer cet avis ?",
+        icon: "warning",
+        text: "Vous ne pouvez plus le récuper !!!",
+        showCancelButton: true,
+        confirmButtonText: "Oui",
+        cancelButtonText: "Non",
+        reverseButtons: true
+      }).then((result)=>{
+       if(result.isConfirmed){
+        this.feebackservice.deleteFeedback(id).subscribe({
+          next:(info)=>{
+          }
+         })
+       }
+       this.getAllUserFeedback();
+      })
+    }
+    else {
+      Swal.fire({
+        // position: "top-end",
+        icon: "error",
+        title: "Nous n'avons pas parvenue à supprimer votre avis!! ",
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+    }
     // if(window.confirm("Êtes-vous sûr de vouloir supprimer cet avis?")){
 
     //   this.feebackservice.deleteFeedback(id).subscribe(

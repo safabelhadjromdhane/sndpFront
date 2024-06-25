@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup,FormsModule, ReactiveFormsModule, Validators } f
 
 import { Router, RouterLink } from '@angular/router';
 import { UserServiceService } from '../../../../core/services/user-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-guichet',
@@ -25,7 +26,7 @@ export class AddGuichetComponent implements OnInit {
       nomGuichet:['', [Validators.required]],
       bureau:['', [Validators.required]],
       user:['',[Validators.required, Validators.minLength(3),Validators.maxLength(12)]],
-      produit:['', ],
+      produit:['', Validators.required,],
 
 
     })
@@ -38,7 +39,15 @@ export class AddGuichetComponent implements OnInit {
       this.guichetservice.createNewGuichet(this.addForms.value).subscribe({
         next : (infos)=>{
           if(infos["message"]== "Guichet has been created successfully"){
-            window.alert("Le guichet a été créer avec Succès!!!");
+            Swal.fire({
+            icon: "success",
+            text: "Guichet ajouter avec succés!",
+            showConfirmButton: true,
+            // confirmButtonText: "Oui",
+            // cancelButtonText: "Non",
+            // reverseButtons: true
+        })
+            // window.alert("Le guichet a été créer avec Succès!!!");
             this.router.navigate(['admin', "guichets"])
           }
         },

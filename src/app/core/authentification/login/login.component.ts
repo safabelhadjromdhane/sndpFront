@@ -4,6 +4,7 @@ import Validation from '../../../shared/models/Validation';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserServiceService } from '../../services/user-service.service';
+import Swal from 'sweetalert2'
 @Component({
     selector: 'app-login',
     standalone: true,
@@ -13,7 +14,10 @@ import { UserServiceService } from '../../services/user-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  signinForm!:FormGroup;
+  signinForm:FormGroup= this.fb.group({
+    id : ['', Validators.required, Validators.maxLength(12)],
+      password : ['',Validators.required],
+  });
   isLogged:boolean = true;
   role!:string;
   alertContent!:string;
@@ -30,17 +34,24 @@ export class LoginComponent implements OnInit {
       id : ['', Validators.required, Validators.maxLength(12)],
       password : ['',Validators.required],
     })
-    console.log(this.isLogged)
 
   }
 
   onSignIn() {
-    console.log("This is the value of the form ",this.signinForm.value);
+    // console.log("This is the value of the form ",this.signinForm.value);
+
     this.userService.login(this.signinForm.value).subscribe(
       {
         next: (data)=> {
           localStorage.setItem('isUserLoggedIn', data.token);
           localStorage.setItem('id', data.user.id);
+           localStorage.setItem("acess_token",data.token)
+          Swal.fire({
+            icon: "success",
+            title: "Authentification  réalisé avec succés",
+            showConfirmButton: false,
+            timer: 1500
+          });
 
         if(data.user.role == 'admin'){
            this.role= "admin";
@@ -62,10 +73,13 @@ export class LoginComponent implements OnInit {
 
         }        },
         error : (error) => {
-          console.log("Erreur lors d'authentification: " + error);
-          window.alert("Vous devez vérifier vos données saisies!!!");
-          this.alertContent ="Vous devez vérifier vos données saisies!!!"
-
+          // console.log("Erreur lors d'authentification: " + error);
+          Swal.fire({
+            icon: "error",
+            title: "Vous devez vérifier vos données saisies!!!",
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.isLogged == false;
 
         }

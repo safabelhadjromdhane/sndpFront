@@ -41,6 +41,15 @@ export class TicketServiceService {
     return this.http.get<{message: string, data:Ticket }>(`${this.baseUrl}/search-ticket-guichet`)
 
   }
+  countTicketEnAttente(){
+    return this.http.get<{message:string, data:any, num:any}>(`${this.baseUrl}/en-attente-count`)
+  }
+  countTicketEnCours(){
+    return this.http.get<{message:string, data:any, num:any}>(`${this.baseUrl}/en-cours-count`)
 
+  }
+  updateTicket(id:any, data :any){
+    return this.http.put<{message:string, data:any}>(`${this.baseUrl}/update-ticket/${id}`, data)
+  }
 
 }

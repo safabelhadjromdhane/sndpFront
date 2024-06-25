@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule,FormGroup, FormBuilder, Validators } f
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BureauServiceService } from '../../../../core/services/bureau-service.service';
 import { UserServiceService } from '../../../../core/services/user-service.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-edit-bureau',
   standalone: true,
@@ -13,7 +13,10 @@ import { UserServiceService } from '../../../../core/services/user-service.servi
 })
 export class EditBureauComponent implements OnInit{
   burId!:any;
-  updateForms!:FormGroup;
+  updateForms:FormGroup = this.fb.group({
+    user : ["", [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
+    localisation: ["", [Validators.required]],
+  });
   constructor(private route:Router,
     private bureauservice:BureauServiceService,
   private fb:FormBuilder,private active:ActivatedRoute,
@@ -24,7 +27,7 @@ private usersvr:UserServiceService){
     let burCurrentId!:number;
     this.burId = this.active.params.subscribe(
       params=>{
-        console.log(params['id']);
+        // console.log(params['id']);
         burCurrentId = params['id'];
       }
     );
@@ -38,7 +41,12 @@ private usersvr:UserServiceService){
 
       },
       error:(e)=>{
-        console.log("Impossible de récupérer le bureau")
+        // console.log("Impossible de récupérer le bureau")
+        Swal.fire({
+          icon : "error",
+          text : "Impossible de récupérer le bureau",
+          timer: 1500
+        })
         // alert("On ne parviens pas à recuperer les informations!!!",)
       }
     })
@@ -48,14 +56,26 @@ private usersvr:UserServiceService){
   onUpdate(){
     this.bureauservice.updateBureau(this.burId,this.updateForms).subscribe({
       next: (infos)=>{
-        console.log("bureau à modifié", infos.bureau)
-        alert('Le bureau a été modifié avec succès');
+        // console.log("bureau à modifié", infos.bureau)
+        Swal.fire({
+          icon : "success",
+          title:"La modification du bureau est affectué avec succés",
+          showConfirmButton : false,
+          timer:1500
+        })
+        // alert('Le bureau a été modifié avec succès');
         this.route.navigate(['/admin','bureaux'])
       },
       error: (error)=>{
-        alert("Une erreur est survenue lors de la modification de ce bureau!!!");
+        Swal.fire({
+          icon : "error",
+          title:"Une erreur est survenue lors de la modification du bureau",
+          showConfirmButton : false,
+          timer:1500
+        })
+        // alert("Une erreur est survenue lors de la modification de ce bureau!!!");
 
-        console.log('ERRRROOOR', error)
+        // console.log('ERRRROOOR', error)
 }    })
   }
   logout(){

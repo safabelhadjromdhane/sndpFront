@@ -7,17 +7,24 @@ import { UserServiceService } from '../../../../core/services/user-service.servi
 import { Guichet } from '../../../../shared/models/Guichet';
 import { Produit } from '../../../../shared/models/Produit';
 import { FooterComponent } from '../../../../core/footer/footer/footer.component';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { TicketServiceService } from '../../../../core/services/ticket-service.service';
 
 @Component({
   selector: 'app-bureau-details',
   standalone: true,
-  imports: [RouterLink, FooterComponent
-
+  imports: [RouterLink, FooterComponent,
+   ReactiveFormsModule, FormsModule
   ],
   templateUrl: './bureau-details.component.html',
   styleUrl: './bureau-details.component.css'
 })
 export class BureauDetailsComponent implements OnInit {
+  reserveForm:FormGroup = this.fb.group({
+    codeClient:['', [Validators.required]],
+    idGuichet:['', [Validators.required]]
+  });
 
   bureauId!:any;
   nbrGuichetParBureau!:any;
@@ -29,20 +36,30 @@ export class BureauDetailsComponent implements OnInit {
   nbrBureauGuichet!:number;
   partialObjects!:any;
   nomBureau!:any;
+  guichetCode!:any;
+  produitCode!:any;
   constructor(private bureausrv:BureauServiceService,
     private guichetsvr:GuichetServiceService,
     private produitsrv:ProduitServiceService,
     private active: ActivatedRoute,
-    private usersvr:UserServiceService
+    private usersvr:UserServiceService,
+    private fb:FormBuilder,
+    private ticketsrv:TicketServiceService
   ){
 
   }
   ngOnInit(): void {
+    this.reserveForm = this.fb.group({
+      codeClient:['', [Validators.required]],
+      idGuichet:['', [Validators.required]],
+      codeProd:['', [Validators.required]]
+    })
     let currentBuId!:any;
     this.bureauId = this.active.params.subscribe(params =>{
-      console.log(params['id']);
+      // console.log(params['id']);
       currentBuId = params['id'];
       }
+
     )
     this.bureauId = currentBuId;
     this.searchBurById(this.bureauId);
@@ -60,7 +77,7 @@ export class BureauDetailsComponent implements OnInit {
         this.gchs= Object.assign(infos['data']);
         if(this.nbrGuichetParBureau> 1){
           this.nbrBureauGuichet = this.nbrGuichetParBureau;
-          console.log(this.nbrBureauGuichet)
+          // console.log(this.nbrBureauGuichet)
           for(var i=0;i<this.nbrBureauGuichet;i++){
             const result = this.gchs.filter(({ produit }) => produit != "  ");
             this.partialObjects = result.map(item => {
@@ -68,7 +85,6 @@ export class BureauDetailsComponent implements OnInit {
 
               return { id: item.produit};
            });
-          //  console.log("ID Prod Project From boucle ",partialObjects)
 
 
           }
@@ -76,11 +92,7 @@ export class BureauDetailsComponent implements OnInit {
               const firsId = id;
               for(const x in firsId){
                 console.log(`THE ID ${firsId[x]}`)
-                // this.produitsrv.getProductById(`${firsId[x]}`).subscribe({
-                //   next:(infos)=>{
-                //     console.log("Infos for product n1", infos.data)
-                //   }
-                // })
+
               }
 
           })
@@ -88,23 +100,24 @@ export class BureauDetailsComponent implements OnInit {
         else if(this.nbrGuichetParBureau==1){
 
           const result = this.gchs.filter(({ produit }) => produit != "  ");
-          // console.log("RESULT", result)
           let partialObjects = result.map(item => {
-            console.log(item.produit);
-            console.log('the concerned ghuichets !',infos['data'])
+            this.produitCode = item.produit;
 
             return { id: item.produit};
 
          });
-        //  console.log("ID Prod Project",partialObjects)
+         this.gchs.forEach((el)=>{
+          this.guichetCode = el.id
+
+         })
+
          this.produitsrv.getProductById(id).subscribe({
             next:(infos)=>{
-              // console.log("Infos for product 1", infos.data)
-              this.prods = Object.assign(infos.data);
-              this.prods.map((prd:Produit)=>{
-                this.prd = prd;
-                      console.log(this.prd)
-              })
+              this.prods = Object.assign(infos['data']);
+              // this.prods.map((prd)=>{
+              //   this.prd = prd;
+              //         console.log(this.prd)
+              // })
             }
           })
         }
@@ -113,7 +126,12 @@ export class BureauDetailsComponent implements OnInit {
       },
       error:(e)=>{
         console.log('I cannot retieve the guichet from this bureau');
-        window.alert("Impossible de récupérer les données de ce bureau!!");
+        Swal.fire({
+          icon:'error',
+          title: "Dommage!!",
+          text: "Il y a un problème avec le bureau que vous avez choisi",
+          footer: "Veuillez réessayer plus tard"
+        })
       }
 
     })
@@ -122,4 +140,41 @@ export class BureauDetailsComponent implements OnInit {
   logout(){
     this.usersvr.logout();
   }
+  reserverTicket(){
+  if(this.reserveForm.value!= null){
+   this.ticketsrv.reserveTicket(this.reserveForm.value).subscribe({
+    next:(data)=>{
+    },
+    error:()=>{
+      Swal.fire({
+        icon:'error',
+        title: "Une erreur est survenue lors du stockage de votre ticket dans la Base de Données!!",
+        text: "Veuillez réessayer plus tard",
+        timer:2000
+      })
+    }
+   })
+  }
+  else {
+    Swal.fire({
+      icon:'error',
+      title: "Dommage!!",
+      text: "Veuillez remplir tous les champs convenablement!!",
+      timer: 2000
+    })
+    // this.reserveForm.markAllAsTouched();
+  }
+  //  console.log(this.reserveForm.value)
+  }
+  ticketReserver(){
+    Swal.fire({
+      title: 'Ticket réservé avec succès',
+      text: 'Votre ticket a été réservé avec succès',
+      icon: 'success',
+      confirmButtonText: 'OK',
+      timer:3000
+    })
+    // console.log("The value of the ticket", this.reserveForm.value)
+  }
 }
+

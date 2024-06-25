@@ -13,7 +13,18 @@ import Validation from '../../../../shared/models/Validation';
 })
 export class EditProfilComponent implements OnInit {
   userId!: any;
-  updateForm!:FormGroup;
+  updateForm:FormGroup = this.fb.group({
+    id:['', Validators.required],
+            nom : ["", [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+)$')]],
+            prenom: ["", [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+)$')]],
+            email : ["", [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
+            telephone : ["", [Validators.required, Validators.maxLength(8)]],
+            password : ["",[Validators.required, Validators.minLength(6), Validators.maxLength(45)]],
+            confirmPassword: ["",Validators.required],
+
+  } ,
+  {validators: [Validation.match("password", "confirmPassword")]}
+)
   constructor(private route:Router, private active: ActivatedRoute,
     private userservice:UserServiceService,
     private fb:FormBuilder){
@@ -22,16 +33,13 @@ export class EditProfilComponent implements OnInit {
   ngOnInit(): void {
     let userCurrentId!:any;
     this.userId = this.active.params.subscribe(params => {
-      console.log(params) //log the entire params object
-
-      console.log(params['id']) //log the value of id
       userCurrentId=params['id'];
     });
     userCurrentId = localStorage.getItem('id');
     this.userservice.getUserById(userCurrentId).subscribe(
       {
         next : (data)=> {
-          console.log("This is the searched User",data["user"])
+          // console.log("This is the searched User",data["user"])
           this.updateForm = this.fb.group({
             id:[data['user']['id']],
             nom : [data['user']['nom'], [Validators.required, Validators.minLength(3), Validators.pattern('^([A-Z][a-z]+)$')]],

@@ -7,6 +7,7 @@ import { FormGroup, ReactiveFormsModule , FormsModule, FormBuilder, Validators} 
 import Validation from '../../models/Validation';
 import { CustomDatePipePipe } from '../../pipes/custom-date-pipe.pipe';
 import { GuichetServiceService } from '../../../core/services/guichet-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-table',
@@ -52,89 +53,105 @@ export class TableComponent implements OnInit {
     .subscribe(
       {
         next: (donnes)=>{
-          // console.log("Data ",donnes['data'])
           this.rows = Object.assign(donnes['data'])
-          // this.rows.filter((el)=>{
-          //   if(el.role == "operateur" || "admin"){
-          //      this.operateurs = Object.assign(this.rows)
-          //   }
-          //   else{
-          //     this.rows = Object.assign(this.rows);
-          //   }
-          // })
           this.operateurs = Object.assign(donnes['data'])
-          // console.log("All the opertateurs", this.operateurs)
-
-
        },
        error: (e)=> {
-        // console.log("I can't find the data message to display users "+e);
        }
       }
     )
   }
   deleteUser(idUser:any) {
-    if(window.confirm("Êtes-vous sûr de vouloir supprimer ce compte?")){
-      console.log("This is the id of the user to be deleted", idUser)
-      // this.idUser = id;
-      this.userservice.deleteUser(idUser).subscribe(
-        {
-          next : (data)=>{
-            alert(data.message);
-            window.location.reload();
-          },
-          error : (err)=>{
-            console.log('Error', err);
+    if(idUser!==null){
+      Swal.fire({
+        title: "Êtes-vous sûr de vouloir supprimer ce compte ?",
+        icon: "warning",
+        text: "Vous ne pouvez plus récuper ce compte!",
+        showCancelButton: true,
+        confirmButtonText: "Oui",
+        cancelButtonText: "Non",
+        reverseButtons: true
+      }).then((result)=>{
+       if(result.isConfirmed){
+        this.userservice.deleteUser(idUser).subscribe({
+          next:(info)=>{
+            Swal.fire({
+              title: "Compte supprimé avec succès",
+              icon: "success",
+              // text: "Vous ne pouvez plus la récuperer!",
+              showConfirmButton: false,
+              timer:1500
+              // confirmButtonText: "Oui",
+              // cancelButtonText: "Non",
+              // reverseButtons: true
+            })
+            this.getAll();
+
           }
-        }
-      )
+         })
+       }
+      // this.getAll();
+      })
+      // this.getAll()
+
+      }
+    else{
+      Swal.fire({
+        // position: "top-end",
+        icon: "error",
+        title: "Une erreur lors de la connexion à la base de données!! ",
+        showConfirmButton: false,
+        timer: 1500
+      });
+
     }
-
-
   }
+
   updateUser(id:any){
     this.userservice.getUserById(id).subscribe({
       next: (data)=>{
-
         this.idUser = id;
-        // console.log(data['user'])
       },
       error : ()=> {
-        setTimeout(()=> {
-          alert("Il ya un problème lors de la modification de cet utiliateur!!")
-        }, 2000)
+
+        Swal.fire({
+          title: "Une erreur est survenue lors de la modification du compte ?",
+          icon: "error",
+          showConfirmButton: false,
+          timer:1500
+
+        })
       }
     })
   }
 
   deleteConfirmed(){
     this.deleConfirmation = true;
-    // this.deleteUser(this.idUser);
   }
 
   addUser() {
-    // this.router.navigate(['register']);
     this.router.navigate(['/admin', "add-user"])
 
   }
   details(id:any){
     this.userservice.getUserById(id).subscribe({
       next:(info)=>{
-        console.log("HI from user details Method",info.user)
         this.userId = info.user.id;
         this.gchsrv.getGuichetByUser(this.userId).subscribe({
             next:(inf)=>{
-              console.log("HEllo from Info Guichet",inf.guichet)
               this.userBureau = inf.guichet.bureau;
               this.guichetUser = inf.guichet.nomGuichet
-              // this.userBureau = inf.guichet.bureau;
-              // this.guichetUser = inf.guichet.
             }
           })
 
       },
       error:(e)=>{
-
+          Swal.fire({
+            title: "Une erreur est survenue lors de l'affichage des données' ?",
+            icon: "error",
+            showConfirmButton: false,
+            timer:2500
+          })
       }
     })
   }

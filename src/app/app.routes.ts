@@ -29,12 +29,15 @@ import { EditProduitComponent } from './layouts/admin-layout/pages/edit-produit/
 import { AddUserComponent } from './shared/components/add-user/add-user.component';
 import { ProfileComponent } from './layouts/admin-layout/pages/profile/profile.component';
 import { TicketsComponent } from './layouts/user-layout/components/tickets/tickets.component';
+import { EditTicketComponent } from './layouts/operateur-layout/components/edit-ticket/edit-ticket.component';
+import { EditFileComponent } from './layouts/operateur-layout/components/edit-file/edit-file.component';
+import { FileEnCoursComponent } from './layouts/operateur-layout/pages/file-en-cours/file-en-cours.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   {path:'login', component: LoginComponent},
   {path:"register", component: RegisterComponent},
-  {path:"forgot-password", component: ForgotPaswordComponent},
+  {path:"forgot-password/:id", component: ForgotPaswordComponent},
 
   {path:"admin",
   children: [
@@ -45,11 +48,7 @@ export const routes: Routes = [
     {path:"edit-user/:id", component: EditUserComponent},
     {path:"add-user", component:AddUserComponent},
     {path:'profile',component:ProfileComponent},
-    {path:"bureaux", component:BureauComponent,
-    //  children: [{path:"add-bureau", component:AddBureauComponent},
-    //   {path:"edit-bureau", component:EditBureauComponent}
-    //  ]
-    },
+    {path:"bureaux", component:BureauComponent},
     {path:"bureaux/add-bureau", component:AddBureauComponent},
     {path:"bureaux/edit-bureau/:id", component:EditBureauComponent},
     {path: "produits", component:ProduitListComponent},
@@ -73,11 +72,15 @@ export const routes: Routes = [
     {path:"avis/edit-avis/:id", component:EditAvisComponent},
     {path:"bureau-details/:id", component:BureauDetailsComponent},
     {path:"tickets", component:TicketsComponent},
-    // {path:"tickets/reserve-ticket"}
+    // {path:"tickets/reserve-ticket", component:AddTicketComponent}
   ]},
   {path: "operateur",
   children:[
     {path: "", component:OpboardComponent},
+    {path:"edit-ticket/:id", component:EditTicketComponent},
+    {path:"edit-file/:id", component:EditFileComponent},
+    {path:"tickets", component:FileEnCoursComponent}
+    // {path:"",}
     // {path:"profile", component:OpProfileComponent,},
     ]},
   {path:'**', component:NotfoundPageComponent},

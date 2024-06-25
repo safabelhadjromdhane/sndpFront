@@ -9,5 +9,6 @@ export interface Ticket {
   codeClient?:string;
   idGuichet:string;
   description?:string;
+  idFile?:any;
   // role?: string;
 }

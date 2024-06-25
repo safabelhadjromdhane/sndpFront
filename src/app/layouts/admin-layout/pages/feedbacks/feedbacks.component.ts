@@ -6,6 +6,7 @@ import { FeedbackServiceService } from '../../../../core/services/feedback-servi
 import { Feedback } from '../../../../shared/models/Feedback';
 import { UserServiceService } from '../../../../core/services/user-service.service';
 import { CustomDatePipePipe } from '../../../../shared/pipes/custom-date-pipe.pipe';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-feedbacks',
@@ -50,20 +51,53 @@ export class FeedbacksComponent implements OnInit {
 
   }
   deleteAvis(id:any){
-    console.log("the feedback to be deleted!!",id);
-    this.feedbackservice.deleteFeedback(id).subscribe({
-      next:(info)=>{
-        alert(info.message);
-        console.log('as been deleted successfully!',info.message);
-        // window.location.reload();
-        this.getAll();
-      },
-      error:(e)=>{
-        alert('Feedback could not be deleted!!');
-
-        console.log('Feedback could not be deleted!!',e)
+    if(id!=null){
+      Swal.fire({
+        title: "Êtes-vous sûr de vouloir supprimer cet avis ?",
+        icon: "warning",
+        text: "Vous ne pouvez plus le récuper !",
+        showCancelButton: true,
+        confirmButtonText: "Oui",
+        cancelButtonText: "Non",
+        reverseButtons: true
+      }).then((result)=>{
+        if(result.isConfirmed){
+          this.feedbackservice.deleteFeedback(id).subscribe({
+            next:(info)=>{
+              // alert(info.message);
+              Swal.fire({
+                title: "Avis supprimé avec succès",
+                icon: "success",
+                // text: "Vous ne pouvez plus la récuperer!",
+                showConfirmButton: false,
+                timer:1500
+                // confirmButtonText: "Oui",
+                // cancelButtonText: "Non",
+                // reverseButtons: true
+              })
+              // window.location.reload();
+              this.getAll();
+            },
+        })
       }
-    })
+      })
+    }
+    // console.log("the feedback to be deleted!!",id);
+    // this.feedbackservice.deleteFeedback(id).subscribe({
+    //   next:(info)=>{
+    //     // alert(info.message);
+    //     Swal.fire({
+    //       title: "Avis supprimé avec succès",
+    //       icon: "success",
+    //       // text: "Vous ne pouvez plus la récuperer!",
+    //       showConfirmButton: false,
+    //       timer:1500
+    //       // confirmButtonText: "Oui",
+    //       // cancelButtonText: "Non",
+    //       // reverseButtons: true
+    //     })
+    //     // window.location.reload();
+        // this.getAll();
 
   }
   // delConfirm(){

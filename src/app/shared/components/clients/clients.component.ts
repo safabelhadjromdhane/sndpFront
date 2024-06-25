@@ -5,6 +5,7 @@ import { UserServiceService } from '../../../core/services/user-service.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../models/User';
 import Validation from '../../models/Validation';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clients',
@@ -67,23 +68,51 @@ export class ClientsComponent implements  OnInit {
     )
   }
   deleteUser(idUser:any) {
-    if(window.confirm("Êtes-vous sûr de vouloir supprimer ce compte?")){
-      console.log("This is the id of the user to be deleted", idUser)
-      // this.idUser = id;
-      this.userservice.deleteUser(idUser).subscribe(
-        {
-          next : (data)=>{
-            alert(data.message);
-            window.location.reload();
-          },
-          error : (err)=>{
-            console.log('Error', err);
+    if(idUser!==null){
+      Swal.fire({
+        title: "Êtes-vous sûr de vouloir supprimer ce compte?",
+        icon: "warning",
+        text: "Vous ne pouvez plus le récuper!",
+        showCancelButton: true,
+        confirmButtonText: "Oui",
+        cancelButtonText: "Non",
+        reverseButtons: true
+      }).then((result)=>{
+       if(result.isConfirmed){
+        this.userservice.deleteUser(idUser).subscribe({
+          next:(info)=>{
+            console.log("User to be delete!!", info);
+            this.getAll();
           }
-        }
-      )
+         })
+       }
+      })
     }
+    else{
+      Swal.fire({
+        // position: "top-end",
+        icon: "error",
+        title: "Une erreur lors de la connexion à la base de données!! ",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+    // if(window.confirm("Êtes-vous sûr de vouloir supprimer ce compte?")){
 
+    //   this.userservice.deleteUser(idUser).subscribe(
+    //     {
+    //       next : (data)=>{
+    //         // alert(data.message);
+    //         // window.location.reload();
+    //       },
+    //       error : (err)=>{
+    //         // console.log('Error', err);
+    //       }
+    //     }
+    //   )
+    // }
   }
+
 
   deleteConfirmed(){
     this.deleConfirmation = true;

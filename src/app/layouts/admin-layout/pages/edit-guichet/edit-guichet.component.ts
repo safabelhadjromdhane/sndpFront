@@ -13,6 +13,7 @@ import { GuichetServiceService } from '../../../../core/services/guichet-service
   styleUrl: './edit-guichet.component.css'
 })
 export class EditGuichetComponent implements OnInit {
+  updateForms!:FormGroup ;
 
   constructor(private usersrv:UserServiceService,
     private prdsvr:ProduitServiceService,
@@ -21,20 +22,25 @@ export class EditGuichetComponent implements OnInit {
     private active:ActivatedRoute,
     private route:Router
   ) { }
-  updateForms!:FormGroup;
+  pdateForms:FormGroup = this.fb.group({
+    nomGuichet:["",[Validators.required]],
+    bureau:["", [Validators.required]],
+    user:["",[Validators.required]],
+    produit:["",[Validators.required]]
+  })
   gchId!:any;
 
   ngOnInit(): void {
-    let currentGch!:any;
+    let currentGch!:number;
     this.gchId = this.active.params.subscribe(
       params =>{
-        console.log(params['id']) //log the value of id
+        // console.log(params['id'])
         currentGch = params['id'];
       }
     );
     this.guichetsvr.getGuichetById(currentGch).subscribe({
       next:(infos)=>{
-          console.log("This is the searched guichet", infos["data"]);
+          // console.log("This is the searched guichet", infos["data"]);
           this.updateForms = this.fb.group({
             nomGuichet:[infos['data']['nomGuichet'],Validators.required],
             bureau:[infos['data']['bureau'], Validators.required],
