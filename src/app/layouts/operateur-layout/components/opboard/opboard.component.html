@@ -120,34 +120,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                           </div>
                         </div>
                         </li>
-                          <!-- @for(op of gchOp; track op){
-                            <li>
-                              <div class="px-2 py-4 md:px-6">
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">Bureau : {{opBr}}</h3>
-                                    <p class="mt-1 max-w-2xl text-sm text-gray-500">Guichet: {{op.nomGuichet}}</p>
-                                </div>
-                                <div class="mt-4 flex items-center justify-between">
-                                    <p class="text-sm font-medium text-gray-500">Produit  <span class="text-green-600">{{opProd}}</span></p>
-                                    <a  class="font-medium text-indigo-600 hover:text-indigo-500">Edit</a>
-                                </div>
-                            </div>
-                            </li>
-                          }
-                        @empty {
-                          <li>
-                            <div class="px-2 py-4 md:px-6">
-                              <div class="flex items-center justify-between">
-                                  <h3 class="text-lg leading-6 font-medium text-gray-900">Bureau </h3>
-                                  <p class="mt-1 max-w-2xl text-sm text-gray-500">Guichet</p>
-                              </div>
-                              <div class="mt-4 flex items-center justify-between">
-                                  <p class="text-sm font-medium text-gray-500">Produit: <span class="text-green-600"></span></p>
-                                  <a  class="font-medium text-indigo-600 hover:text-indigo-500">Edit</a>
-                              </div>
-                          </div>
-                          </li>
-                        } -->
+
 
 
                       </ul>
@@ -192,10 +165,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                                     <input type="text" name="idUser"  formControlName="idUser" id="idUser" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="85749620" required />
 
                                   </div>
-                                <!-- <div>
-                                    <label for="codeproduit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code du produit <span class="text-red-600">*</span></label>
-                                    <input type="text" name="codeproduit" id="codeproduit" formControlName="codeproduit" required  placeholder="Code Produit : exemple 21" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                </div> -->
+
                                 <div>
                                   <label for="idGuichet" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Id Guichet <span class="text-red-600">*</span></label>
                                   <input type="text" name="idGuichet" id="idGuichet" formControlName="idGuichet" required  placeholder="Code Guichet: exemple 12" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
@@ -273,18 +243,13 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                                        Nom File
                                    </th>
                                    <th scope="col" class="px-6 py-3">
-                                       Date de Création
+                                    Guichets
                                    </th>
 
-                                   <th scope="col" class="px-6 py-3">
-                                    Guichets
-                                 </th>
+
+
                                  <th scope="col" class="px-6 py-3">
-                                  User
-                               </th>
-                                 <th scope="col" class="px-6 py-3">
-                                  User
-                               </th>
+Date de Création                               </th>
                                    <th scope="col" class="px-6 py-3">
                                        Action
                                    </th>
@@ -296,8 +261,7 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >{{file.id}}</th>
                               <td class="px-6 py-4" >{{file.nom}}</td>
                               <td class="px-6 py-4">{{file.idGuichet}}</td>
-                              <td class="px-6 py-4">{{file.idGuichet}}</td>
-                              <td class="px-6 py-4">{{file.idUser}}</td>
+
                               <td class="px-6 py-4">{{file.fileDate  | customDatePipe : "numeric"}}</td>
 
                               <td class="flex items-center px-6 py-4">
@@ -334,81 +298,6 @@ text-white border-r border-[#1a202c] sm:translate-x-0 dark:bg-gray-800 dark:bord
                   </div>
                 </div>
 
-                    <!-- <div class="w-full sm:w-3/4 md:w-11/12 lg:w-full p-3">
-
-
-                      <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-                        <div class="p-4 flex-1 flex flex-col">
-
-                          <table class="w-full text-sm text-left rtl:text-right lg:rounded-lg bg-slate-100 text-gray-600 dark:text-gray-400">
-                            <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-
-                              <div class="sm:flex sm:items-center sm:justify-between">
-                                <div>
-                                    <div class="flex items-center gap-x-3">
-                                        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Historiques des files traitées</h2>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            </caption>
-                           </table>
-                           <table class="w-full text-sm text-left rtl:text-right bg-slate-100 text-gray-600 dark:text-gray-400">
-                               <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
-                                   <tr>
-                                       <th scope="col" class="px-6 py-3">
-                                             ID
-                                       </th>
-                                       <th scope="col" class="px-6 py-3">
-                                           Nom File
-                                       </th>
-                                       <th scope="col" class="px-6 py-3">
-                                           Date de Création
-                                       </th>
-
-                                       <th scope="col" class="px-6 py-3">
-                                           Action
-                                       </th>
-                                   </tr>
-                               </thead>
-                               <tbody>
-                               @for(file of files; track file){
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >file.id</th>
-                                  <td class="px-6 py-4" >file.nom</td>
-                                  <td class="px-6 py-4">file.date</td>
-
-                                  <td class="flex items-center px-6 py-4">
-                                    <div class="relative inline-block px-3 py-1 font-semibold leading-tight rounded-full flex justify-between" classes="[object Object]">
-                                      <div class="w-6 h-6 mr-2 text-blue-600 transform hover:text-blue-500 hover:scale-110">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                        </svg>
-                                    </div>
-                                      <div class="w-6 h-6 mr-2 transform text-green-600 hover:text-green-500 hover:scale-110" type="button" [routerLink]="['edit-file', ]">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 22" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                        </svg>
-                                    </div>
-                                    </div>
-                                  </td>
-                               </tr>
-                               }
-                               @empty {
-                                <td class="px-6 py-4">Aucune  file n'est trouvée n'a été trouver.</td>
-
-                               }
-
-                               </tbody>
-                           </table>
-
-                        </div>
-                      </div>
-                    </div> -->
 
 
                   </div>

@@ -1,5 +1,5 @@
 
-<section class="bg-gray-100 dark:bg-gray-900">
+<section class="bg-gray-200 dark:bg-gray-900">
 
 
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:h-auto lg:py-0">
@@ -15,7 +15,7 @@
                 </a> -->
 
               </h1>
-              @if(isInvalid == false) {
+              <!-- @if(isInvalid == false) {
                 <div class="flex justify-center">
                   <div role="alert" class="md:w-2/4">
                     <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
@@ -38,7 +38,7 @@
                     </div>
                   </div>
                 </div>
-              }
+              } -->
               <form class="space-y-4 md:space-y-6 mb-3 md:mb-6" (ngSubmit)="onSignUp()" [formGroup]="userForm">
 
                 <div class="grid grid-cols-2 gap-6">
@@ -244,7 +244,7 @@
                     </p>
                 </div>
                 <div class="mb-3">
-                  <label for="role" class="block mb-2 text-sm font-medium  text-gray-900 dark:text-white">Choisir un role</label>
+                  <label for="role" class="block mb-2 text-sm font-medium  text-gray-900 dark:text-white">Choisir un role <span class="text-red-600">*</span></label>
                   <select id="role" formControlName="role"  required class="bg-gray-50 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option selected value="client">Client</option>
                     <!-- <option value="operateur" disabled>Opérateur</option>

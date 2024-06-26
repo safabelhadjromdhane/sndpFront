@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { eachMonthOfInterval } from 'date-fns';
 import { FeedbackServiceService } from '../../../../core/services/feedback-service.service';
 import { UserServiceService } from '../../../../core/services/user-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-feedback',
@@ -28,21 +29,40 @@ export class AddFeedbackComponent implements OnInit {
   }
 
   onSave(){
-    console.log("this is from templae", this.feedForm.value)
+    // console.log("this is from templae", this.feedForm.value)
    if(this.feedForm.value !=null){
     this.feedservice.addFeedBack(this.feedForm.value).subscribe(
       {next: (infos:any)=>{
-        if(infos["status"]= 200){
-          alert("Avis Créé avec succèss!!");
-          setTimeout(()=>{
-            this.route.navigate(['client','avis'])
-          },500)
-        }
+        console.log("fello from 200")
+        Swal.fire({
+         icon: "success",
+         title: 'Avis ajouté avec succés!!',
+         showConfirmButton: false,
+         timer: 1500
+        })
+        this.route.navigate(['/client', 'avis'])
+
+       // setTimeout(()=>{
+       // },500)
+        // if(infos["status"]== 200){
+
+
+
+        // }
 
       },
+      error:()=>{
+        Swal.fire({
+          icon: "warning",
+          title: 'Veuillez remplir tous les champs!!',
+          showConfirmButton: false,
+          timer:2000
+        })
+      }
     }
     )
    }
+
   }
   logout(){
   this.usersrv.logout();

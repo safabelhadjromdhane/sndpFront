@@ -54,5 +54,4 @@ export class FeedbackServiceService {
     return this.http.get<{message:string, nbr:any}>(`${this.baseUrl}/count`)
   }
 
-
 }

@@ -51,7 +51,6 @@ export class UserServiceService {
      //Editing a User
      editUser(id: string,data:any){
       const token = this.getToken();
-      // console.log("gettinf the token from userservive", token);
       const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
 
       return this.http.put<{message : string, user:any}>(`${this.baseUrl}/update/${id}`, data,
@@ -72,9 +71,7 @@ export class UserServiceService {
       countUsers(){
         const token = this.getToken();
         const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-
         return this.http.get<{message:string, nbUsers: number}>(`${this.baseUrl}/count`,
-        // {headers:header}
         );
       }
 
@@ -90,7 +87,6 @@ export class UserServiceService {
       getToken(){
         // var token_user =
         localStorage.getItem('access_token');
-        // const payload = jwt.verify(token_user, "super-secret-token")
         return localStorage.getItem('access_token');
 
       }
@@ -104,22 +100,18 @@ export class UserServiceService {
       getAllOps() {
         return this.http.get<{message: string, data:User} >(`${this.baseUrl}/operateurs`)
       }
+
+      // getting all admins
       getAllAdmins() {
         return this.http.get<{message: string, data:User} >(`${this.baseUrl}/admins`)
       }
 
-      //forgot password
-
+      //resetPassword
       resetPassword(){
 
       }
 
-      // decodeUserToken( ){
-      //   // const token = this.getToken()
-      //   const payload = jwt.verify();
-      //   const userId = payload.sub;
-      //   return userId;
-      // }
+
 }
 
 

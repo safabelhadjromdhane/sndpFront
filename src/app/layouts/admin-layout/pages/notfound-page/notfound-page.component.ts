@@ -9,5 +9,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './notfound-page.component.css'
 })
 export class NotfoundPageComponent {
+  constructor(private location:Location){
+
+
+  }
+  erroClicked(){
+    this.location.reload()
+  }
 
 }

@@ -23,15 +23,14 @@ export class TicketListComponent implements OnInit {
   numTicketsEnCours!:number;
   idClient!:any;
   idFile!:any;
+  client:Ticket[] = [];
 
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
     this.getAllTicketPerDay();
     this.countTicketEnAttente();
     this.countTicketEnCours();
   }
   getAllTicketPerDay(){
-    this.today = new Date();
     this.ticketservice.getAllTickets().subscribe({
       next:(data)=>{
 
@@ -40,7 +39,6 @@ export class TicketListComponent implements OnInit {
             return el.file
           })
           this.idFile = res;
-          console.log('idfile', this.idFile)
       }
     })
   }
@@ -64,10 +62,13 @@ export class TicketListComponent implements OnInit {
   details(id:any){
    this.ticketservice.getTicketById(id).subscribe({
     next:(info)=>{
-    this.idClient =info['data'].codeClient;
-     console.log(info["data"])
-
-
+     this.client = Object.assign(info["data"]);
+     var res = this.client.map(el => el.codeClient);
+     this.idClient =res;
+    //  console.log("Result ",res)
+     var op = this.client.map(op => op.idFile)
+    //  console.log(" Information ",op)
+     this.idFile = op;
     }
    })
   }

@@ -33,6 +33,7 @@ export class FileEnCoursComponent implements OnInit {
   }
   userId!:any;
   tickets:Ticket[]=[];
+  ticke!:any;
   assigneG!:any;
   idGu!:any;
   filtered!:any[];
@@ -97,6 +98,21 @@ export class FileEnCoursComponent implements OnInit {
   updateTicket(id:any){
     this.idTicket = id;
     console.log(this.idTicket)
+    if(id!=null){
+      this.ticketsrv.getTicketById(id).subscribe({
+      next:(info)=>{
+       console.log(info.data)
+       this.ticke = Object.assign(info["data"])
+      }
+      })
+    }
+    else{
+      Swal.fire({
+        title: 'Veuillez selectionner un ticket !',
+        icon: 'error',
+        showCancelButton: true
+      })
+    }
 
   }
   deleteTicket(id:any){
@@ -146,7 +162,7 @@ export class FileEnCoursComponent implements OnInit {
   }
   onUpdate(){
    this.updateTicket(this.idTicket);
-   console.log(this.updateForm.value)
+  //  console.log(this.updateForm.value)
    if(this.updateForm.valid){
        this.ticketsrv.updateTicket(this.idTicket, this.updateForm.value).subscribe({
         next:(info)=>{

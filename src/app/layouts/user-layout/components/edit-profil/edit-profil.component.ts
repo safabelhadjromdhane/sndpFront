@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserServiceService } from '../../../../core/services/user-service.service';
 import Validation from '../../../../shared/models/Validation';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-profil',
@@ -53,7 +54,11 @@ export class EditProfilComponent implements OnInit {
         )
         },
         error : (e)=> {
-          alert("On ne parviens pas à recuperer les informations!!!")
+          Swal.fire({
+            icon: 'error',
+            title: 'Dommange',
+            text: 'Une erreur est survenue veuillez réessayer plus tard',
+          })
         }
       }
      )
@@ -62,8 +67,14 @@ export class EditProfilComponent implements OnInit {
   onUpdate(){
     this.userservice.editUser(this.userId,this.updateForm.value).subscribe({
       next : ()=>{
-        alert("Utilisateur modifié avec succès");
-        this.route.navigate(['client'])
+        Swal.fire({
+          icon: 'success',
+          title: 'Succés de mdification',
+          text: "L'opération de modification du compte est réalisé avec succes",
+          timer: 2000
+        })
+        // alert("Utilisateur modifié avec succès");
+        this.route.navigate(['/client'])
       }
     })
   }

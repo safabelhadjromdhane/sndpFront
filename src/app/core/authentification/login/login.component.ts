@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSignIn() {
-    // console.log("This is the value of the form ",this.signinForm.value);
 
     this.userService.login(this.signinForm.value).subscribe(
       {
@@ -49,8 +48,8 @@ export class LoginComponent implements OnInit {
           Swal.fire({
             icon: "success",
             title: "Authentification  réalisé avec succés",
-            showConfirmButton: false,
-            timer: 1500
+            showConfirmButton: true,
+            timer: 2500
           });
 
         if(data.user.role == 'admin'){
@@ -73,7 +72,6 @@ export class LoginComponent implements OnInit {
 
         }        },
         error : (error) => {
-          // console.log("Erreur lors d'authentification: " + error);
           Swal.fire({
             icon: "error",
             title: "Vous devez vérifier vos données saisies!!!",
@@ -86,25 +84,5 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-  // exit(role:string) {
-  //   console.log('I clicked the close button',role)
-  //   this.isLogged == false;
-  //  switch(role){
-  //   case "admin":
-  //     this.router.navigate(['admin']);
-  //     break;
-  //     case "operateur":
-  //     this.router.navigate(['operateur']);
-  //     break;
-  //     case "client":
-  //     this.router.navigate(['client']);
-  //     break;
-  //  }
-
-  // }
-
-  // closeBtn(){
-  //   console.log("close the button with tailwindcss plz!!!")
-  // }
 
 }

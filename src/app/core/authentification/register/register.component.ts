@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
             // window.alert("Votre compte a été créer avec Succès!!!");
             this.router.navigate(['login']);
           }
-          else if(data['status'] = 500){
+          else if(data['status'] == 500){
             Swal.fire({
               icon: "warning",
               title: "Utilisateur existant déjà, veuillez re-introduire les données",
@@ -84,8 +84,13 @@ export class RegisterComponent implements OnInit {
         error : (error)=> {
           this.isConnected = false;
           this.isInvalid = false;
-
-          console.log("C'est quoi l'erreur", error);
+          Swal.fire({
+            icon: "warning",
+            title: "Vous devez remplir le formulaire",
+            showConfirmButton: true,
+            timer: 1500
+          });
+          // console.log("C'est quoi l'erreur", error);
         }
       }
     )

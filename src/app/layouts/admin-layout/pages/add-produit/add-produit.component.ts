@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { ProduitServiceService } from '../../../../core/services/produit-service.service';
 import { UserServiceService } from '../../../../core/services/user-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-produit',
@@ -40,10 +41,17 @@ export class AddProduitComponent implements OnInit{
       this.prodservice.creatingProduct(this.createProduit.value).subscribe({
         next:(infos)=>{
           if(infos["status"]= 200){
-            alert("Avis Créé avec succèss!!");
-            setTimeout(()=>{
-              this.route.navigate(['admin','produits'])
-            },500)
+            Swal.fire({
+              icon: "success",
+              text: "Produit créer avec succés!",
+              showConfirmButton: true,
+
+              // confirmButtonText: "Oui",
+              // cancelButtonText: "Non",
+              // reverseButtons: true
+          })
+            this.route.navigate(['admin','produits'])
+
           }
 
         }

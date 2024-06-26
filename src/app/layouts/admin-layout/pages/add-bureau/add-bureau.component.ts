@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { BureauServiceService } from '../../../../core/services/bureau-service.service';
 import { UserServiceService } from '../../../../core/services/user-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-bureau',
@@ -33,7 +34,13 @@ export class AddBureauComponent implements OnInit{
       this.bureauService.createBureau(this.createForm.value).subscribe({
         next : (data)=>{
               if(data['message']== "Bureau has been created successfully"){
-                window.alert("Le bureau a été créer avec Succès!!!");
+                Swal.fire({
+                  icon: "success",
+                  showConfirmButton: true,
+                  text: "Le bureau a ete crée avec success",
+                  timer:2000
+                })
+                // window.alert("Le bureau a été créer avec Succès!!!");
                 this.router.navigate(['admin','bureaux']);
               }
         },

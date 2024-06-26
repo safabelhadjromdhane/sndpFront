@@ -117,7 +117,8 @@ export class OpboardComponent implements OnInit{
       }
     })
   }
-  demarrer(){      console.log(this.formFile.value)
+  demarrer(){
+    // console.log(this.formFile.value)
 
     if(this.formFile.valid){
       // console.log(this.formFile.value)
@@ -154,16 +155,7 @@ export class OpboardComponent implements OnInit{
             timer: 1500
           });
     }
-    // else if(this.formFile.invalid){
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Vous devez vérifier vos données saisies!!!",
-    //     showConfirmButton: true,
-    //     timer: 1500
-    //   });
-    // }
 
-  //  console.log(this.formFile.value)
   }
   sendFile(){
     setTimeout(()=>

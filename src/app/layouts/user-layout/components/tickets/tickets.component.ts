@@ -80,11 +80,15 @@ export class TicketsComponent  implements OnInit{
             }).then((result)=>{
              if(result.isConfirmed){
               this.ticketsrv.supprimerTicket(this.idTicket).subscribe({
+                next:(info)=>{
+
+                }
                })
-               this.getUserTicket(this.userId);
 
              }
              this.getUserTicket(this.userId);
+
+            //  this.getUserTicket(this.userId);
             })
           }
           else if(this.tab[i].status == "en cours") {

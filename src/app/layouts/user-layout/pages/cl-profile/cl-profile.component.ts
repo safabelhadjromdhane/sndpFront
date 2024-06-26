@@ -42,12 +42,23 @@ export class ClProfileComponent implements OnInit{
 
   }
   goBack() {
-    setTimeout(function(){
-   }, 500);
+  //   setTimeout(function(){
+  //  }, 500);
       this.location.back();
   }
   getAllUserFeedback(){
     this.getUser(this.userId)
+  //   this.feebackservice.getFeedbackByUserId(this.userId).subscribe({
+  //     next:(inf)=>{
+  //       console.log(inf['data'])
+  //       this.feeds = Object.assign(inf['data'])
+
+  //         this.userfeeds = Object.keys(this.feeds).length;
+  // },
+  //       error:(err)=>{
+
+  //       }
+  //   })
     this.feebackservice.getFeedBackByUserMail(this.userEmail).subscribe({
      next:(inf)=>{
 
@@ -61,11 +72,10 @@ export class ClProfileComponent implements OnInit{
         else{
           this.userfeeds = 0;
         }
-
      }
      ,
       error : (error)=>{
-        console.log(error)
+        // console.log(error)
       }
     })
 
@@ -109,21 +119,6 @@ export class ClProfileComponent implements OnInit{
       });
 
     }
-    // if(window.confirm("Êtes-vous sûr de vouloir supprimer cet avis?")){
-
-    //   this.feebackservice.deleteFeedback(id).subscribe(
-    //     {
-    //       next: (infos)=>{
-    //         this.getAllUserFeedback();
-    //         alert(infos.message)
-    //       },
-    //       error : (error)=>{
-    //         console.log(error);
-    //         alert("Nous n'avons pas parvenue à supprimer votre avis!!")
-    //       }
-    //     }
-    //    )
-    // }
 
   }
 

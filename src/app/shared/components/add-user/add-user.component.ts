@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import Validation from '../../models/Validation';
 import { UserServiceService } from '../../../core/services/user-service.service';
 import { Router, RouterLink } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-user',
@@ -14,7 +15,8 @@ import { Router, RouterLink } from '@angular/router';
 export class AddUserComponent implements OnInit{
   userForm!:FormGroup;
   Roles = ['admin', 'operateur'];
-  constructor(private fb:FormBuilder, private userservice:UserServiceService, private route:Router){}
+  constructor(private fb:FormBuilder,
+    private userservice:UserServiceService, private route:Router){}
 isConnected!:boolean;
 isInvalid!:boolean;
 
@@ -35,42 +37,67 @@ isInvalid!:boolean;
   )
   }
   onSignUp() {
-    //  console.log("This is the value of the form ",this.userForm.value);
     if(this.userForm.value!= null){
+      // console.log(this.userForm.value)
       this.userservice.signup(this.userForm.value).subscribe(
         {
           next :(data) => {
+            console.log(data)
+            // if(data['status'] ==200){
+            //   this.isConnected = true;
+            //   this.isInvalid = true;
 
-            if(data["status"] = 200){
-              this.isConnected = true;
-              this.isInvalid = true;
+            //   Swal.fire({
+            //     icon: "success",
+            //     title: "Compte Operateur dcréer avec succés!!",
+            //     text: "L'agent peux se connecter à son compte",
+            //     timer:1500
+            //   })
+            //   this.route.navigate(['/admin',"dashboard"])
+            // }
+            this.isConnected = true;
+            this.isInvalid = true;
 
-              // console.log("This is the sign up informations",data);
-              window.alert("Votre compte a été créer avec Succès!!!");
-              this.route.navigate(['/admin',"dashboard"])
-              // this.router.navigate(['login']);
-            }
-            else if(data['status'] = 500){
-              alert("Utilisateur existant déjà!!");
-              this.isInvalid = false;
+            Swal.fire({
+              icon: "success",
+              title: "Compte Operateur est créer avec succés!!",
+              text: "L'agent peux se connecter à son compte",
+              timer:1500
+            })
+            this.route.navigate(['/admin',"dashboard"])
+            // else if (data['status']==500){
+            //   Swal.fire({
+            //     icon: "warning",
+            //     title: "Utilisateur existant déjà, veuillez re-introduire les données",
+            //     showConfirmButton: false,
+            //     timer: 1500
+            //   });
+            //   // alert("Utilisateur existant déjà!!");
+            //   this.isInvalid = false;
+            //   this.isConnected = false;
 
-            }
+            // }
+
+
           },
           error : (error)=> {
-            this.isConnected = false;
-            console.log("C'est quoi l'erreur", error);
+            // this.isConnected = false;
+            // console.log("Une erreur est survenue",error)
+            Swal.fire({
+              icon: "warning",
+              title: "Une erreur est surveue lors de la création du compte!!",
+              text:"Veuillez vérifier vos informations saisies",
+              showConfirmButton: true,
+
+              timer:1500
+            })
             this.isInvalid = false;
 
           }
         }
       )
     }
-    else {
-      window.alert("Veuillez remplir le formulaire convenbalement");
 
-      this.isInvalid = false;
-
-    }
 
     }
   logout(){

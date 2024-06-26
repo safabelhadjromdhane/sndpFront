@@ -100,16 +100,7 @@ export class BureauComponent implements OnInit {
       }
     })
   }
-  // idBureauCreator(id:any){
-  //   this.bureauService.getBureauById(id).subscribe({
-  //     next:(info)=>{
-  //       console.log(info.data)
-  //     },
-  //     error:(e)=>{
-  //       console.log(e)
-  //     }
-  //   })
-  // }
+
 }
 
 
